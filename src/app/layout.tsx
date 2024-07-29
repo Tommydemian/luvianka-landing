@@ -1,8 +1,25 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Oswald, Grand_Hotel, Source_Sans_3 } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const oswald = Oswald({
+  subsets: ["latin"],
+  variable: "--font-oswald",
+  weight: ["600", "700"],
+  display: "swap",
+});
+const src_sans = Source_Sans_3({
+  subsets: ["latin"],
+  variable: "--font-src-sans",
+  weight: ["400", "700"],
+  display: "swap",
+});
+const grand_hotel = Grand_Hotel({
+  subsets: ["latin"],
+  variable: "--font-grand-hotel",
+  weight: ["400"],
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,7 +33,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body
+        className={`${oswald.variable} ${src_sans.variable} ${grand_hotel.variable}`}
+      >
+        {children}
+      </body>
     </html>
   );
 }
