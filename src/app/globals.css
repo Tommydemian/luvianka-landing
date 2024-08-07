@@ -9,11 +9,6 @@
   --text-clr: #05090c;
   --section-gap: 5.063rem;
 
-  /* font-family: */
-  --ff-heading: var(--font-oswald);
-  --ff-body: var(--font-src-sans);
-  --ff-pre-heading: var(--font-grand-hotal);
-
   /* CTA */
   --cta-padding: 10px;
   --cta-radius: 2.375rem;
@@ -27,11 +22,8 @@
   --cont-max-w: 87.5rem;
 
   /* Pretitle */
-  --pretitle-ff: "Grand Hotel", cursive;
   --pretitle-fs: 2rem;
   --pretitlte-lh: 5px;
-
-  --ff-heading: "Oswald", sans-serif;
 
   /* Product-grid */
   --prod-grid-gap: 2em;
@@ -47,14 +39,8 @@
   margin: 0;
 }
 
-/* font-family: "Grand Hotel", cursive;
-
-  font-family: "Oswald", sans-serif;
-
-  font-family: "Source Sans 3", sans-serif; */
-
 html {
-  font-family: "Source Sans 3", sans-serif;
+  font-family: var(--font-src-sans), sans-serif;
 }
 
 body {
@@ -105,6 +91,18 @@ img {
     color: #010101;
   }
 }
+
+/* UTILS */
+/* Apply fonts directly using the Next.js variables */
+
+.heading-font {
+  font-family: var(--font-oswald), sans-serif;
+}
+
+.pre-heading-font {
+  font-family: var(--font-grand-hotel), cursive;
+}
+/*  */
 
 /* Header */
 header {
@@ -160,7 +158,8 @@ header .header-navlist li {
   left: 50%;
   transform: translate(-50%, 100%);
   opacity: 0;
-  transition: transform 0.5s cubic-bezier(0.36, 0.01, 0.52, 0.97),
+  transition:
+    transform 0.5s cubic-bezier(0.36, 0.01, 0.52, 0.97),
     opacity 0.5s cubic-bezier(0.36, 0.01, 0.52, 0.97);
 }
 

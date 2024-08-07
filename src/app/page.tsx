@@ -1,10 +1,7 @@
 import { Metadata } from "next";
-// import { SliceZone } from "@prismicio/react";
-
+import { SliceZone } from "@prismicio/react";
 import { createClient } from "@/prismicio";
-// import { components } from "@/slices";
-
-import Image from "next/image";
+import { components } from "@/slices";
 import styles from "./page.module.css";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -19,10 +16,16 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function Home() {
   const client = createClient();
+
   try {
-    const homePage = await client.getSingle("homepage");
-    console.log(homePage);
-    return <main className={styles.main}>{homePage.data.title}</main>;
+    const page = await client.getSingle("homepage");
+
+    return (
+      <main className={styles.main}>
+        <h1>{page.data.title}</h1>
+        <SliceZone slices={page.data.slices} components={components} />
+      </main>
+    );
   } catch (error) {
     console.error("Error fetching homepage:", error);
     return <main className={styles.main}>Error loading page</main>;

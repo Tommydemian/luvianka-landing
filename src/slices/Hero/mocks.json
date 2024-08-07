@@ -2,7 +2,47 @@
 	{
 		"__TYPE__": "SharedSliceContent",
 		"variation": "default",
-		"primary": {},
+		"primary": {
+			"button_text": {
+				"__TYPE__": "FieldContent",
+				"type": "Text",
+				"value": "Contactanos"
+			},
+			"button_link": {
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "https://slicemachine.dev",
+					"target": "_blank"
+				}
+			},
+			"hero_subheading": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Watch out our flavorful meat and order yours today to get up to 35% discount on all new offers",
+							"spans": []
+						},
+						"direction": "ltr"
+					}
+				]
+			},
+			"hero_heading": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading1",
+						"content": {
+							"text": "The best meat in the market",
+							"spans": []
+						},
+						"direction": "ltr"
+					}
+				]
+			}
+		},
 		"items": []
 	}
 ]
