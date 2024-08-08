@@ -1,15 +1,13 @@
 "use client";
 
 import React from "react";
-import { useToggle } from "@/hooks/useToggle";
 
-// type MobileMenuIconProps = {
-//   isActive: boolean
-// }
+type MobileMenuIconProps = {
+  isActive: boolean;
+  toggle: () => void;
+};
 
-export function MobileMenuIcon() {
-  const { state: isActive, toggle } = useToggle(false);
-
+export function MobileMenuIcon({ isActive, toggle }: MobileMenuIconProps) {
   return (
     <button className="mobile-menu-wrapper" onClick={toggle}>
       <div className="icon-wrapper">

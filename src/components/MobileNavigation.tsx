@@ -1,21 +1,23 @@
 "use client";
 
-import React, { useState } from "react";
-import Navigation from "../slices/Navigation";
-import { MobileMenuIcon } from "./MobileMenuIcon";
-import { Content } from "@prismicio/client";
+import React from "react";
+import { createClient } from "../prismicio";
+// types || && static data
+import { CtaInfo } from "@/../types";
+// slices usage
+import { SliceZone } from "@prismicio/react";
+import { components } from "@/slices";
 
-export function MobileNavigation({ slice }: MobileNavigationProps) {
-  const [isActive, setIsActive] = useState(false);
+export const MobileNavigation = async () => {
+  let slices;
 
-  const toggleMenu = () => setIsActive(!isActive);
+  try {
+    const client = createClient();
+    const settings = await client.getSingle("settings");
 
-  return (
-    <>
-      <MobileMenuIcon isActive={isActive} toggle={toggleMenu} />
-      <aside className={`mobile-nav-aside ${isActive ? "active" : ""}`}>
-        <Navigation slice={slice} context={} />
-      </aside>
-    </>
-  );
-}
+    slices = settings.data.slices;
+  } catch (error) {
+    console.error("Error fetching navigation:", error);
+  }
+  return slices && <SliceZone slices={slices} components={components} />;
+};

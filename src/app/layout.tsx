@@ -1,8 +1,11 @@
+"use-client";
+
 import type { Metadata, ResolvingMetadata } from "next";
 import { Oswald, Grand_Hotel, Source_Sans_3 } from "next/font/google";
 import "./globals.css";
 import { createClient } from "@/prismicio";
 import { Header } from "@/components/Header";
+import { MobileMenuProvider } from "@/context/MobileMenuContext";
 
 const oswald = Oswald({
   subsets: ["latin"],
@@ -24,18 +27,12 @@ const grand_hotel = Grand_Hotel({
 });
 
 export async function generateMetadata(): Promise<Metadata> {
-  // fetch prismic data
   const client = createClient();
-
-  // getSingle: get single type data
-  const page = await client.getSingle("settings");
+  const settings = await client.getSingle("settings");
 
   return {
-    title: page.data.site_title || "Luvianka",
-    description: page.data.meta_description || "",
-    // openGraph: {
-    //   images: ["/some-specific-page-image.jpg", ...previousImages],
-    // },
+    title: settings.data.site_title || "Luvianka",
+    description: settings.data.meta_description || "",
   };
 }
 
@@ -46,13 +43,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${oswald.variable} ${src_sans.variable} ${grand_hotel.variable}`}
-      >
-        <Header />
-        {children}
-        <footer>Footer</footer>
-      </body>
+      <MobileMenuProvider>
+        <body
+          className={`${oswald.variable} ${src_sans.variable} ${grand_hotel.variable}`}
+        >
+          <Header />
+          {children}
+          <footer>Footer</footer>
+        </body>
+      </MobileMenuProvider>
     </html>
   );
 }

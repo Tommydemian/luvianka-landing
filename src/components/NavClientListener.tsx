@@ -1,20 +1,12 @@
+"use client";
+
 import React, { ReactNode } from "react";
+import { useMobileMenu } from "@/context/MobileMenuContext";
 
-type NavClientListenerProps = {
-  children: ReactNode;
-  isActive: boolean;
-};
-
-export const NavClientListener = ({
-  children,
-  isActive,
-}: NavClientListenerProps) => {
+export const NavClientListener = ({ children }: { children: ReactNode }) => {
+  const { isOpen } = useMobileMenu();
   return (
-    <div
-      className={
-        isActive ? "mobile-menu-wrapper.active" : "mobile-menu-wrapper"
-      }
-    >
+    <div className={`mobile-menu-wall ${isOpen ? "active" : ""}`}>
       {children}
     </div>
   );
