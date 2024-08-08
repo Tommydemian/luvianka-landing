@@ -221,6 +221,11 @@ header .header-navlist li:focus {
     row-gap: 2rem;
     padding: 0 0 2em 2em;
     font-size: var(--fs-500);
+    text-decoration: underline;
+  }
+
+  header .desktop-nav {
+    display: none;
   }
 }
 

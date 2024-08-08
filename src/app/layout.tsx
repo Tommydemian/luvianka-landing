@@ -1,5 +1,3 @@
-"use-client";
-
 import type { Metadata, ResolvingMetadata } from "next";
 import { Oswald, Grand_Hotel, Source_Sans_3 } from "next/font/google";
 import "./globals.css";
