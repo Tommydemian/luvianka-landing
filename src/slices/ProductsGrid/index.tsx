@@ -17,6 +17,7 @@ const ProductsGrid = ({ slice }: ProductsGridProps): JSX.Element => {
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
+      className="container-x"
     >
       <div className="section-heading-container">
         <h1 className="section-heading-pretitle">{slice.primary.heading}</h1>
@@ -34,7 +35,7 @@ const ProductsGrid = ({ slice }: ProductsGridProps): JSX.Element => {
           }) => (
             <div key={product_title} className="product-card">
               <PrismicNextImage field={product_image} />
-              <h3>{product_title}</h3>
+              <h3 className="product-title">{product_title}</h3>
               <p>{product_description}</p>
               <CTA className="main-cta in-prod" field={button_link}>
                 {button_text}

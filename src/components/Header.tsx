@@ -1,22 +1,14 @@
 import React from "react";
 import Image from "next/image";
 import { createClient } from "../prismicio";
+import { HeaderClientSideWrapper } from "@/components/HeaderClientsideWrapper";
 // types || && static data
-import { PrismicNextLink } from "@prismicio/next";
-import { GroupField, KeyTextField, LinkField } from "@prismicio/client";
-import {
-  SettingsDocumentDataNavigationItem,
-  Simplify,
-} from "../../prismicio-types";
-import { CTA } from "./CTA";
-
-type CtaInfo = {
-  label: KeyTextField;
-  link: LinkField;
-};
+import { CtaInfo } from "@/../types";
+// slices usage
+import { SliceZone } from "@prismicio/react";
+import { components } from "@/slices";
 
 export const Header = async () => {
-  let navLinks: GroupField<Simplify<SettingsDocumentDataNavigationItem>> = [];
   let ctaInfo: CtaInfo = {
     label: "",
     link: {
@@ -25,20 +17,21 @@ export const Header = async () => {
     },
   };
 
+  let slices;
+
   try {
     const client = createClient();
-    const res = await client.getSingle("settings");
+    const settings = await client.getSingle("settings");
     ctaInfo = {
-      label: res.data.button_text,
-      link: res.data.button_link,
+      label: settings.data.button_text,
+      link: settings.data.button_link,
     };
-    navLinks = res.data.navigation || [];
-    console.log("Navigation data:", navLinks);
+    slices = settings.data.slices;
   } catch (error) {
     console.error("Error fetching navigation:", error);
   }
   return (
-    <header>
+    <header className="container-x">
       <Image
         className="header-logo"
         src="https://ik.imagekit.io/2ziqnactl/luviankaLogo.png"
@@ -47,18 +40,8 @@ export const Header = async () => {
         height={458}
         priority
       />
-      <nav className="header-nav">
-        <ul className="header-navlist">
-          {navLinks.map((item) => (
-            <li key={item.label}>
-              <PrismicNextLink field={item.link}>{item.label}</PrismicNextLink>
-            </li>
-          ))}
-        </ul>
-      </nav>
-      <CTA className="main-cta" field={ctaInfo.link}>
-        {ctaInfo.label}
-      </CTA>
+      {slices && <SliceZone slices={slices} components={components} />}
+      <HeaderClientSideWrapper label={ctaInfo.label} link={ctaInfo.link} />
     </header>
   );
 };

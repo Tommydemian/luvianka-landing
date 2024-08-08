@@ -2,6 +2,7 @@
   --max-width: 1200px;
   --fs-400: 1rem;
   --fs-500: 1.125rem;
+  --fs-600: 1.5rem;
   --fs-700: 3rem;
   --accent-clr: #e12c48;
   --neutral-clr-white: #ffffff;
@@ -103,9 +104,13 @@ img {
 .pre-heading-font {
   font-family: var(--font-grand-hotel), cursive;
 }
+
+.container-x {
+  padding-inline: 1em;
+}
 /*  */
 
-/* Header */
+/* HEADER */
 header {
   display: flex;
   justify-content: space-between;
@@ -118,6 +123,7 @@ header {
 header .header-logo {
   width: 6.25rem;
   height: auto;
+  order: 0;
 }
 
 header .header-nav {
@@ -132,7 +138,90 @@ header .header-navlist {
 
 header .header-navlist li {
   text-transform: capitalize;
+  transition: color 0.3s cubic-bezier(0.075, 0, 0.165, 1);
 }
+
+header .header-navlist li:hover,
+header .header-navlist li:active,
+header .header-navlist li:focus {
+  color: var(--accent-clr);
+}
+
+/* Header responsive */
+.mobile-menu-wrapper {
+  all: unset;
+
+  display: inline-block;
+  box-sizing: border-box;
+
+  cursor: pointer;
+
+  user-select: none;
+  -webkit-user-select: none;
+
+  max-width: 100%;
+  outline: none;
+}
+
+/* Remove default focus styles in Firefox */
+.mobile-menu-wrapper::-moz-focus-inner {
+  border: 0;
+}
+
+/* Optional: Add your own focus styles */
+.mobile-menu-wrapper:focus-visible {
+  outline: 2px solid blue;
+  outline-offset: 2px;
+}
+
+.icon-wrapper {
+  position: relative;
+  width: 24px;
+  height: 24px;
+}
+
+.icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.inactive {
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+@media screen and (max-width: 768px) {
+  header .main-cta {
+    display: none;
+  }
+
+  header .header-logo {
+    order: 1;
+  }
+
+  header .header-nav {
+    display: block;
+    width: 77%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: white;
+    z-index: 999;
+  }
+}
+
+/* ---------------------------------- */
 
 /* CTA */
 .main-cta {
@@ -220,7 +309,7 @@ header .header-navlist li {
 }
 
 .landing-product-grid div:hover .main-cta.in-prod {
-  transform: translate(-50%, -125%);
+  transform: translate(-50%, -200%);
   opacity: 1;
 }
 
@@ -274,4 +363,15 @@ header .header-navlist li {
 
 .landing-product-grid div:hover img {
   transform: scale(1.15);
+}
+
+.landing-product-grid .product-title {
+  position: absolute;
+  color: var(--neutral-clr-white);
+  font-family: var(--font-oswald);
+  font-size: var(--fs-600);
+  line-height: 2.223rem;
+  left: 10%;
+  bottom: 10%;
+  z-index: 1;
 }

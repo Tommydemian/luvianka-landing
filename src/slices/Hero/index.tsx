@@ -15,7 +15,6 @@ export type HeroProps = SliceComponentProps<Content.HeroSlice>;
  * Component for "Hero" Slices.
  */
 const Hero = ({ slice }: HeroProps): JSX.Element => {
-  console.log(slice);
   return (
     <section
       className={styles.heroSection}

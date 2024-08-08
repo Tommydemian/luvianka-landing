@@ -1,0 +1,91 @@
+{
+  "id": "navigation",
+  "type": "SharedSlice",
+  "name": "Navigation",
+  "description": "Navigation",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "nav_item": {
+          "type": "Group",
+          "config": {
+            "label": "Nav Item",
+            "repeat": true,
+            "fields": {
+              "label": {
+                "type": "Text",
+                "config": {
+                  "label": "Label",
+                  "placeholder": ""
+                }
+              },
+              "link": {
+                "type": "Link",
+                "config": {
+                  "label": "Link",
+                  "placeholder": "",
+                  "select": null
+                }
+              },
+              "is_product_category": {
+                "type": "Boolean",
+                "config": {
+                  "label": "is Product Category",
+                  "default_value": false,
+                  "placeholder_true": "true",
+                  "placeholder_false": "false"
+                }
+              }
+            }
+          }
+        },
+        "category_label": {
+          "type": "Text",
+          "config": {
+            "label": "Category Label",
+            "placeholder": ""
+          }
+        },
+        "products": {
+          "type": "Group",
+          "config": {
+            "label": "Products",
+            "repeat": true,
+            "fields": {
+              "product_picture": {
+                "type": "Image",
+                "config": {
+                  "label": "Product Picture",
+                  "constraint": {},
+                  "thumbnails": []
+                }
+              },
+              "product_text": {
+                "type": "Text",
+                "config": {
+                  "label": "Product Text",
+                  "placeholder": ""
+                }
+              },
+              "product_link": {
+                "type": "Link",
+                "config": {
+                  "label": "Product Link",
+                  "placeholder": "",
+                  "select": null
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

@@ -13,40 +13,6 @@
           "placeholder": "Titulo del sitio"
         }
       },
-      "navigation": {
-        "type": "Group",
-        "config": {
-          "label": "Navegacion",
-          "repeat": true,
-          "fields": {
-            "link": {
-              "type": "Link",
-              "config": {
-                "label": "Link",
-                "placeholder": "Link",
-                "allowTargetBlank": true,
-                "select": null
-              }
-            },
-            "label": {
-              "type": "Text",
-              "config": {
-                "label": "Label",
-                "placeholder": "Label"
-              }
-            },
-            "cta_button": {
-              "type": "Boolean",
-              "config": {
-                "label": "CTA Button",
-                "placeholder_false": "false",
-                "placeholder_true": "true",
-                "default_value": true
-              }
-            }
-          }
-        }
-      },
       "button_text": {
         "type": "Text",
         "config": {
@@ -66,7 +32,11 @@
         "type": "Slices",
         "fieldset": "Slice Zone",
         "config": {
-          "choices": {}
+          "choices": {
+            "navigation": {
+              "type": "SharedSlice"
+            }
+          }
         }
       }
     },
