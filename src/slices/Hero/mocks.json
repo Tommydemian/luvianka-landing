@@ -3,19 +3,6 @@
 		"__TYPE__": "SharedSliceContent",
 		"variation": "default",
 		"primary": {
-			"button_text": {
-				"__TYPE__": "FieldContent",
-				"type": "Text",
-				"value": "Contactanos"
-			},
-			"button_link": {
-				"__TYPE__": "LinkContent",
-				"value": {
-					"__TYPE__": "ExternalLink",
-					"url": "https://slicemachine.dev",
-					"target": "_blank"
-				}
-			},
 			"hero_subheading": {
 				"__TYPE__": "StructuredTextContent",
 				"value": [
@@ -41,6 +28,18 @@
 						"direction": "ltr"
 					}
 				]
+			},
+			"button_text": {
+				"__TYPE__": "FieldContent",
+				"value": "spoken",
+				"type": "Text"
+			},
+			"button_link": {
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "http://google.com"
+				}
 			}
 		},
 		"items": []

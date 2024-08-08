@@ -22,7 +22,6 @@ export default async function Home() {
 
     return (
       <main className={styles.main}>
-        <h1>{page.data.title}</h1>
         <SliceZone slices={page.data.slices} components={components} />
       </main>
     );

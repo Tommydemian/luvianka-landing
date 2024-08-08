@@ -1,16 +1,19 @@
 import React from "react";
-import Link from "next/link";
+import { PrismicNextLink, PrismicNextLinkProps } from "@prismicio/next";
 
-type CTAProps = {
-  text: string;
-  href: string;
-  inProd?: boolean;
+type CTAProps = PrismicNextLinkProps & {
+  children?: React.ReactNode;
+  variant?: "primary" | "secondary";
 };
 
-export const CTA: React.FC<CTAProps> = ({ text, href, inProd }) => {
+export const CTA = ({
+  className = "main-cta",
+  children,
+  ...rest
+}: CTAProps) => {
   return (
-    <Link href={href} passHref legacyBehavior>
-      <a className={inProd ? "main-cta in-prod" : "main-cta"}>{text}</a>
-    </Link>
+    <PrismicNextLink className={className} {...rest}>
+      {children}
+    </PrismicNextLink>
   );
 };

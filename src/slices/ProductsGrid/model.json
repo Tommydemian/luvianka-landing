@@ -1,0 +1,79 @@
+{
+  "id": "products_grid",
+  "type": "SharedSlice",
+  "name": "ProductsGrid",
+  "description": "ProductsGrid",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "heading": {
+          "type": "Text",
+          "config": {
+            "label": "Heading",
+            "placeholder": ""
+          }
+        },
+        "sub_heading": {
+          "type": "Text",
+          "config": {
+            "label": "Sub Heading",
+            "placeholder": ""
+          }
+        },
+        "product_card": {
+          "type": "Group",
+          "config": {
+            "label": "Product Card",
+            "repeat": true,
+            "fields": {
+              "product_image": {
+                "type": "Image",
+                "config": {
+                  "label": "Product Image",
+                  "constraint": {},
+                  "thumbnails": []
+                }
+              },
+              "product_title": {
+                "type": "Text",
+                "config": {
+                  "label": "Product Title",
+                  "placeholder": ""
+                }
+              },
+              "product_description": {
+                "type": "Text",
+                "config": {
+                  "label": "Product Description",
+                  "placeholder": ""
+                }
+              },
+              "button_text": {
+                "type": "Text",
+                "config": {
+                  "label": "Button Text",
+                  "placeholder": ""
+                }
+              },
+              "button_link": {
+                "type": "Link",
+                "config": {
+                  "label": "Button Link",
+                  "placeholder": "",
+                  "select": null
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

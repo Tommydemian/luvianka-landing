@@ -3,18 +3,35 @@ import Image from "next/image";
 import { createClient } from "../prismicio";
 // types || && static data
 import { PrismicNextLink } from "@prismicio/next";
-import { GroupField } from "@prismicio/client";
+import { GroupField, KeyTextField, LinkField } from "@prismicio/client";
 import {
   SettingsDocumentDataNavigationItem,
   Simplify,
 } from "../../prismicio-types";
+import { CTA } from "./CTA";
+
+type CtaInfo = {
+  label: KeyTextField;
+  link: LinkField;
+};
 
 export const Header = async () => {
   let navLinks: GroupField<Simplify<SettingsDocumentDataNavigationItem>> = [];
+  let ctaInfo: CtaInfo = {
+    label: "",
+    link: {
+      link_type: "Web",
+      url: "",
+    },
+  };
 
   try {
     const client = createClient();
     const res = await client.getSingle("settings");
+    ctaInfo = {
+      label: res.data.button_text,
+      link: res.data.button_link,
+    };
     navLinks = res.data.navigation || [];
     console.log("Navigation data:", navLinks);
   } catch (error) {
@@ -39,7 +56,9 @@ export const Header = async () => {
           ))}
         </ul>
       </nav>
-      {/* <CTA text="Contactanos" href="/contactanos" /> */}
+      <CTA className="main-cta" field={ctaInfo.link}>
+        {ctaInfo.label}
+      </CTA>
     </header>
   );
 };

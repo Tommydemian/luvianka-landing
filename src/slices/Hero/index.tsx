@@ -1,8 +1,10 @@
 import { Content } from "@prismicio/client";
+
+import { CTA } from "@/components/CTA";
+
 import { SliceComponentProps, PrismicRichText } from "@prismicio/react";
 import { PrismicNextLink, PrismicNextImage } from "@prismicio/next";
 import styles from "@/components/hero.module.css";
-import "@/app/globals.css";
 
 /**
  * Props for `Hero`.
@@ -33,13 +35,13 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
         field={slice.primary.hero_subheading}
         components={{
           paragraph: ({ children }) => (
-            <p className={`${styles.heroDesc} heading-font`}>{children}</p>
+            <p className={styles.heroDesc}>{children}</p>
           ),
         }}
       />
-      <PrismicNextLink field={slice.primary.button_link}>
+      <CTA className="main-cta" field={slice.primary.button_link}>
         {slice.primary.button_text}
-      </PrismicNextLink>
+      </CTA>
     </section>
   );
 };
