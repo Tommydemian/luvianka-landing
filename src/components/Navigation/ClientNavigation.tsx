@@ -31,7 +31,7 @@ export const ClientNavigation = ({ slice }: ClientNavigationProps) => {
     <nav className={`header-nav mobile-nav ${isOpen ? "active" : ""}`}>
       <ul className="header-navlist">
         {navLinks.map(({ label, link, is_product_category }) => (
-          <li key={label} className={is_product_category ? "dropdown-li" : ""}>
+          <li key={label}>
             {is_product_category ? (
               <DropdownItem label={label} link={link} products={prodList} />
             ) : (

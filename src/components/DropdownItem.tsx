@@ -134,7 +134,7 @@ const DropdownItem: React.FC<DropdownItemProps> = ({
     <div className={`dropdown ${isOpen ? "open" : ""}`}>
       <button className="dropdown-trigger" onClick={toggle}>
         <PrismicNextLink field={link}>{label}</PrismicNextLink>
-        <span className="icon">
+        <span className="chevron-icon">
           <ChevronDown />
         </span>
       </button>
