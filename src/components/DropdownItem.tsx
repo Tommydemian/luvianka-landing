@@ -9,17 +9,11 @@ import { useMediaQuery } from "../hooks/useMediaQuery";
 import {
   Content,
   GroupField,
-  ImageField,
   LinkField,
   KeyTextField,
 } from "@prismicio/client";
 import { Simplify } from "../../prismicio-types";
-
-type Product = {
-  product_picture: ImageField;
-  product_text: KeyTextField;
-  product_link: LinkField;
-};
+import { Product } from "@/../types";
 
 type DropdownItemProps = {
   label: KeyTextField;

@@ -11,6 +11,12 @@ export type CtaInfo = {
   link: LinkField;
 };
 
+export type Product = {
+  product_picture: ImageField;
+  product_text: KeyTextField;
+  product_link: LinkField;
+};
+
 type NavigationItem = {
   label: string;
   link: LinkField;
