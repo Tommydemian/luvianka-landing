@@ -7,12 +7,20 @@ type CTAProps = PrismicNextLinkProps & {
 };
 
 export const CTA = ({
-  className = "main-cta",
+  className,
   children,
+  variant = "primary",
   ...rest
 }: CTAProps) => {
+  const baseClass = "main-cta";
+  const variantClass =
+    variant === "secondary" ? `${baseClass} secondary` : baseClass;
+  const finalClassName = className
+    ? `${variantClass} ${className}`
+    : variantClass;
+
   return (
-    <PrismicNextLink className={className} {...rest}>
+    <PrismicNextLink className={finalClassName} {...rest}>
       {children}
     </PrismicNextLink>
   );

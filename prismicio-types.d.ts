@@ -184,6 +184,31 @@ export type SettingsDocument<Lang extends string = string> =
 export type AllDocumentTypes = HomepageDocument | SettingsDocument;
 
 /**
+ * Item in *ContentWithImage → ImageRight → Primary → Tick Field*
+ */
+export interface ContentWithImageSliceImageRightPrimaryTickFieldItem {
+  /**
+   * Tick Icon field in *ContentWithImage → ImageRight → Primary → Tick Field*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: content_with_image.imageRight.primary.tick_field[].tick_icon
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  tick_icon: prismic.KeyTextField;
+
+  /**
+   * Tick Description field in *ContentWithImage → ImageRight → Primary → Tick Field*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: content_with_image.imageRight.primary.tick_field[].tick_description
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  tick_description: prismic.KeyTextField;
+}
+
+/**
  * Primary content in *ContentWithImage → Default → Primary*
  */
 export interface ContentWithImageSliceDefaultPrimary {
@@ -324,6 +349,18 @@ export interface ContentWithImageSliceImageRightPrimary {
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   button_link: prismic.LinkField;
+
+  /**
+   * Tick Field field in *ContentWithImage → ImageRight → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: content_with_image.imageRight.primary.tick_field[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  tick_field: prismic.GroupField<
+    Simplify<ContentWithImageSliceImageRightPrimaryTickFieldItem>
+  >;
 }
 
 /**
@@ -711,6 +748,7 @@ declare module "@prismicio/client" {
       AllDocumentTypes,
       ContentWithImageSlice,
       ContentWithImageSliceDefaultPrimary,
+      ContentWithImageSliceImageRightPrimaryTickFieldItem,
       ContentWithImageSliceImageRightPrimary,
       ContentWithImageSliceVariation,
       ContentWithImageSliceDefault,

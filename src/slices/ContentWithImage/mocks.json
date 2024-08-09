@@ -109,6 +109,32 @@
 					"__TYPE__": "ExternalLink",
 					"url": "https://slicemachine.dev"
 				}
+			},
+			"tick_field": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"tick_icon",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "leave",
+									"type": "Text"
+								}
+							],
+							[
+								"tick_description",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "gate",
+									"type": "Text"
+								}
+							]
+						]
+					}
+				]
 			}
 		},
 		"items": [

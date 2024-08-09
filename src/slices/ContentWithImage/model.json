@@ -110,6 +110,29 @@
             "placeholder": "",
             "select": null
           }
+        },
+        "tick_field": {
+          "type": "Group",
+          "config": {
+            "label": "Tick Field",
+            "repeat": true,
+            "fields": {
+              "tick_icon": {
+                "type": "Text",
+                "config": {
+                  "label": "Tick Icon",
+                  "placeholder": ""
+                }
+              },
+              "tick_description": {
+                "type": "Text",
+                "config": {
+                  "label": "Tick Description",
+                  "placeholder": ""
+                }
+              }
+            }
+          }
         }
       },
       "items": {}
