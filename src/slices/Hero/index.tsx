@@ -3,7 +3,6 @@ import { Content } from "@prismicio/client";
 import { CTA } from "@/components/CTA";
 
 import { SliceComponentProps, PrismicRichText } from "@prismicio/react";
-import { PrismicNextLink, PrismicNextImage } from "@prismicio/next";
 import styles from "@/components/hero.module.css";
 
 /**

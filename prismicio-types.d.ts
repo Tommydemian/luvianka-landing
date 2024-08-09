@@ -4,7 +4,10 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
-type HomepageDocumentDataSlicesSlice = ProductsGridSlice | HeroSlice;
+type HomepageDocumentDataSlicesSlice =
+  | ContentWithImageSlice
+  | ProductsGridSlice
+  | HeroSlice;
 
 /**
  * Content for Homepage documents
@@ -179,6 +182,181 @@ export type SettingsDocument<Lang extends string = string> =
   >;
 
 export type AllDocumentTypes = HomepageDocument | SettingsDocument;
+
+/**
+ * Primary content in *ContentWithImage → Default → Primary*
+ */
+export interface ContentWithImageSliceDefaultPrimary {
+  /**
+   * Image field in *ContentWithImage → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: content_with_image.default.primary.image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * heading field in *ContentWithImage → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: content_with_image.default.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  heading: prismic.KeyTextField;
+
+  /**
+   * Sub Heading field in *ContentWithImage → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: content_with_image.default.primary.sub_heading
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  sub_heading: prismic.KeyTextField;
+
+  /**
+   * Description field in *ContentWithImage → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: content_with_image.default.primary.description
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  description: prismic.KeyTextField;
+
+  /**
+   * Button text field in *ContentWithImage → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: content_with_image.default.primary.button_text
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  button_text: prismic.KeyTextField;
+
+  /**
+   * Button Link field in *ContentWithImage → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: content_with_image.default.primary.button_link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  button_link: prismic.LinkField;
+}
+
+/**
+ * Default variation for ContentWithImage Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ContentWithImageSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ContentWithImageSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Primary content in *ContentWithImage → ImageRight → Primary*
+ */
+export interface ContentWithImageSliceImageRightPrimary {
+  /**
+   * Image field in *ContentWithImage → ImageRight → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: content_with_image.imageRight.primary.image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * heading field in *ContentWithImage → ImageRight → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: content_with_image.imageRight.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  heading: prismic.KeyTextField;
+
+  /**
+   * Sub Heading field in *ContentWithImage → ImageRight → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: content_with_image.imageRight.primary.sub_heading
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  sub_heading: prismic.KeyTextField;
+
+  /**
+   * Description field in *ContentWithImage → ImageRight → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: content_with_image.imageRight.primary.description
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  description: prismic.KeyTextField;
+
+  /**
+   * Button text field in *ContentWithImage → ImageRight → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: content_with_image.imageRight.primary.button_text
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  button_text: prismic.KeyTextField;
+
+  /**
+   * Button Link field in *ContentWithImage → ImageRight → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: content_with_image.imageRight.primary.button_link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  button_link: prismic.LinkField;
+}
+
+/**
+ * ImageRight variation for ContentWithImage Slice
+ *
+ * - **API ID**: `imageRight`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ContentWithImageSliceImageRight = prismic.SharedSliceVariation<
+  "imageRight",
+  Simplify<ContentWithImageSliceImageRightPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *ContentWithImage*
+ */
+type ContentWithImageSliceVariation =
+  | ContentWithImageSliceDefault
+  | ContentWithImageSliceImageRight;
+
+/**
+ * ContentWithImage Shared Slice
+ *
+ * - **API ID**: `content_with_image`
+ * - **Description**: ContentWithImage
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ContentWithImageSlice = prismic.SharedSlice<
+  "content_with_image",
+  ContentWithImageSliceVariation
+>;
 
 /**
  * Primary content in *Hero → Default → Primary*
@@ -531,6 +709,12 @@ declare module "@prismicio/client" {
       SettingsDocumentData,
       SettingsDocumentDataSlicesSlice,
       AllDocumentTypes,
+      ContentWithImageSlice,
+      ContentWithImageSliceDefaultPrimary,
+      ContentWithImageSliceImageRightPrimary,
+      ContentWithImageSliceVariation,
+      ContentWithImageSliceDefault,
+      ContentWithImageSliceImageRight,
       HeroSlice,
       HeroSliceDefaultPrimary,
       HeroSliceVariation,
