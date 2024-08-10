@@ -2,7 +2,7 @@ import React from "react";
 import { createClient } from "@/prismicio";
 import Navigation from "@/slices/Navigation";
 import { Content } from "@prismicio/client";
-import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
+import { PrismicNextImage } from "@prismicio/next";
 import { Facebook } from "@/assets/svgs/Facebook";
 import { Instagram } from "@/assets/svgs/Instagram";
 import { Twitter } from "@/assets/svgs/Twitter";
@@ -30,46 +30,50 @@ export const Footer = async () => {
 
   return (
     <footer className="footer">
-      {homepage?.data.corporation_section.map((item, index) => {
-        return (
-          <div key={item.brief_text} className="footer-corporate-section">
-            <div className="corporate-section-images">
-              <PrismicNextImage field={item.first_logo} />
-              <PrismicNextImage field={item.second_logo} />
+      <div className="footer-content">
+        {homepage?.data.corporation_section.map((item, index) => {
+          return (
+            <div key={item.brief_text} className="footer-corporate-section">
+              <div className="corporate-section-images">
+                <PrismicNextImage field={item.first_logo} />
+                <PrismicNextImage field={item.second_logo} />
+              </div>
+              <p>{item.brief_text}</p>
             </div>
-            <p>{item.brief_text}</p>
+          );
+        })}
+        {navigationSlice && <Navigation slice={navigationSlice} />}
+        {homepage?.data.contact_data.map((item) => (
+          <div className="footer-contact-data" key={item.fields_header}>
+            <h3>{item.fields_header}</h3>
+            <div>
+              <p>{item.field1}</p>
+            </div>
+            <p>{item.field2}</p>
+            <p>{item.field3}</p>
+            <p>{item.field4}</p>
+            <div>
+              <a
+                className="footer-email-link"
+                href="mailto:info@fiambresluvianka.com.ar"
+              >
+                {item.field5}
+              </a>
+            </div>
           </div>
-        );
-      })}
-      {navigationSlice && <Navigation slice={navigationSlice} />}
-      {homepage?.data.contact_data.map((item) => (
-        <div className="footer-contact-data" key={item.fields_header}>
-          <h3>{item.fields_header}</h3>
-          <div>
-            <p>{item.field1}</p>
-          </div>
-          <p>{item.field2}</p>
-          <p>{item.field3}</p>
-          <p>{item.field4}</p>
-          <div>
-            <a
-              className="footer-email-link"
-              href="mailto:info@fiambresluvianka.com.ar"
-            >
-              {item.field5}
-            </a>
-          </div>
-        </div>
-      ))}
+        ))}
+      </div>
       <div className="subfooter-layout">
-        {/* TODO: add functionality to this icons */}
-        <div>
-          <Facebook />
-          <Instagram />
-          <Twitter />
-          <Linkedin />
+        <div className="subfooter-content">
+          {/* TODO: add functionality to this icons */}
+          <div>
+            <Facebook />
+            <Instagram />
+            <Twitter />
+            <Linkedin />
+          </div>
+          <p>© Luvianka {currentYear} Todos los derechos reservados.</p>
         </div>
-        <p>© Luvianka {currentYear} Todos los derechos reservados.</p>
       </div>
     </footer>
   );

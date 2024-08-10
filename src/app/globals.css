@@ -796,13 +796,25 @@ footer.footer {
   background-color: var(--footer-bg-color);
   color: var(--footer-text-color);
   font-size: var(--fs-400);
-  padding-inline: var(--mobile-padding-inline);
+}
+
+footer .footer-content {
+  display: grid;
+  row-gap: 2.5em;
+  max-width: var(--max-width-v2);
+  margin-inline: auto;
+  padding-bottom: 2.5em;
   padding-top: var(--mobile-margin-block);
 }
 
-footer {
-  display: grid;
-  row-gap: 2.5em;
+@media screen and (min-width: 768px) {
+  footer .footer-content {
+    display: grid;
+    row-gap: 2.5em;
+    max-width: var(--max-width-v2);
+    margin-inline: auto;
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 footer .footer-corporate-section {
@@ -816,6 +828,14 @@ footer .footer-corporate-section {
   align-items: center;
   justify-content: space-between;
 }
+@media screen and (min-width: 768px) {
+  .footer-corporate-section .corporate-section-images {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    column-gap: 3em;
+  }
+}
 .footer-corporate-section .corporate-section-images img:first-child {
   width: 115px;
   height: auto;
@@ -824,7 +844,7 @@ footer .footer-corporate-section {
   width: 92px;
   height: auto;
 }
-.footer-corporate-section .corporate-section-images p {
+.footer-corporate-section p {
   max-width: 36ch;
 }
 
@@ -859,7 +879,12 @@ footer .header-navlist {
   color: var(--link-color);
 }
 
+/* Subfooter */
 footer .subfooter-layout {
+  position: relative;
+  background-color: var(--neutral-clr-black);
+}
+footer .subfooter-layout .subfooter-content {
   position: relative;
   display: grid;
   background-color: var(--neutral-clr-black);
@@ -879,4 +904,20 @@ footer .subfooter-layout div {
 footer .subfooter-layout p {
   display: flex;
   justify-content: center;
+}
+
+@media screen and (min-width: 768px) {
+  footer .subfooter-layout .subfooter-content {
+    max-width: var(--max-width-v2);
+    margin-inline: auto;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  footer .subfooter-layout div {
+    order: 1;
+    margin-left: auto;
+  }
+  footer .subfooter-layout p {
+    order: 0;
+    margin-right: auto;
+  }
 }
