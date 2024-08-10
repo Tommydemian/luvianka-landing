@@ -16,49 +16,55 @@ const ContentWithImage = ({ slice }: ContentWithImageProps): JSX.Element => {
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className={`content-with-image-layout ${isImgRight ? "imgrightvar" : ""}`}
+      className={`content-with-image ${isImgRight ? "imgrightvar" : ""}`}
     >
       <div
-        className={`content-with-image-text ${isImgRight ? "imgrightvar" : ""}`}
+        className={`content-with-image-layout ${isImgRight ? "imgrightvar" : ""}`}
       >
-        <h1>{slice.primary.heading}</h1>
-        <h2>{slice.primary.sub_heading}</h2>
-        <p>{slice.primary.description}</p>
-        {isImgRight && (
-          <>
-            {slice.primary.tick_field.map((item, index) => (
-              <div className="content-with-image-tick-field" key={index}>
-                <span>
-                  <Tick />
-                </span>
-                <p>{item.tick_description}</p>
-              </div>
-            ))}
-          </>
-        )}
-        <CTA
-          variant={isImgRight ? "secondary" : "primary"}
-          field={slice.primary.button_link}
+        <div
+          className={`content-with-image-text ${isImgRight ? "imgrightvar" : ""}`}
         >
-          {slice.primary.button_text}
-        </CTA>
-      </div>
-      <div
-        className={`content-with-image-image ${isImgRight ? "imgrightvar" : ""}`}
-      >
-        <PrismicNextImage
-          field={slice.primary.image}
-          className="content-with-image-main-img"
-        />
-        {!isImgRight && (
-          <Image
-            className="deco-img-over-img"
-            src="https://ik.imagekit.io/2ziqnactl/Luvianka/deco-image.png"
-            alt="jam image - decoration purposes"
-            width={512}
-            height={512}
-          />
-        )}
+          <h1>{slice.primary.heading}</h1>
+          <h2>{slice.primary.sub_heading}</h2>
+          <p>{slice.primary.description}</p>
+          {isImgRight && (
+            <>
+              {slice.primary.tick_field.map((item, index) => (
+                <div className="content-with-image-tick-field" key={index}>
+                  <span>
+                    <Tick />
+                  </span>
+                  <p>{item.tick_description}</p>
+                </div>
+              ))}
+            </>
+          )}
+          <CTA
+            variant={isImgRight ? "secondary" : "primary"}
+            field={slice.primary.button_link}
+          >
+            {slice.primary.button_text}
+          </CTA>
+        </div>
+        <div
+          className={`content-with-image-image ${isImgRight ? "imgrightvar" : ""}`}
+        >
+          <div className="main-image-wrapper">
+            <PrismicNextImage
+              field={slice.primary.image}
+              className="content-with-image-main-img"
+            />
+            {!isImgRight && (
+              <Image
+                className="deco-img-over-img"
+                src="https://ik.imagekit.io/2ziqnactl/Luvianka/deco-image.png"
+                alt="jam image - decoration purposes"
+                width={512}
+                height={512}
+              />
+            )}
+          </div>
+        </div>
       </div>
     </section>
   );
