@@ -893,7 +893,6 @@ footer .subfooter-layout .subfooter-content {
   row-gap: 2em;
   align-items: center;
   padding-block: var(--mobile-margin-block);
-  margin-inline: -1.5em;
 }
 
 footer .subfooter-layout div {
