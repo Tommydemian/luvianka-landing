@@ -5,14 +5,14 @@ import { PrismicNextImage } from "@prismicio/next";
 import { CTA } from "../CTA";
 import MobileSwiper from "./MobileSwiper";
 import { useMediaQuery } from "../../hooks/useMediaQuery";
-import { ImageField, LinkField } from "@prismicio/client";
+import { KeyTextField, ImageField, LinkField } from "@prismicio/client";
 
 export type Product = {
   product_image: ImageField;
-  product_title: string;
-  product_description: string;
+  product_title: KeyTextField;
+  product_description: KeyTextField;
   button_link: LinkField;
-  button_text: string;
+  button_text: KeyTextField;
 };
 
 export type ProductCardProps = {
@@ -22,10 +22,10 @@ export type ProductCardProps = {
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => (
   <div className="product-card">
     <PrismicNextImage field={product.product_image} />
-    <h3 className="product-title">{product.product_title}</h3>
-    <p>{product.product_description}</p>
+    <h3 className="product-title">{product.product_title || ""}</h3>
+    <p>{product.product_description || ""}</p>
     <CTA className="main-cta in-prod" field={product.button_link}>
-      {product.button_text}
+      {product.button_text || ""}
     </CTA>
   </div>
 );
