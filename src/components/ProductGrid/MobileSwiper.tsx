@@ -36,7 +36,7 @@ const MobileSwiper: React.FC<MobileSwiperProps> = ({ productCards }) => {
   return (
     <Swiper
       modules={[Pagination, Navigation, Scrollbar, EffectCube]}
-      slidesPerView={1.5}
+      slidesPerView={1}
       spaceBetween={20}
       navigation
       effect="cube"
