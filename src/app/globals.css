@@ -1,5 +1,5 @@
 :root {
-  --max-width: 1200px;
+  --max-width: 1280px;
   --max-width-v2: 1350px;
   --fs-400: 1rem;
   --fs-500: 1.125rem;
@@ -38,7 +38,7 @@
   --pretitlte-lh: 5px;
 
   /* Product-grid */
-  --prod-grid-gap: 2em;
+  --prod-grid-gap: 2.5em;
   --prod-grid-height: 27.25rem;
   --prod-rad: 1.25rem;
 
@@ -803,6 +803,7 @@ footer .footer-content {
   row-gap: 2.5em;
   max-width: var(--max-width-v2);
   margin-inline: auto;
+  padding-inline: 1.5em;
   padding-bottom: 2.5em;
   padding-top: var(--mobile-margin-block);
 }
