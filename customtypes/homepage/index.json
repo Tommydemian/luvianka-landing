@@ -13,6 +13,89 @@
           "placeholder": ""
         }
       },
+      "corporation_section": {
+        "type": "Group",
+        "config": {
+          "label": "Corporation Section",
+          "repeat": true,
+          "fields": {
+            "first_logo": {
+              "type": "Image",
+              "config": {
+                "label": "First Logo",
+                "constraint": {},
+                "thumbnails": []
+              }
+            },
+            "second_logo": {
+              "type": "Image",
+              "config": {
+                "label": "Second Logo",
+                "constraint": {},
+                "thumbnails": []
+              }
+            },
+            "brief_text": {
+              "type": "Text",
+              "config": {
+                "label": "Brief Text",
+                "placeholder": ""
+              }
+            }
+          }
+        }
+      },
+      "contact_data": {
+        "type": "Group",
+        "config": {
+          "label": "Contact Data",
+          "repeat": true,
+          "fields": {
+            "fields_header": {
+              "type": "Text",
+              "config": {
+                "label": "Fields Header ",
+                "placeholder": ""
+              }
+            },
+            "field1": {
+              "type": "Text",
+              "config": {
+                "label": "Field1",
+                "placeholder": ""
+              }
+            },
+            "field2": {
+              "type": "Text",
+              "config": {
+                "label": "Field2",
+                "placeholder": ""
+              }
+            },
+            "field3": {
+              "type": "Text",
+              "config": {
+                "label": "Field3",
+                "placeholder": ""
+              }
+            },
+            "field4": {
+              "type": "Text",
+              "config": {
+                "label": "Field4",
+                "placeholder": ""
+              }
+            },
+            "field5": {
+              "type": "Text",
+              "config": {
+                "label": "Field5",
+                "placeholder": ""
+              }
+            }
+          }
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",

@@ -4,6 +4,106 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
+/**
+ * Item in *Homepage → Corporation Section*
+ */
+export interface HomepageDocumentDataCorporationSectionItem {
+  /**
+   * First Logo field in *Homepage → Corporation Section*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: homepage.corporation_section[].first_logo
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  first_logo: prismic.ImageField<never>;
+
+  /**
+   * Second Logo field in *Homepage → Corporation Section*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: homepage.corporation_section[].second_logo
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  second_logo: prismic.ImageField<never>;
+
+  /**
+   * Brief Text field in *Homepage → Corporation Section*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: homepage.corporation_section[].brief_text
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  brief_text: prismic.KeyTextField;
+}
+
+/**
+ * Item in *Homepage → Contact Data*
+ */
+export interface HomepageDocumentDataContactDataItem {
+  /**
+   * Fields Header  field in *Homepage → Contact Data*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: homepage.contact_data[].fields_header
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  fields_header: prismic.KeyTextField;
+
+  /**
+   * Field1 field in *Homepage → Contact Data*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: homepage.contact_data[].field1
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  field1: prismic.KeyTextField;
+
+  /**
+   * Field2 field in *Homepage → Contact Data*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: homepage.contact_data[].field2
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  field2: prismic.KeyTextField;
+
+  /**
+   * Field3 field in *Homepage → Contact Data*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: homepage.contact_data[].field3
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  field3: prismic.KeyTextField;
+
+  /**
+   * Field4 field in *Homepage → Contact Data*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: homepage.contact_data[].field4
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  field4: prismic.KeyTextField;
+
+  /**
+   * Field5 field in *Homepage → Contact Data*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: homepage.contact_data[].field5
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  field5: prismic.KeyTextField;
+}
+
 type HomepageDocumentDataSlicesSlice =
   | ContentWithImageSlice
   | ProductsGridSlice
@@ -23,6 +123,32 @@ interface HomepageDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   title: prismic.KeyTextField;
+
+  /**
+   * Corporation Section field in *Homepage*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: homepage.corporation_section[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  corporation_section: prismic.GroupField<
+    Simplify<HomepageDocumentDataCorporationSectionItem>
+  >;
+
+  /**
+   * Contact Data field in *Homepage*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: homepage.contact_data[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  contact_data: prismic.GroupField<
+    Simplify<HomepageDocumentDataContactDataItem>
+  >;
 
   /**
    * Slice Zone field in *Homepage*
@@ -396,6 +522,112 @@ export type ContentWithImageSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Item in *Footer → Default → Primary → Corporation Section*
+ */
+export interface FooterSliceDefaultPrimaryCorporationSectionItem {
+  /**
+   * First Image field in *Footer → Default → Primary → Corporation Section*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.default.primary.corporation_section[].first_image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  first_image: prismic.ImageField<never>;
+
+  /**
+   * Second Image field in *Footer → Default → Primary → Corporation Section*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.default.primary.corporation_section[].second_image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  second_image: prismic.ImageField<never>;
+
+  /**
+   * Brief Text field in *Footer → Default → Primary → Corporation Section*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.default.primary.corporation_section[].brief_text
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  brief_text: prismic.KeyTextField;
+}
+
+/**
+ * Item in *Footer → Default → Primary → Location Fields*
+ */
+export interface FooterSliceDefaultPrimaryLocationFieldsItem {
+  /**
+   * First Locatiion field in *Footer → Default → Primary → Location Fields*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.default.primary.location_fields[].first_locatiion
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  first_locatiion: prismic.KeyTextField;
+}
+
+/**
+ * Primary content in *Footer → Default → Primary*
+ */
+export interface FooterSliceDefaultPrimary {
+  /**
+   * Corporation Section field in *Footer → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.default.primary.corporation_section[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  corporation_section: prismic.GroupField<
+    Simplify<FooterSliceDefaultPrimaryCorporationSectionItem>
+  >;
+
+  /**
+   * Location Fields field in *Footer → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.default.primary.location_fields[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  location_fields: prismic.GroupField<
+    Simplify<FooterSliceDefaultPrimaryLocationFieldsItem>
+  >;
+}
+
+/**
+ * Default variation for Footer Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type FooterSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<FooterSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Footer*
+ */
+type FooterSliceVariation = FooterSliceDefault;
+
+/**
+ * Footer Shared Slice
+ *
+ * - **API ID**: `footer`
+ * - **Description**: Footer
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type FooterSlice = prismic.SharedSlice<"footer", FooterSliceVariation>;
+
+/**
  * Primary content in *Hero → Default → Primary*
  */
 export interface HeroSliceDefaultPrimary {
@@ -741,6 +973,8 @@ declare module "@prismicio/client" {
     export type {
       HomepageDocument,
       HomepageDocumentData,
+      HomepageDocumentDataCorporationSectionItem,
+      HomepageDocumentDataContactDataItem,
       HomepageDocumentDataSlicesSlice,
       SettingsDocument,
       SettingsDocumentData,
@@ -753,6 +987,12 @@ declare module "@prismicio/client" {
       ContentWithImageSliceVariation,
       ContentWithImageSliceDefault,
       ContentWithImageSliceImageRight,
+      FooterSlice,
+      FooterSliceDefaultPrimaryCorporationSectionItem,
+      FooterSliceDefaultPrimaryLocationFieldsItem,
+      FooterSliceDefaultPrimary,
+      FooterSliceVariation,
+      FooterSliceDefault,
       HeroSlice,
       HeroSliceDefaultPrimary,
       HeroSliceVariation,

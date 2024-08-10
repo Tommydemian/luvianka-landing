@@ -1,13 +1,25 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { PrismicNextImage } from "@prismicio/next";
 import { CTA } from "../CTA";
 import MobileSwiper from "./MobileSwiper";
 import { useMediaQuery } from "../../hooks/useMediaQuery";
-import { Product } from "@/../types";
+import { ImageField, LinkField } from "@prismicio/client";
 
-const ProductCard = ({ product }) => (
+export type Product = {
+  product_image: ImageField;
+  product_title: string;
+  product_description: string;
+  button_link: LinkField;
+  button_text: string;
+};
+
+export type ProductCardProps = {
+  product: Product;
+};
+
+const ProductCard: React.FC<ProductCardProps> = ({ product }) => (
   <div className="product-card">
     <PrismicNextImage field={product.product_image} />
     <h3 className="product-title">{product.product_title}</h3>
@@ -18,8 +30,23 @@ const ProductCard = ({ product }) => (
   </div>
 );
 
-const ProductGridClient = ({ productCards }) => {
+export type ProductGridClientProps = {
+  productCards: Product[];
+};
+
+const ProductGridClient: React.FC<ProductGridClientProps> = ({
+  productCards,
+}) => {
   const isDesktop = useMediaQuery("(min-width: 768px)");
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) {
+    return null;
+  }
 
   if (!isDesktop) {
     return <MobileSwiper productCards={productCards} />;

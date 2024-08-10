@@ -4,6 +4,7 @@ import "./globals.css";
 import { createClient } from "@/prismicio";
 import { Header } from "@/components/Header";
 import { MobileMenuProvider } from "@/context/MobileMenuContext";
+import { Footer } from "@/components/Footer";
 
 const oswald = Oswald({
   subsets: ["latin"],
@@ -47,7 +48,7 @@ export default function RootLayout({
         >
           <Header />
           {children}
-          <footer>Footer</footer>
+          <Footer />
         </body>
       </MobileMenuProvider>
     </html>

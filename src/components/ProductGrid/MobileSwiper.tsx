@@ -2,15 +2,19 @@
 
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper/modules";
+import { Pagination, Navigation, Scrollbar } from "swiper/modules";
 import { PrismicNextImage } from "@prismicio/next";
 import { CTA } from "../CTA";
+
+import { Product, ProductCardProps } from "./ProductGridClient";
 
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
+import "swiper/css/navigation";
+// import "swiper/css/scrollbar";
 
-const ProductCard = ({ product }) => (
+const ProductCard: React.FC<ProductCardProps> = ({ product }) => (
   <div className="product-card">
     <PrismicNextImage field={product.product_image} />
     <h3 className="product-title">{product.product_title}</h3>
@@ -21,14 +25,22 @@ const ProductCard = ({ product }) => (
   </div>
 );
 
-const MobileSwiper = ({ productCards }) => {
+type MobileSwiperProps = {
+  productCards: Product[];
+};
+
+// TODO: Add effect to active slice
+
+const MobileSwiper: React.FC<MobileSwiperProps> = ({ productCards }) => {
   return (
     <Swiper
-      pagination={true}
-      modules={[Pagination]}
-      className="landing-product-grid mobile-swiper"
-      spaceBetween={20}
+      modules={[Pagination, Navigation, Scrollbar]}
       slidesPerView={1.5}
+      spaceBetween={20}
+      navigation
+      pagination={{ type: "fraction" }}
+      // scrollbar={{ draggable: true }}
+      className="landing-product-grid mobile-swiper"
     >
       {productCards.map((product, index) => (
         <SwiperSlide key={index}>
