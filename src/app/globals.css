@@ -492,6 +492,26 @@ header .header-navlist li:focus {
   text-transform: capitalize;
 }
 
+@media screen and (max-width: 768px) {
+  .section-heading-pretitle {
+    font-size: var(--fs-600);
+    line-height: 2.038rem; /* 32.6px */
+  }
+
+  .section-heading-title {
+    font-size: var(--fs-650);
+    font-weight: 600;
+    line-height: 61px;
+    text-align: center;
+  }
+  .section-heading-container svg {
+    position: relative;
+    left: 2em;
+    width: 30%;
+    bottom: 0.5em;
+  }
+}
+
 .landing-product-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
