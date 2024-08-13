@@ -1,27 +1,37 @@
 import React from "react";
-import { PrismicNextLink, PrismicNextLinkProps } from "@prismicio/next";
+import { PrismicNextLink } from "@prismicio/next";
+import { LinkField, KeyTextField } from "@prismicio/client";
+import clsx from "clsx";
 
-type CTAProps = PrismicNextLinkProps & {
-  children?: React.ReactNode;
-  variant?: "primary" | "secondary";
+type CTAVariant = "primary" | "secondary";
+
+type CTAProps = {
+  label: KeyTextField;
+  link: LinkField;
+  className?: string;
+  variant?: CTAVariant;
+  inProd?: boolean;
 };
 
-export const CTA = ({
+export const CTA: React.FC<CTAProps> = ({
+  label = "contactanos",
+  link,
   className,
-  children,
   variant = "primary",
-  ...rest
-}: CTAProps) => {
-  const baseClass = "main-cta";
-  const variantClass =
-    variant === "secondary" ? `${baseClass} secondary` : baseClass;
-  const finalClassName = className
-    ? `${variantClass} ${className}`
-    : variantClass;
-
+  inProd = false,
+}) => {
+  const ctaClass = clsx(
+    "cta",
+    {
+      "cta--primary": variant === "primary",
+      "cta--secondary": variant === "secondary",
+      "cta--in-prod": inProd,
+    },
+    className
+  );
   return (
-    <PrismicNextLink className={finalClassName} {...rest}>
-      {children}
+    <PrismicNextLink field={link} className={ctaClass}>
+      {label}
     </PrismicNextLink>
   );
 };

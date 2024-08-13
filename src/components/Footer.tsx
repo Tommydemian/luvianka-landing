@@ -1,8 +1,7 @@
 import React from "react";
 import { createClient } from "@/prismicio";
-import Navigation from "@/slices/Navigation";
-import { Content } from "@prismicio/client";
-import { PrismicNextImage } from "@prismicio/next";
+import Link from "next/link";
+import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
 import { Facebook } from "@/assets/svgs/Facebook";
 import { Instagram } from "@/assets/svgs/Instagram";
 import { Twitter } from "@/assets/svgs/Twitter";
@@ -11,38 +10,45 @@ import { Linkedin } from "@/assets/svgs/Linkedin";
 export const Footer = async () => {
   const currentYear = new Date().getFullYear();
 
-  let navigationSlice: Content.NavigationSlice | undefined;
+  const client = createClient();
 
-  let settings;
-  let homepage;
+  const [settings, homepage] = await Promise.all([
+    client.getSingle("settings").catch(() => null),
+    client.getSingle("homepage").catch(() => null),
+  ]);
 
-  try {
-    const client = createClient();
-    settings = await client.getSingle("settings");
-    navigationSlice = settings.data.slices.find(
-      (slice): slice is Content.NavigationSlice =>
-        slice.slice_type === "navigation"
-    );
-    homepage = await client.getSingle("homepage");
-  } catch (error) {
-    console.error(error);
+  if (!settings || !homepage) {
+    return null;
   }
 
   return (
     <footer className="footer">
       <div className="footer-content">
-        {homepage?.data.corporation_section.map((item, index) => {
+        {homepage?.data.corporation_section.map((item) => {
           return (
             <div key={item.brief_text} className="footer-corporate-section">
               <div className="corporate-section-images">
-                <PrismicNextImage field={item.first_logo} />
+                <Link href="/">
+                  <PrismicNextImage field={item.first_logo} />
+                </Link>
                 <PrismicNextImage field={item.second_logo} />
               </div>
               <p>{item.brief_text}</p>
             </div>
           );
         })}
-        {navigationSlice && <Navigation slice={navigationSlice} />}
+        <nav aria-label="Footer">
+          <ul role="list">
+            {settings?.data.navigation.map((item) => (
+              <li key={item.label}>
+                <PrismicNextLink field={item.link}>
+                  {item.label}
+                </PrismicNextLink>
+              </li>
+            ))}
+            <li></li>
+          </ul>
+        </nav>
         {homepage?.data.contact_data.map((item) => (
           <div className="footer-contact-data" key={item.fields_header}>
             <h3>{item.fields_header}</h3>

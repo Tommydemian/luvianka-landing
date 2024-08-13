@@ -6,6 +6,5 @@ export const components = {
   content_with_image: dynamic(() => import("./ContentWithImage")),
   footer: dynamic(() => import("./Footer")),
   hero: dynamic(() => import("./Hero")),
-  navigation: dynamic(() => import("./Navigation")),
   products_grid: dynamic(() => import("./ProductsGrid")),
 };

@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Navigation, Scrollbar, EffectCube } from "swiper/modules";
+import { Pagination, Navigation } from "swiper/modules";
 import { PrismicNextImage } from "@prismicio/next";
 import { CTA } from "../CTA";
 
@@ -12,8 +12,6 @@ import { Product, ProductCardProps } from "./ProductGridClient";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import "swiper/css/effect-cube";
-// import "swiper/css/scrollbar";
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => (
   <div className="product-card">
@@ -35,13 +33,11 @@ type MobileSwiperProps = {
 const MobileSwiper: React.FC<MobileSwiperProps> = ({ productCards }) => {
   return (
     <Swiper
-      modules={[Pagination, Navigation, Scrollbar, EffectCube]}
-      slidesPerView={1}
+      modules={[Pagination, Navigation]}
+      slidesPerView={1.5}
       spaceBetween={20}
       navigation
-      effect="cube"
       pagination={{ type: "fraction" }}
-      // scrollbar={{ draggable: true }}
       className="landing-product-grid mobile-swiper"
     >
       {productCards.map((product, index) => (

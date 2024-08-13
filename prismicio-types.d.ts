@@ -209,7 +209,79 @@ export type HomepageDocument<Lang extends string = string> =
     Lang
   >;
 
-type SettingsDocumentDataSlicesSlice = NavigationSlice;
+/**
+ * Item in *Settings → Navigation*
+ */
+export interface SettingsDocumentDataNavigationItem {
+  /**
+   * Label field in *Settings → Navigation*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.navigation[].label
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  label: prismic.KeyTextField;
+
+  /**
+   * Link field in *Settings → Navigation*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.navigation[].link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField;
+
+  /**
+   * CTA Button field in *Settings → Navigation*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: settings.navigation[].cta_button
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  cta_button: prismic.BooleanField;
+
+  /**
+   * is Product Category field in *Settings → Navigation*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: settings.navigation[].is_product_category
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  is_product_category: prismic.BooleanField;
+}
+
+/**
+ * Item in *Settings → Products*
+ */
+export interface SettingsDocumentDataProductsItem {
+  /**
+   * Product Name field in *Settings → Products*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.products[].product_name
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  product_name: prismic.KeyTextField;
+
+  /**
+   * Product Image field in *Settings → Products*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.products[].product_image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  product_image: prismic.ImageField<never>;
+}
+
+type SettingsDocumentDataSlicesSlice = never;
 
 /**
  * Content for Settings documents
@@ -247,6 +319,28 @@ interface SettingsDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   button_link: prismic.LinkField;
+
+  /**
+   * Navigation field in *Settings*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.navigation[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  navigation: prismic.GroupField<Simplify<SettingsDocumentDataNavigationItem>>;
+
+  /**
+   * Products field in *Settings*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.products[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  products: prismic.GroupField<Simplify<SettingsDocumentDataProductsItem>>;
 
   /**
    * Slice Zone field in *Settings*
@@ -700,146 +794,6 @@ type HeroSliceVariation = HeroSliceDefault;
 export type HeroSlice = prismic.SharedSlice<"hero", HeroSliceVariation>;
 
 /**
- * Item in *Navigation → Default → Primary → Nav Item*
- */
-export interface NavigationSliceDefaultPrimaryNavItemItem {
-  /**
-   * Label field in *Navigation → Default → Primary → Nav Item*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: navigation.default.primary.nav_item[].label
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  label: prismic.KeyTextField;
-
-  /**
-   * Link field in *Navigation → Default → Primary → Nav Item*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: navigation.default.primary.nav_item[].link
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  link: prismic.LinkField;
-
-  /**
-   * is Product Category field in *Navigation → Default → Primary → Nav Item*
-   *
-   * - **Field Type**: Boolean
-   * - **Placeholder**: *None*
-   * - **Default Value**: false
-   * - **API ID Path**: navigation.default.primary.nav_item[].is_product_category
-   * - **Documentation**: https://prismic.io/docs/field#boolean
-   */
-  is_product_category: prismic.BooleanField;
-}
-
-/**
- * Item in *Navigation → Default → Primary → Products*
- */
-export interface NavigationSliceDefaultPrimaryProductsItem {
-  /**
-   * Product Picture field in *Navigation → Default → Primary → Products*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: navigation.default.primary.products[].product_picture
-   * - **Documentation**: https://prismic.io/docs/field#image
-   */
-  product_picture: prismic.ImageField<never>;
-
-  /**
-   * Product Text field in *Navigation → Default → Primary → Products*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: navigation.default.primary.products[].product_text
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  product_text: prismic.KeyTextField;
-
-  /**
-   * Product Link field in *Navigation → Default → Primary → Products*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: navigation.default.primary.products[].product_link
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  product_link: prismic.LinkField;
-}
-
-/**
- * Primary content in *Navigation → Default → Primary*
- */
-export interface NavigationSliceDefaultPrimary {
-  /**
-   * Nav Item field in *Navigation → Default → Primary*
-   *
-   * - **Field Type**: Group
-   * - **Placeholder**: *None*
-   * - **API ID Path**: navigation.default.primary.nav_item[]
-   * - **Documentation**: https://prismic.io/docs/field#group
-   */
-  nav_item: prismic.GroupField<
-    Simplify<NavigationSliceDefaultPrimaryNavItemItem>
-  >;
-
-  /**
-   * Category Label field in *Navigation → Default → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: navigation.default.primary.category_label
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  category_label: prismic.KeyTextField;
-
-  /**
-   * Products field in *Navigation → Default → Primary*
-   *
-   * - **Field Type**: Group
-   * - **Placeholder**: *None*
-   * - **API ID Path**: navigation.default.primary.products[]
-   * - **Documentation**: https://prismic.io/docs/field#group
-   */
-  products: prismic.GroupField<
-    Simplify<NavigationSliceDefaultPrimaryProductsItem>
-  >;
-}
-
-/**
- * Default variation for Navigation Slice
- *
- * - **API ID**: `default`
- * - **Description**: Default
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type NavigationSliceDefault = prismic.SharedSliceVariation<
-  "default",
-  Simplify<NavigationSliceDefaultPrimary>,
-  never
->;
-
-/**
- * Slice variation for *Navigation*
- */
-type NavigationSliceVariation = NavigationSliceDefault;
-
-/**
- * Navigation Shared Slice
- *
- * - **API ID**: `navigation`
- * - **Description**: Navigation
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type NavigationSlice = prismic.SharedSlice<
-  "navigation",
-  NavigationSliceVariation
->;
-
-/**
  * Item in *ProductsGrid → Default → Primary → Product Card*
  */
 export interface ProductsGridSliceDefaultPrimaryProductCardItem {
@@ -978,6 +932,8 @@ declare module "@prismicio/client" {
       HomepageDocumentDataSlicesSlice,
       SettingsDocument,
       SettingsDocumentData,
+      SettingsDocumentDataNavigationItem,
+      SettingsDocumentDataProductsItem,
       SettingsDocumentDataSlicesSlice,
       AllDocumentTypes,
       ContentWithImageSlice,
@@ -997,12 +953,6 @@ declare module "@prismicio/client" {
       HeroSliceDefaultPrimary,
       HeroSliceVariation,
       HeroSliceDefault,
-      NavigationSlice,
-      NavigationSliceDefaultPrimaryNavItemItem,
-      NavigationSliceDefaultPrimaryProductsItem,
-      NavigationSliceDefaultPrimary,
-      NavigationSliceVariation,
-      NavigationSliceDefault,
       ProductsGridSlice,
       ProductsGridSliceDefaultPrimaryProductCardItem,
       ProductsGridSliceDefaultPrimary,

@@ -28,15 +28,77 @@
           "select": null
         }
       },
+      "navigation": {
+        "type": "Group",
+        "config": {
+          "label": "Navigation",
+          "repeat": true,
+          "fields": {
+            "label": {
+              "type": "Text",
+              "config": {
+                "label": "Label",
+                "placeholder": ""
+              }
+            },
+            "link": {
+              "type": "Link",
+              "config": {
+                "label": "Link",
+                "placeholder": "",
+                "select": null
+              }
+            },
+            "cta_button": {
+              "type": "Boolean",
+              "config": {
+                "label": "CTA Button",
+                "default_value": false,
+                "placeholder_true": "true",
+                "placeholder_false": "false"
+              }
+            },
+            "is_product_category": {
+              "type": "Boolean",
+              "config": {
+                "label": "is Product Category",
+                "default_value": false,
+                "placeholder_true": "true",
+                "placeholder_false": "false"
+              }
+            }
+          }
+        }
+      },
+      "products": {
+        "type": "Group",
+        "config": {
+          "label": "Products",
+          "repeat": true,
+          "fields": {
+            "product_name": {
+              "type": "Text",
+              "config": {
+                "label": "Product Name",
+                "placeholder": ""
+              }
+            },
+            "product_image": {
+              "type": "Image",
+              "config": {
+                "label": "Product Image",
+                "constraint": {},
+                "thumbnails": []
+              }
+            }
+          }
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",
         "config": {
-          "choices": {
-            "navigation": {
-              "type": "SharedSlice"
-            }
-          }
+          "choices": {}
         }
       }
     },
