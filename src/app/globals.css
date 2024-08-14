@@ -50,15 +50,55 @@
   --font-size-body-text: var(--font-size-lg);
   --font-size-footer-heading: var(--font-size-lg);
   --font-size-footer: var(--font-size-base);
+
   /* 3. Spacing */
+  --spacing-unit: 0.25rem; /* 4px assuming a base font size of 16px */
+  --spacing-xs: calc(var(--spacing-unit) * 1); /* 0.25rem - 4px */
+  --spacing-sm: calc(var(--spacing-unit) * 2); /* 0.5rem  - 8px */
+  --spacing-md: calc(var(--spacing-unit) * 4); /* 1rem    - 16px */
+  --spacing-lg: calc(var(--spacing-unit) * 6); /* 1.5rem  - 24px */
+  --spacing-xl: calc(var(--spacing-unit) * 8); /* 2rem    - 32px */
+  --spacing-2xl: calc(var(--spacing-unit) * 12); /* 3rem   - 48px */
+  --spacing-3xl: calc(var(--spacing-unit) * 16); /* 4rem   - 64px */
+
+  --spacing-max-width-base: 75rem;
+
+  /* Functional Spacing */
+  --heading-padding-y: 0.625rem;
+  --header-mobile-height: 4.448rem;
+
+  --logo-width: 6.25rem;
+
+  --nav-item-gap: var(--spacing-xl);
+  --container-max-width-base: var(--spacing-max-width-base);
+
+  --mobile-menu-padding-y: 2.5rem;
+  --mobile-menu-padding-x: 2.25rem;
+
+  /* Common use cases */
+  --spacing-section-y: var(--spacing-3xl); /* Vertical spacing for sections */
+  --spacing-section-padding-y: var();
+  --spacing-element-y: var(
+    --spacing-md
+  ); /* Vertical spacing between elements */
+  --spacing-text-y: var(--spacing-xs); /* Vertical spacing in text blocks */
+
+  /* Transition */
+  --transition-duration-fast: 150ms;
+  --transition-duration-medium: 300ms;
+  --transition-duration-slow: 500ms;
+
+  /* Transition Timing Functions */
+  --transition-timing-ease-out: ease-out;
+  --transition-timing-ease-in-out: ease-in-out;
+  --transition--timing-cubic-bezier-base: cubic-bezier(0.22, 0, 0.26, 1);
+
+  --transition-color: color var(--transition-duration-fast)
+    var(--transition--timing-cubic-bezier-base);
+  --nav-item-transition: var(--transition-color);
+
   --max-width: 1280px;
   --max-width-v2: 1350px;
-
-  --fs-400: 1rem;
-  --fs-500: 1.125rem;
-  --fs-600: 1.5rem;
-  --fs-650: 2rem; /* 32px */
-  --fs-700: 3rem;
 
   --section-gap: 5.063rem;
   --section-margin-block: 6.5rem;
@@ -121,6 +161,10 @@
     --font-size-hero-description: var(--font-size-xl);
     --font-size-eyebrow-text: var(--font-size-3xl);
     --font-size-main-heading: var(--font-size-4xl);
+
+    /* Spacing */
+    --nav-item-gap: var(--spacing-lg);
+    --heading-padding-y: var(--spacing-md);
   }
 }
 
@@ -253,67 +297,87 @@ html.no-scroll {
 }
 
 .container {
-  max-width: var(--cont-max-w);
+  max-width: var(--container-max-width-base);
   margin-inline: auto;
   padding-inline: var(--mobile-padding-inline);
 }
 
 /* HEADER */
 header {
-  padding-block: 0.625rem;
+  padding-block: var(--heading-padding-y);
 }
-@media screen and (max-width: 48em) {
+@media screen and (max-width: 50em) {
   header {
-    height: var(--mobile-header-height);
+    height: var(--header-mobile-height);
   }
 }
 
 .navbar {
-  display: flex;
   width: 100%;
+  height: 100%;
+  display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .navbar__logo {
-  width: 6.25rem;
+  width: var(--logo-width);
   height: auto;
-  order: 0;
-  margin-right: auto;
+  /* margin-right: auto; */
 }
 
 .navbar__list {
   display: flex;
-  column-gap: 2rem;
+  gap: var(--nav-item-gap);
   align-items: center;
 }
 
 .navbar__item {
   text-transform: capitalize;
   font-size: var(--font-size-nav);
+  transition: var(--nav-item-transition);
 }
 
-.navbar__link {
-  transition: color 0.3s cubic-bezier(0.075, 0, 0.165, 1);
+.navbar__item:hover,
+.navbar__item:focus-within,
+.navbar__item:active {
+  color: var(--color-primary);
 }
 
-.navbar__link:hover,
-.navbar__link:active,
-.navbar__link:focus {
-  color: var(--accent-clr);
-}
-
-.navbar .navbar__list--open {
-  display: block;
-  position: absolute;
-  min-height: 100vh;
-  background: var(--color-background);
-  z-index: 999;
-  inset: var(--mobile-header-height) 0 0 0;
-  border-top: 1px solid var(--color-header-border);
-  overflow: auto;
-}
 /* Header responsive */
+/* Desktop - Button wrapping svg */
+.navbar__toggle-menu-button {
+  display: none;
+}
+
+@media (max-width: 50em) {
+  .navbar__list,
+  .navbar .navbar__cta {
+    display: none;
+  }
+
+  .navbar .navbar__list--open {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    position: absolute;
+    min-height: 100vh;
+    background: var(--color-background);
+    z-index: 999;
+    inset: var(--mobile-header-height) 0 0 0;
+    border-top: 1px solid var(--color-header-border);
+    overflow: auto;
+
+    padding: var(--mobile-menu-padding-x) var(--mobile-menu-padding-y);
+  }
+
+  .mobile-menu-wrapper,
+  .navbar .navbar__toggle-menu-button {
+    display: block;
+  }
+}
+
+/* Sorta utils */
 .mobile-menu-wrapper {
   all: unset;
 
@@ -329,23 +393,6 @@ header {
   outline: none;
   display: none;
 }
-
-.navbar__toggle {
-  display: none;
-}
-
-@media (max-width: 48em) {
-  .navbar__list,
-  .navbar .navbar__cta {
-    display: none;
-  }
-
-  .mobile-menu-wrapper,
-  .navbar__toggle {
-    display: block;
-  }
-}
-
 /* Remove default focus styles in Firefox */
 .mobile-menu-wrapper::-moz-focus-inner {
   border: 0;
@@ -356,6 +403,7 @@ header {
   outline: 2px solid blue;
   outline-offset: 2px;
 }
+/* ----------------------------------------- */
 
 .icon-wrapper {
   position: relative;
@@ -370,58 +418,6 @@ header {
   transition:
     opacity 0.3s ease,
     transform 0.3s ease;
-}
-
-.active {
-  opacity: 1;
-  transform: scale(1);
-}
-
-.inactive {
-  opacity: 0;
-  transform: scale(0.8);
-}
-
-@media screen and (max-width: 768px) {
-  header .header-logo {
-    order: 1;
-  }
-
-  .navbar__list {
-    flex-direction: column;
-    row-gap: 2rem;
-    padding: 2em;
-    font-size: var(--fs-500);
-    align-items: start;
-    width: 100%;
-  }
-
-  header .desktop-nav {
-    display: none;
-  }
-
-  header .mobile-nav {
-    position: absolute;
-    z-index: 999;
-    inset: var(--mobile-header-height) 0 0 0;
-    width: 100%;
-    background-color: var(--color-background);
-    transform: translateX(-100%);
-    transition:
-      transform 0.4s cubic-bezier(0.19, 0, 0.04, 1),
-      box-shadow 0.3s 0.1s ease-in-out;
-  }
-  header .mobile-nav.active {
-    transform: translateX(0);
-    box-shadow: 12px 5px 11px -2px rgba(0, 0, 0, 0.17);
-    -webkit-box-shadow: 12px 5px 11px -2px rgba(0, 0, 0, 0.17);
-    -moz-box-shadow: 12px 5px 11px -2px rgba(0, 0, 0, 0.17);
-  }
-  .mobile-nav.active ~ header,
-  header:has(.mobile-nav.active) {
-    border-bottom: 1px solid var(--color-header-border);
-    transition: border-bottom 0.3s ease;
-  }
 }
 
 /* ---------------------------------- */

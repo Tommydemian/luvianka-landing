@@ -36,7 +36,7 @@ export const NavBar = ({ settings, className }: NavBarProps) => {
         />
       </Link>
       <button
-        className="navbar__toggle mobile-menu-wrapper"
+        className="navbar__toggle-menu-button mobile-menu-wrapper"
         onClick={toggleMenu}
       >
         <span className="sr-only">Toggle Menu</span>

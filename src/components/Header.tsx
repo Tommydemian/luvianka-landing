@@ -4,7 +4,6 @@ import { Section } from "@/components/Section";
 import { Container } from "@/components/Container";
 
 import { createClient } from "../prismicio";
-import { HeaderClientSideWrapper } from "@/components/HeaderClientsideWrapper";
 
 async function getSettings() {
   const client = createClient();
@@ -19,8 +18,6 @@ export const Header = async () => {
       <Container>
         <header className="header">
           <NavBar settings={settings} />
-
-          {/* <HeaderClientSideWrapper label={ctaInfo.label} link={ctaInfo.link} /> */}
         </header>
       </Container>
     </Section>
