@@ -1,10 +1,11 @@
-import type { Metadata, ResolvingMetadata } from "next";
-import { Oswald, Grand_Hotel, Source_Sans_3 } from "next/font/google";
 import "./globals.css";
-import { createClient } from "@/prismicio";
+import { PrismicPreview } from "@prismicio/next";
+import { createClient, repositoryName } from "@/prismicio";
+import { Oswald, Grand_Hotel, Source_Sans_3 } from "next/font/google";
 import { Header } from "@/components/Header";
-import { MobileMenuProvider } from "@/context/MobileMenuContext";
 import { Footer } from "@/components/Footer";
+import { MobileMenuProvider } from "@/context/MobileMenuContext";
+import type { Metadata } from "next";
 
 const oswald = Oswald({
   subsets: ["latin"],
@@ -49,6 +50,7 @@ export default function RootLayout({
           <Header />
           {children}
           <Footer />
+          <PrismicPreview repositoryName={repositoryName} />
         </body>
       </MobileMenuProvider>
     </html>
