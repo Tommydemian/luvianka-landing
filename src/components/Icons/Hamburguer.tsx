@@ -1,8 +1,7 @@
-// HamburguerIconProps: {
-//     className: string
-// }
+import React from "react";
+import { IconElementProps } from "@/../types";
 
-export function HamburguerIcon() {
+export const HamburguerIcon: React.FC<IconElementProps> = ({ className }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,6 +9,7 @@ export function HamburguerIcon() {
       height="16"
       fill="none"
       viewBox="0 0 22 16"
+      className={className}
     >
       <path
         stroke="#000"
@@ -20,4 +20,4 @@ export function HamburguerIcon() {
       ></path>
     </svg>
   );
-}
+};

@@ -104,9 +104,6 @@
             "content_with_image": {
               "type": "SharedSlice"
             },
-            "products_grid": {
-              "type": "SharedSlice"
-            },
             "hero": {
               "type": "SharedSlice"
             }

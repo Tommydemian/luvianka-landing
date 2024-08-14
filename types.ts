@@ -6,9 +6,8 @@ export type navLink = {
   icon?: string;
 };
 
-export type CtaInfo = {
-  label: KeyTextField;
-  link: LinkField;
+export type IconElementProps = {
+  className: string;
 };
 
 export type Product = {

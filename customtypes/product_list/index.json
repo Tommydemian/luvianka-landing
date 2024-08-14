@@ -1,0 +1,56 @@
+{
+  "format": "custom",
+  "id": "product_list",
+  "label": "Product List",
+  "repeatable": true,
+  "status": true,
+  "json": {
+    "Main": {
+      "uid": {
+        "config": {
+          "label": "UID",
+          "placeholder": "Grilla de Productos en la HomePage"
+        },
+        "type": "UID"
+      },
+      "product_card": {
+        "type": "Group",
+        "config": {
+          "label": "Product Card",
+          "repeat": true,
+          "fields": {
+            "product_image": {
+              "type": "Image",
+              "config": {
+                "label": "Product Image",
+                "constraint": {},
+                "thumbnails": []
+              }
+            },
+            "product_title": {
+              "type": "Text",
+              "config": {
+                "label": "Product Title",
+                "placeholder": ""
+              }
+            },
+            "button_text": {
+              "type": "Text",
+              "config": {
+                "label": "Button text",
+                "placeholder": ""
+              }
+            },
+            "button_link": {
+              "type": "Text",
+              "config": {
+                "label": "Button Link",
+                "placeholder": ""
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -104,10 +104,7 @@ export interface HomepageDocumentDataContactDataItem {
   field5: prismic.KeyTextField;
 }
 
-type HomepageDocumentDataSlicesSlice =
-  | ContentWithImageSlice
-  | ProductsGridSlice
-  | HeroSlice;
+type HomepageDocumentDataSlicesSlice = ContentWithImageSlice | HeroSlice;
 
 /**
  * Content for Homepage documents
@@ -206,6 +203,85 @@ export type HomepageDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<
     Simplify<HomepageDocumentData>,
     "homepage",
+    Lang
+  >;
+
+/**
+ * Item in *Product List → Product Card*
+ */
+export interface ProductListDocumentDataProductCardItem {
+  /**
+   * Product Image field in *Product List → Product Card*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: product_list.product_card[].product_image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  product_image: prismic.ImageField<never>;
+
+  /**
+   * Product Title field in *Product List → Product Card*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: product_list.product_card[].product_title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  product_title: prismic.KeyTextField;
+
+  /**
+   * Button text field in *Product List → Product Card*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: product_list.product_card[].button_text
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  button_text: prismic.KeyTextField;
+
+  /**
+   * Button Link field in *Product List → Product Card*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: product_list.product_card[].button_link
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  button_link: prismic.KeyTextField;
+}
+
+/**
+ * Content for Product List documents
+ */
+interface ProductListDocumentData {
+  /**
+   * Product Card field in *Product List*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: product_list.product_card[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  product_card: prismic.GroupField<
+    Simplify<ProductListDocumentDataProductCardItem>
+  >;
+}
+
+/**
+ * Product List document from Prismic
+ *
+ * - **API ID**: `product_list`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ProductListDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<ProductListDocumentData>,
+    "product_list",
     Lang
   >;
 
@@ -401,7 +477,10 @@ export type SettingsDocument<Lang extends string = string> =
     Lang
   >;
 
-export type AllDocumentTypes = HomepageDocument | SettingsDocument;
+export type AllDocumentTypes =
+  | HomepageDocument
+  | ProductListDocument
+  | SettingsDocument;
 
 /**
  * Item in *ContentWithImage → ImageRight → Primary → Tick Field*
@@ -736,14 +815,14 @@ export interface HeroSliceDefaultPrimary {
   hero_heading: prismic.RichTextField;
 
   /**
-   * Hero Subheading field in *Hero → Default → Primary*
+   * Hero Body field in *Hero → Default → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: Watch out our flavorful meat and order yours today to get up to 35% discount on all new offers
-   * - **API ID Path**: hero.default.primary.hero_subheading
+   * - **API ID Path**: hero.default.primary.hero_body
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
-  hero_subheading: prismic.RichTextField;
+  hero_body: prismic.RichTextField;
 
   /**
    * Button text field in *Hero → Default → Primary*
@@ -764,6 +843,16 @@ export interface HeroSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   button_link: prismic.LinkField;
+
+  /**
+   * Hero Background Image field in *Hero → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.default.primary.hero_background_image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  hero_background_image: prismic.ImageField<never>;
 }
 
 /**
@@ -793,128 +882,6 @@ type HeroSliceVariation = HeroSliceDefault;
  */
 export type HeroSlice = prismic.SharedSlice<"hero", HeroSliceVariation>;
 
-/**
- * Item in *ProductsGrid → Default → Primary → Product Card*
- */
-export interface ProductsGridSliceDefaultPrimaryProductCardItem {
-  /**
-   * Product Image field in *ProductsGrid → Default → Primary → Product Card*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: products_grid.default.primary.product_card[].product_image
-   * - **Documentation**: https://prismic.io/docs/field#image
-   */
-  product_image: prismic.ImageField<never>;
-
-  /**
-   * Product Title field in *ProductsGrid → Default → Primary → Product Card*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: products_grid.default.primary.product_card[].product_title
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  product_title: prismic.KeyTextField;
-
-  /**
-   * Product Description field in *ProductsGrid → Default → Primary → Product Card*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: products_grid.default.primary.product_card[].product_description
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  product_description: prismic.KeyTextField;
-
-  /**
-   * Button Text field in *ProductsGrid → Default → Primary → Product Card*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: products_grid.default.primary.product_card[].button_text
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  button_text: prismic.KeyTextField;
-
-  /**
-   * Button Link field in *ProductsGrid → Default → Primary → Product Card*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: products_grid.default.primary.product_card[].button_link
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  button_link: prismic.LinkField;
-}
-
-/**
- * Primary content in *ProductsGrid → Default → Primary*
- */
-export interface ProductsGridSliceDefaultPrimary {
-  /**
-   * Heading field in *ProductsGrid → Default → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: products_grid.default.primary.heading
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  heading: prismic.KeyTextField;
-
-  /**
-   * Sub Heading field in *ProductsGrid → Default → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: products_grid.default.primary.sub_heading
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  sub_heading: prismic.KeyTextField;
-
-  /**
-   * Product Card field in *ProductsGrid → Default → Primary*
-   *
-   * - **Field Type**: Group
-   * - **Placeholder**: *None*
-   * - **API ID Path**: products_grid.default.primary.product_card[]
-   * - **Documentation**: https://prismic.io/docs/field#group
-   */
-  product_card: prismic.GroupField<
-    Simplify<ProductsGridSliceDefaultPrimaryProductCardItem>
-  >;
-}
-
-/**
- * Default variation for ProductsGrid Slice
- *
- * - **API ID**: `default`
- * - **Description**: Default
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type ProductsGridSliceDefault = prismic.SharedSliceVariation<
-  "default",
-  Simplify<ProductsGridSliceDefaultPrimary>,
-  never
->;
-
-/**
- * Slice variation for *ProductsGrid*
- */
-type ProductsGridSliceVariation = ProductsGridSliceDefault;
-
-/**
- * ProductsGrid Shared Slice
- *
- * - **API ID**: `products_grid`
- * - **Description**: ProductsGrid
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type ProductsGridSlice = prismic.SharedSlice<
-  "products_grid",
-  ProductsGridSliceVariation
->;
-
 declare module "@prismicio/client" {
   interface CreateClient {
     (
@@ -930,6 +897,9 @@ declare module "@prismicio/client" {
       HomepageDocumentDataCorporationSectionItem,
       HomepageDocumentDataContactDataItem,
       HomepageDocumentDataSlicesSlice,
+      ProductListDocument,
+      ProductListDocumentData,
+      ProductListDocumentDataProductCardItem,
       SettingsDocument,
       SettingsDocumentData,
       SettingsDocumentDataNavigationItem,
@@ -953,11 +923,6 @@ declare module "@prismicio/client" {
       HeroSliceDefaultPrimary,
       HeroSliceVariation,
       HeroSliceDefault,
-      ProductsGridSlice,
-      ProductsGridSliceDefaultPrimaryProductCardItem,
-      ProductsGridSliceDefaultPrimary,
-      ProductsGridSliceVariation,
-      ProductsGridSliceDefault,
     };
   }
 }

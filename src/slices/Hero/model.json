@@ -21,13 +21,13 @@
             "single": "heading1,heading2,heading3,heading4,heading5,heading6,strong,em"
           }
         },
-        "hero_subheading": {
+        "hero_body": {
           "type": "StructuredText",
           "config": {
-            "label": "Hero Subheading",
+            "label": "Hero Body",
             "placeholder": "Watch out our flavorful meat and order yours today to get up to 35% discount on all new offers",
             "allowTargetBlank": true,
-            "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+            "multi": "paragraph,preformatted,strong,em,hyperlink,list-item,o-list-item,rtl"
           }
         },
         "button_text": {
@@ -43,6 +43,14 @@
             "label": "Button Link",
             "placeholder": "",
             "select": null
+          }
+        },
+        "hero_background_image": {
+          "type": "Image",
+          "config": {
+            "label": "Hero Background Image",
+            "constraint": {},
+            "thumbnails": []
           }
         }
       },
