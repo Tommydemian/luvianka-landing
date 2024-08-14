@@ -1,64 +1,66 @@
-// import React, { useEffect, useState } from "react";
-// import { PrismicNextImage } from "@prismicio/next";
-// import { CTA } from "../CTA";
-// import MobileSwiper from "./MobileSwiper";
-// import { useIsMobile } from "../../hooks/useIsMobile";
-// import { KeyTextField, ImageField, LinkField } from "@prismicio/client";
+"use client";
 
-// export type Product = {
-//   product_image: ImageField;
-//   product_title: KeyTextField;
-//   product_description: KeyTextField;
-//   button_link: LinkField;
-//   button_text: KeyTextField;
-// };
+import React, { useEffect, useState } from "react";
+import { PrismicNextImage } from "@prismicio/next";
+import { CTA } from "../CTA";
+import MobileSwiper from "./MobileSwiper";
+import { useIsMobile } from "../../hooks/useIsMobile";
+import { KeyTextField, ImageField, LinkField } from "@prismicio/client";
 
-// export type ProductCardProps = {
-//   product: Product;
-// };
+export type Product = {
+  product_image: ImageField;
+  product_title: KeyTextField;
+  product_description: KeyTextField;
+  button_link: LinkField;
+  button_text: KeyTextField;
+};
 
-// const ProductCard: React.FC<ProductCardProps> = ({ product }) => (
-//   <div className="product-card">
-//     <PrismicNextImage field={product.product_image} />
-//     <h3 className="product-title">{product.product_title || ""}</h3>
-//     <p>{product.product_description || ""}</p>
-//     <CTA
-//       link={product.button_link}
-//       label={product.button_text || ""}
-//       className="cta in-prod"
-//     />
-//   </div>
-// );
+export type ProductCardProps = {
+  product: Product;
+};
 
-// export type ProductGridClientProps = {
-//   productCards: Product[];
-// };
+const ProductCard: React.FC<ProductCardProps> = ({ product }) => (
+  <div className="product-card">
+    <PrismicNextImage field={product.product_image} />
+    <h3 className="product-title">{product.product_title || ""}</h3>
+    <p>{product.product_description || ""}</p>
+    <CTA
+      link={product.button_link}
+      label={product.button_text || ""}
+      className="cta in-prod"
+    />
+  </div>
+);
 
-// const ProductGridClient: React.FC<ProductGridClientProps> = ({
-//   productCards,
-// }) => {
-//   const { isMobile } = useIsMobile();
-//   const [isMounted, setIsMounted] = useState(false);
+export type ProductGridClientProps = {
+  productCards: Product[];
+};
 
-//   useEffect(() => {
-//     setIsMounted(true);
-//   }, []);
+const ProductGridClient: React.FC<ProductGridClientProps> = ({
+  productCards,
+}) => {
+  const { isMobile } = useIsMobile();
+  const [isMounted, setIsMounted] = useState(false);
 
-//   if (!isMounted) {
-//     return null;
-//   }
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
-//   if (isMobile) {
-//     return <MobileSwiper productCards={productCards} />;
-//   }
+  if (!isMounted) {
+    return null;
+  }
 
-//   return (
-//     <div className="landing-product-grid desktop-grid">
-//       {productCards.map((product, index) => (
-//         <ProductCard key={index} product={product} />
-//       ))}
-//     </div>
-//   );
-// };
+  if (isMobile) {
+    return <MobileSwiper productCards={productCards} />;
+  }
 
-// export default ProductGridClient;
+  return (
+    <div className="landing-product-grid desktop-grid">
+      {productCards.map((product, index) => (
+        <ProductCard key={index} product={product} />
+      ))}
+    </div>
+  );
+};
+
+export default ProductGridClient;

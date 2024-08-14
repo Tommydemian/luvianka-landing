@@ -1,0 +1,79 @@
+{
+  "id": "product_slice",
+  "type": "SharedSlice",
+  "name": "ProductGrid",
+  "description": "ProductSlice",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "product_grid": {
+          "type": "Group",
+          "config": {
+            "label": "Product Grid",
+            "repeat": true,
+            "fields": {
+              "product_image": {
+                "type": "Image",
+                "config": {
+                  "label": "Product Image",
+                  "constraint": {},
+                  "thumbnails": []
+                }
+              },
+              "product_title": {
+                "type": "Text",
+                "config": {
+                  "label": "Product Title",
+                  "placeholder": ""
+                }
+              },
+              "button_text": {
+                "type": "Text",
+                "config": {
+                  "label": "Button text",
+                  "placeholder": ""
+                }
+              },
+              "button_link": {
+                "type": "Link",
+                "config": {
+                  "label": "Button Link",
+                  "placeholder": "",
+                  "select": null
+                }
+              },
+              "product_description": {
+                "type": "Text",
+                "config": {
+                  "label": "Product Description",
+                  "placeholder": ""
+                }
+              }
+            }
+          }
+        },
+        "eyebrow_text": {
+          "type": "Text",
+          "config": {
+            "label": "Eyebrow Text",
+            "placeholder": ""
+          }
+        },
+        "main_heading": {
+          "type": "Text",
+          "config": {
+            "label": "Main Heading",
+            "placeholder": ""
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

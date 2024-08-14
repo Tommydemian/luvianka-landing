@@ -27,14 +27,20 @@
   --font-size-base: 1rem;
   --font-size-lg: 1.125rem; /* 18px */
   --font-size-xl: 1.25rem; /* 20px */
-  --fot-size-2xl: 1.5rem; /* 24px */
+
+  --font-size-2xl: 1.5rem; /* 24px */
   --font-size-3xl: 2rem; /* 32px */
   --font-size-4xl: 3rem; /* 48px */
   --font-size-5xl: 4rem; /* 64px */
 
-  --line-height-tight: 1.2;
-  --line-height-normal: 1.5;
-  --line-height-relaxed: 1.75;
+  --line-height-tight: 1.2; /* For tight spacing */
+  --line-height-normal: 1.36; /* For standard spacing */
+  --line-height-relaxed: 1.91; /* For more relaxed spacing */
+  --line-height-loose: 2.5; /* For very loose spacing */
+
+  /* Section Heading Line Height */
+  --line-height-eyebrow-text: var(--line-height-tight);
+  --line-height-main-heading: var(--line-height-relaxed);
 
   --font-weight-400: 400;
   --font-weight-500: 500;
@@ -45,8 +51,10 @@
   --font-size-hero-heading: var(--font-size-3xl);
   --font-size-hero-description: var(--font-size-lg);
   --font-size-cta: var(--font-size-base);
+
   --font-size-eyebrow-text: var(--font-size-2xl);
   --font-size-main-heading: var(--font-size-3xl);
+
   --font-size-body-text: var(--font-size-lg);
   --font-size-footer-heading: var(--font-size-lg);
   --font-size-footer: var(--font-size-base);
@@ -82,11 +90,7 @@
   --cta-padding-x: 1.75em;
   --cta-padding-y: 1em;
   /* Common use cases */
-  --spacing-section-y: var(--spacing-3xl); /* Vertical spacing for sections */
-  --spacing-section-padding-y: var();
-  --spacing-element-y: var(
-    --spacing-md
-  ); /* Vertical spacing between elements */
+  --spacing-section-y: var(--spacing-2xl); /* Vertical spacing for sections */
   --spacing-text-y: var(--spacing-xs); /* Vertical spacing in text blocks */
 
   /* Transition */
@@ -167,10 +171,11 @@
   --link-color: #5bc0eb;
 }
 
-@media (min-width: 48em) {
+@media (min-width: 50em) {
   :root {
     --font-size-hero-heading: var(--font-size-4xl);
     --font-size-hero-description: var(--font-size-xl);
+
     --font-size-eyebrow-text: var(--font-size-3xl);
     --font-size-main-heading: var(--font-size-4xl);
 
@@ -179,7 +184,11 @@
     --heading-padding-y: var(--spacing-md);
 
     --hero-row-items-gap: var(--spacing-2xl);
-    --hero-height: 36vh;
+    --hero-height: 60vh;
+
+    /* Line Height */
+    /* --line-height-eyebrow-text: var(--line-height-); */
+    --line-height-main-heading: var(--line-height-normal);
   }
 }
 
@@ -673,7 +682,7 @@ header {
     opacity 0.5s cubic-bezier(0.36, 0.01, 0.52, 0.97);
 }
 
-/* HEADER  */
+/* HERO  */
 .hero {
   position: relative;
   display: flex;
@@ -707,12 +716,13 @@ header {
 }
 
 .hero__main-heading {
+  font-family: var(--font-oswald);
   font-size: var(--font-size-hero-heading); /* 64 px */
+
   font-weight: 600;
   line-height: 80px;
   color: var(--color-text-light);
   text-transform: uppercase;
-  font-family: font-he;
 }
 
 .hero__desc {
@@ -723,63 +733,45 @@ header {
 }
 
 @media screen and (max-width: 768px) {
-  .heroTitle {
+  .hero__main-heading {
     line-height: 2.964rem;
   }
 
-  .heroDesc {
+  .hero__desc {
     line-height: 1.414rem;
     max-width: 30ch;
   }
 }
 
-/* Sectio Heading - && Pretitle */
-.section-heading-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-top: 4rem;
-  margin-bottom: 0.75rem;
-  row-gap: 0.5em;
-}
-
-.section-heading-pretitle {
-  font-family: var(--font-grand-hotel);
-  font-size: var(--pretitle-fs);
-  line-height: var(--pretitlte-lh);
-  color: var(--color-primary);
-  text-transform: capitalize;
-}
-
-.section-heading-title {
-  font-family: var(--font-oswald);
-  font-size: var(--fs-700);
-  font-weight: 600;
-  line-height: 61px;
+/* SECTION HEADING */
+.heading-section {
   text-align: center;
+}
+.heading-section__eyebrow-text {
+  font-family: var(--font-grand-hotel);
+  font-size: var(--font-size-eyebrow-text);
+  font-weight: 400;
+  color: var(--color-primary);
+  line-height: var(--line-height-eyebrow-text);
+}
+.heading-section__main-heading {
+  font-family: var(--font-oswald);
+  font-size: var(--font-size-main-heading);
+  font-weight: var(--font-weight-600);
   color: var(--color-text);
+  line-height: var(--line-height-main-heading);
   text-transform: capitalize;
 }
+.heading-section svg {
+  position: relative;
+  left: 2rem;
+  bottom: 0.25rem;
+}
 
-@media screen and (max-width: 768px) {
-  .section-heading-pretitle {
-    font-size: var(--fs-600);
-    line-height: 2.038rem; /* 32.6px */
-  }
-
-  .section-heading-title {
-    font-size: var(--fs-650);
-    font-weight: 600;
-    line-height: 61px;
-    text-align: center;
-  }
-  .section-heading-container svg {
-    position: relative;
-    left: 2em;
-    width: 30%;
-    bottom: 0.5em;
-  }
+/* PRODUCT-GRID */
+.product-grid {
+  margin-top: var(--spacing-section-y);
+  margin-bottom: calc(var(--spacing-section-y) * 2);
 }
 
 .landing-product-grid {

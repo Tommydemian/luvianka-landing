@@ -101,6 +101,9 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "product_slice": {
+              "type": "SharedSlice"
+            },
             "content_with_image": {
               "type": "SharedSlice"
             },
