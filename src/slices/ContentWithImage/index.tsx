@@ -24,8 +24,8 @@ const ContentWithImage = ({ slice }: ContentWithImageProps): JSX.Element => {
         <div
           className={`content-with-image-text ${isImgRight ? "imgrightvar" : ""}`}
         >
-          <h1>{slice.primary.eyebrow_text}</h1>
-          <h2>{slice.primary.main_heading}</h2>
+          <h1>{slice.primary.heading}</h1>
+          <h2>{slice.primary.sub_heading}</h2>
           <p>{slice.primary.description}</p>
           {isImgRight && (
             <>

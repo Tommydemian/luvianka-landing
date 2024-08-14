@@ -24,11 +24,11 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => (
     <PrismicNextImage field={product.product_image} />
     <h3 className="product-title">{product.product_title || ""}</h3>
     <p>{product.product_description || ""}</p>
-    <CTA
+    {/* <CTA
       link={product.button_link}
       label={product.button_text || ""}
       className="cta in-prod"
-    />
+    /> */}
   </div>
 );
 
