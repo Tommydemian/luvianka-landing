@@ -7,4 +7,5 @@ export const components = {
   footer: dynamic(() => import("./Footer")),
   hero: dynamic(() => import("./Hero")),
   product_slice: dynamic(() => import("./ProductGrid")),
+  products: dynamic(() => import("./Products")),
 };

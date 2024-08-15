@@ -6,8 +6,11 @@ import Link from "next/link";
 import Image from "next/image";
 import { PrismicNextLink } from "@prismicio/next";
 import { Content } from "@prismicio/client";
+
+import { ProductCategoryList } from "@/components/ProductCategories/ProductCategoryList";
 import { HamburguerIcon } from "@/components/Icons/Hamburguer";
 import { CloseIcon } from "@/components/Icons/Close";
+import { ChevronIcon } from "@/components/Icons/Chevron";
 import { useIsMobile } from "@/hooks/useIsMobile";
 import { useToggle } from "@/hooks/useToggle";
 
@@ -15,13 +18,20 @@ import classNames from "classnames";
 
 type NavBarProps = {
   settings: Content.SettingsDocument;
+  productCategories: Content.ProductCategoryDocument[];
   className?: string;
 };
 
-export const NavBar = ({ settings, className }: NavBarProps) => {
+export const NavBar = ({
+  settings,
+  className,
+  productCategories,
+}: NavBarProps) => {
   const { isMobile } = useIsMobile();
   const { state: isMenuOpen, toggle: toggleMenu } = useToggle(false);
+  // const { state: isdropdownOpen, toggle: toggleDropdown } = useToggle(false);
   const [isMounted, setIsMounted] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
   useEffect(() => {
     if (isMenuOpen) {
@@ -78,13 +88,39 @@ export const NavBar = ({ settings, className }: NavBarProps) => {
           })}
         >
           <ul role="list" className="navbar__list">
-            {settings.data.navigation.map((item) => (
-              <li key={item.label} className="navbar__item">
-                <PrismicNextLink field={item.link} className="navbar__link">
-                  {item.label}
-                </PrismicNextLink>
-              </li>
-            ))}
+            {settings.data.navigation.map(
+              ({ link, label, is_product_category }) => (
+                <li key={label} className="navbar__item">
+                  <PrismicNextLink
+                    field={link}
+                    className="navbar__link navbar__link--products "
+                  >
+                    {label}
+                  </PrismicNextLink>
+                  {is_product_category && (
+                    <>
+                      <span
+                        onClick={() => setDropdownOpen(!dropdownOpen)}
+                        className="chevron-wrapper"
+                      >
+                        <ChevronIcon
+                          className={classNames("chevron", {
+                            "chevron--rotate": dropdownOpen,
+                          })}
+                        />
+                      </span>
+                      <ProductCategoryList
+                        displayImage
+                        productCategories={productCategories}
+                        className={
+                          dropdownOpen ? "m-product-category-list--open" : ""
+                        }
+                      />
+                    </>
+                  )}
+                </li>
+              )
+            )}
           </ul>
           <div className="navbar__cta-container">
             <CTA

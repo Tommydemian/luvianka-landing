@@ -5,19 +5,23 @@ import { Container } from "@/components/Container";
 
 import { createClient } from "../prismicio";
 
-async function getSettings() {
-  const client = createClient();
-  return client.getSingle("settings");
-}
-
 export const Header = async () => {
-  const settings = await getSettings();
+  const client = createClient();
+
+  const [settings, product_category] = await Promise.all([
+    client.getSingle("settings").catch(() => null),
+    client.getAllByType("product_category").catch(() => null),
+  ]);
+
+  if (!settings || !product_category) {
+    return null;
+  }
 
   return (
     <Section>
       <Container>
         <header className="header">
-          <NavBar settings={settings} />
+          <NavBar productCategories={product_category} settings={settings} />
         </header>
       </Container>
     </Section>

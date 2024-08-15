@@ -210,81 +210,121 @@ export type HomepageDocument<Lang extends string = string> =
   >;
 
 /**
- * Item in *Product List → Product Card*
+ * Content for Product Category documents
  */
-export interface ProductListDocumentDataProductCardItem {
+interface ProductCategoryDocumentData {
   /**
-   * Product Image field in *Product List → Product Card*
+   * Product Category Image field in *Product Category*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: product_list.product_card[].product_image
+   * - **API ID Path**: product_category.product_category_image
+   * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#image
    */
-  product_image: prismic.ImageField<never>;
+  product_category_image: prismic.ImageField<never>;
 
   /**
-   * Product Title field in *Product List → Product Card*
+   * Product Category Title field in *Product Category*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: product_list.product_card[].product_title
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  product_title: prismic.KeyTextField;
-
-  /**
-   * Button text field in *Product List → Product Card*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: product_list.product_card[].button_text
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  button_text: prismic.KeyTextField;
-
-  /**
-   * Button Link field in *Product List → Product Card*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: product_list.product_card[].button_link
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  button_link: prismic.KeyTextField;
-}
-
-/**
- * Content for Product List documents
- */
-interface ProductListDocumentData {
-  /**
-   * Product Card field in *Product List*
-   *
-   * - **Field Type**: Group
-   * - **Placeholder**: *None*
-   * - **API ID Path**: product_list.product_card[]
+   * - **API ID Path**: product_category.product_category_title
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#group
+   * - **Documentation**: https://prismic.io/docs/field#key-text
    */
-  product_card: prismic.GroupField<
-    Simplify<ProductListDocumentDataProductCardItem>
-  >;
+  product_category_title: prismic.KeyTextField;
+
+  /**
+   * Product Category Description field in *Product Category*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: product_category.product_category_description
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  product_category_description: prismic.RichTextField;
 }
 
 /**
- * Product List document from Prismic
+ * Product Category document from Prismic
  *
- * - **API ID**: `product_list`
+ * - **API ID**: `product_category`
  * - **Repeatable**: `true`
  * - **Documentation**: https://prismic.io/docs/custom-types
  *
  * @typeParam Lang - Language API ID of the document.
  */
-export type ProductListDocument<Lang extends string = string> =
+export type ProductCategoryDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<
-    Simplify<ProductListDocumentData>,
-    "product_list",
+    Simplify<ProductCategoryDocumentData>,
+    "product_category",
+    Lang
+  >;
+
+type ProductPageDocumentDataSlicesSlice = never;
+
+/**
+ * Content for Product Page documents
+ */
+interface ProductPageDocumentData {
+  /**
+   * Slice Zone field in *Product Page*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: product_page.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<ProductPageDocumentDataSlicesSlice> /**
+   * Meta Title field in *Product Page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: product_page.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *Product Page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: product_page.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Product Page*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: product_page.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * Product Page document from Prismic
+ *
+ * - **API ID**: `product_page`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ProductPageDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<ProductPageDocumentData>,
+    "product_page",
     Lang
   >;
 
@@ -482,7 +522,8 @@ export type SettingsDocument<Lang extends string = string> =
 
 export type AllDocumentTypes =
   | HomepageDocument
-  | ProductListDocument
+  | ProductCategoryDocument
+  | ProductPageDocument
   | SettingsDocument;
 
 /**
@@ -1007,6 +1048,68 @@ export type ProductSliceSlice = prismic.SharedSlice<
   ProductSliceSliceVariation
 >;
 
+/**
+ * Item in *Products → Default → Primary → Product Listing*
+ */
+export interface ProductsSliceDefaultPrimaryProductListingItem {
+  /**
+   * Product field in *Products → Default → Primary → Product Listing*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: products.default.primary.product_listing[].product
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  product: prismic.ContentRelationshipField<"product">;
+}
+
+/**
+ * Primary content in *Products → Default → Primary*
+ */
+export interface ProductsSliceDefaultPrimary {
+  /**
+   * Product Listing field in *Products → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: products.default.primary.product_listing[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  product_listing: prismic.GroupField<
+    Simplify<ProductsSliceDefaultPrimaryProductListingItem>
+  >;
+}
+
+/**
+ * Default variation for Products Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ProductsSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ProductsSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Products*
+ */
+type ProductsSliceVariation = ProductsSliceDefault;
+
+/**
+ * Products Shared Slice
+ *
+ * - **API ID**: `products`
+ * - **Description**: Products
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ProductsSlice = prismic.SharedSlice<
+  "products",
+  ProductsSliceVariation
+>;
+
 declare module "@prismicio/client" {
   interface CreateClient {
     (
@@ -1022,9 +1125,11 @@ declare module "@prismicio/client" {
       HomepageDocumentDataCorporationSectionItem,
       HomepageDocumentDataContactDataItem,
       HomepageDocumentDataSlicesSlice,
-      ProductListDocument,
-      ProductListDocumentData,
-      ProductListDocumentDataProductCardItem,
+      ProductCategoryDocument,
+      ProductCategoryDocumentData,
+      ProductPageDocument,
+      ProductPageDocumentData,
+      ProductPageDocumentDataSlicesSlice,
       SettingsDocument,
       SettingsDocumentData,
       SettingsDocumentDataNavigationItem,
@@ -1053,6 +1158,11 @@ declare module "@prismicio/client" {
       ProductSliceSliceDefaultPrimary,
       ProductSliceSliceVariation,
       ProductSliceSliceDefault,
+      ProductsSlice,
+      ProductsSliceDefaultPrimaryProductListingItem,
+      ProductsSliceDefaultPrimary,
+      ProductsSliceVariation,
+      ProductsSliceDefault,
     };
   }
 }
