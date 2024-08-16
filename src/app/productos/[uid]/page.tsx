@@ -6,6 +6,7 @@ import { SliceZone } from "@prismicio/react";
 
 import { createClient } from "@/prismicio";
 import { components } from "@/slices";
+import { Dropdown } from "@/components/Dropdown";
 
 type Params = { uid: string };
 
@@ -16,12 +17,16 @@ export default async function Page({ params }: { params: Params }) {
     .catch(() => notFound());
 
   return (
-    <section>
-      <h1>Product: {params.uid}</h1>
+    <section className="container">
+      <h1 className="choose-category-heading">Selecciona categoria</h1>
+      {/* category dropdown */}
+      <Dropdown />
+      {/* <h1>Product: {params.uid}</h1> */}
       {page.data.slices && page.data.slices.length > 0 ? (
         <SliceZone slices={page.data.slices} components={components} />
       ) : (
-        <p>No content has been created for this product yet.</p>
+        ""
+        // <p>No content has been created for this product yet.</p>
       )}
     </section>
   );

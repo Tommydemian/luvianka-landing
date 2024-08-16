@@ -1,0 +1,60 @@
+{
+  "format": "custom",
+  "id": "single_product",
+  "label": "Single Product",
+  "repeatable": true,
+  "status": true,
+  "json": {
+    "Main": {
+      "title": {
+        "type": "Text",
+        "config": {
+          "label": "Title",
+          "placeholder": ""
+        }
+      },
+      "uid": {
+        "config": {
+          "label": "UID"
+        },
+        "type": "UID"
+      },
+      "image": {
+        "type": "Image",
+        "config": {
+          "label": "Image",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "type": {
+        "type": "Text",
+        "config": {
+          "label": "Type",
+          "placeholder": ""
+        }
+      },
+      "code": {
+        "type": "Text",
+        "config": {
+          "label": "Code",
+          "placeholder": ""
+        }
+      },
+      "weight": {
+        "type": "Text",
+        "config": {
+          "label": "Weight",
+          "placeholder": ""
+        }
+      },
+      "life_span": {
+        "type": "Text",
+        "config": {
+          "label": "Life Span",
+          "placeholder": ""
+        }
+      }
+    }
+  }
+}

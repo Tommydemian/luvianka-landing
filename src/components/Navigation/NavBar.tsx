@@ -93,7 +93,7 @@ export const NavBar = ({
                 <li key={label} className="navbar__item">
                   <PrismicNextLink
                     field={link}
-                    className="navbar__link navbar__link--products "
+                    className="navbar__link navbar__link--products"
                   >
                     {label}
                   </PrismicNextLink>

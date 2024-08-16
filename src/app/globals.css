@@ -3,7 +3,7 @@
   /* C.lass-P.lace/T.hing-V.ariant */
   --color-primary: #e12c48;
   --color-primary-dark: #d61c1c; /* For the red background section */
-
+  --color-primary-light: #f9f9f9;
   /* Accent Colors */
   --color-accent: #ff2221;
 
@@ -44,8 +44,8 @@
   --line-height-main-heading: var(--line-height-relaxed);
 
   --font-weight-400: 400;
-  --font-weight-500: 500;
   --font-weight-600: 600;
+  --font-weight-bold: 700;
 
   /* Functional Typography */
   --font-size-nav: var(--font-size-lg);
@@ -60,6 +60,8 @@
   --font-size-footer-heading: var(--font-size-lg);
   --font-size-footer: var(--font-size-base);
 
+  --font-size-choose-category: var(--font-size-lg);
+  --font-weight-choose-category: var(--font-weight-bold);
   /* 3. Spacing */
   --spacing-unit: 0.25rem; /* 4px assuming a base font size of 16px */
   --spacing-xs: calc(var(--spacing-unit) * 1); /* 0.25rem - 4px */
@@ -70,6 +72,9 @@
   --spacing-2xl: calc(var(--spacing-unit) * 10); /* 2.5rem   - 48px */
   --spacing-3xl: calc(var(--spacing-unit) * 12); /* 3rem   - 48px */
   --spacing-4xl: calc(var(--spacing-unit) * 16); /* 4rem   - 64px */
+
+  --spacing-padding-base: 1em;
+  --spacing-padding-x-base: 1.25em;
 
   --spacing-circle-image: 100vw;
 
@@ -98,6 +103,10 @@
   /* Common use cases */
   --spacing-section-y: var(--spacing-2xl); /* Vertical spacing for sections */
   --spacing-text-y: var(--spacing-xs); /* Vertical spacing in text blocks */
+
+  /* Border Radius */
+  --border-radius-md: 0.688rem;
+  --border-radius-dropdown: var(--border-radius-md);
 
   /* Transition */
   --transition-duration-fast: 150ms;
@@ -347,6 +356,10 @@ select {
   position: absolute;
 }
 
+.bold {
+  font-weight: var(--font-weight-600);
+}
+
 /* HEADER */
 header {
   padding-block: var(--heading-padding-y);
@@ -381,6 +394,9 @@ header {
   text-transform: capitalize;
   font-size: var(--font-size-nav);
   transition: var(--nav-item-transition);
+}
+.navbar__item:first-child {
+  position: relative;
 }
 
 .navbar__item:hover,
@@ -450,6 +466,7 @@ header {
 
   .navbar__item {
     width: 100%;
+    display: inline-block;
   }
 
   .mobile-menu-wrapper,
@@ -544,8 +561,8 @@ header {
   }
 
   .chevron-wrapper {
-    justify-self: end;
-    align-self: center;
+    position: absolute;
+    right: 0;
   }
 
   .chevron {
@@ -1156,4 +1173,25 @@ footer .subfooter-layout p {
 
 .mobile-swiper {
   display: flex !important;
+}
+
+/* PRODUCT PAGE */
+.choose-category-heading {
+  font-size: var(--font-size-choose-category);
+  font-weight: var(--font-weight-choose-category);
+}
+.dropdown-menu {
+  background-color: var(--color-background);
+  left: 0;
+  top: calc(100% - var(--spacing-unit));
+  border-radius: var(--border-radius-dropdown);
+  box-shadow: 0px 4px 15.7px 3px #0000000f;
+  width: 100%;
+}
+.dropdown-menu ul {
+  display: flex;
+  flex-direction: column;
+  row-gap: var(--spacing-padding-x-base);
+  font-size: var(--font-size-base);
+  padding: var(--spacing-padding-x-base) var(--mobile-menu-padding-x);
 }

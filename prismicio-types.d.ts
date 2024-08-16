@@ -210,6 +210,21 @@ export type HomepageDocument<Lang extends string = string> =
   >;
 
 /**
+ * Item in *Product Category → Category Products*
+ */
+export interface ProductCategoryDocumentDataCategoryProductsItem {
+  /**
+   * Product field in *Product Category → Category Products*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: product_category.category_products[].product
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  product: prismic.ContentRelationshipField;
+}
+
+/**
  * Content for Product Category documents
  */
 interface ProductCategoryDocumentData {
@@ -245,6 +260,19 @@ interface ProductCategoryDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   product_category_description: prismic.RichTextField;
+
+  /**
+   * Category Products field in *Product Category*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: product_category.category_products[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  category_products: prismic.GroupField<
+    Simplify<ProductCategoryDocumentDataCategoryProductsItem>
+  >;
 }
 
 /**
@@ -520,11 +548,99 @@ export type SettingsDocument<Lang extends string = string> =
     Lang
   >;
 
+/**
+ * Content for Single Product documents
+ */
+interface SingleProductDocumentData {
+  /**
+   * Title field in *Single Product*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: single_product.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Image field in *Single Product*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: single_product.image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * Type field in *Single Product*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: single_product.type
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  type: prismic.KeyTextField;
+
+  /**
+   * Code field in *Single Product*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: single_product.code
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  code: prismic.KeyTextField;
+
+  /**
+   * Weight field in *Single Product*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: single_product.weight
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  weight: prismic.KeyTextField;
+
+  /**
+   * Life Span field in *Single Product*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: single_product.life_span
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  life_span: prismic.KeyTextField;
+}
+
+/**
+ * Single Product document from Prismic
+ *
+ * - **API ID**: `single_product`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type SingleProductDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<SingleProductDocumentData>,
+    "single_product",
+    Lang
+  >;
+
 export type AllDocumentTypes =
   | HomepageDocument
   | ProductCategoryDocument
   | ProductPageDocument
-  | SettingsDocument;
+  | SettingsDocument
+  | SingleProductDocument;
 
 /**
  * Item in *ContentWithImage → ImageRight → Primary → Tick Field*
@@ -1127,6 +1243,7 @@ declare module "@prismicio/client" {
       HomepageDocumentDataSlicesSlice,
       ProductCategoryDocument,
       ProductCategoryDocumentData,
+      ProductCategoryDocumentDataCategoryProductsItem,
       ProductPageDocument,
       ProductPageDocumentData,
       ProductPageDocumentDataSlicesSlice,
@@ -1135,6 +1252,8 @@ declare module "@prismicio/client" {
       SettingsDocumentDataNavigationItem,
       SettingsDocumentDataProductsItem,
       SettingsDocumentDataSlicesSlice,
+      SingleProductDocument,
+      SingleProductDocumentData,
       AllDocumentTypes,
       ContentWithImageSlice,
       ContentWithImageSliceDefaultPrimary,

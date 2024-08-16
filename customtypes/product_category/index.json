@@ -35,6 +35,22 @@
           "allowTargetBlank": true,
           "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
         }
+      },
+      "category_products": {
+        "type": "Group",
+        "config": {
+          "label": "Category Products",
+          "repeat": true,
+          "fields": {
+            "product": {
+              "type": "Link",
+              "config": {
+                "label": "Product",
+                "select": "document"
+              }
+            }
+          }
+        }
       }
     }
   }
