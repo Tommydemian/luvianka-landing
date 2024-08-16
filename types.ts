@@ -7,7 +7,7 @@ export type navLink = {
 };
 
 export type IconElementProps = {
-  className: string;
+  className?: string;
 };
 
 export type Product = {

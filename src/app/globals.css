@@ -13,6 +13,7 @@
   --color-text: #05090c;
   --color-text-light: #ffffff;
   --color-neutral-dark: #2d2d2d; /* Footer background color */
+  --color-border-medium: #7a7a7a;
   --color-border-light: #c3c3c3;
   --color-black: #000000;
 
@@ -22,7 +23,7 @@
   --color-footer-accent: var(--color-accent);
   --color-footer-background: var(--color-neutral-dark);
   --color-header-border: var(--color-border-light);
-
+  --color-dropdown-border: var(--color-border-medium);
   /* 2. Typography */
   --font-size-sm: 0.875rem;
   --font-size-base: 1rem;
@@ -1179,19 +1180,56 @@ footer .subfooter-layout p {
 .choose-category-heading {
   font-size: var(--font-size-choose-category);
   font-weight: var(--font-weight-choose-category);
+  margin-bottom: var(--spacing-sm);
 }
-.dropdown-menu {
+.dropdown__field {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em 1.5em;
+  background-color: var(--color-primary-light);
+  border-radius: var(--border-radius-dropdown);
+  text-transform: capitalize;
+  color: var(--color-primary);
+  transition: outline var(--transition-duration-fast) ease;
+}
+.dropdown__field--is-active {
+  outline: 1px solid var(--color-dropdown-border);
+}
+.dropdown__menu {
+  position: absolute;
   background-color: var(--color-background);
   left: 0;
-  top: calc(100% - var(--spacing-unit));
+  top: calc(100% + 0.25em);
   border-radius: var(--border-radius-dropdown);
   box-shadow: 0px 4px 15.7px 3px #0000000f;
   width: 100%;
+  opacity: 0;
+  transform: translateY(-10px);
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity var(--transition-duration-fast) ease,
+    transform var(--transition-duration-fast)
+      var(--transition--timing-cubic-bezier-base),
+    visibility var(--transition-duration-fast) ease;
 }
-.dropdown-menu ul {
+.dropdown__menu.dropdown__menu--is-open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.dropdown__menu-list {
   display: flex;
   flex-direction: column;
   row-gap: var(--spacing-padding-x-base);
   font-size: var(--font-size-base);
   padding: var(--spacing-padding-x-base) var(--mobile-menu-padding-x);
+}
+.dropdown__menu-item {
+  text-transform: capitalize;
+}
+.dropdown__menu-item--is-selected {
+  color: var(--color-primary);
 }
