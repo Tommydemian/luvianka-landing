@@ -14,7 +14,7 @@ export const ProductCardGrid: React.FC = () => {
 
   return (
     <Section>
-      <Container className="product-grid">
+      <Container className="pp-product-card-grid">
         {products?.map(
           ({
             product_code,
@@ -25,30 +25,48 @@ export const ProductCardGrid: React.FC = () => {
             product_weight,
           }) => {
             return (
-              <article key={product_code}>
-                <div>
-                  <PrismicNextImage field={product_image} />
+              <article key={product_code} className="pp-product-card">
+                <div className="pp-product-card__image-wrapper">
+                  <PrismicNextImage
+                    field={product_image}
+                    className="pp-product-card__image"
+                  />
                 </div>
-                <div>
-                  <h3>{product_title}</h3>
-                  <p>{product_type}</p>
-                  <div>
-                    <p>Codigo</p>
-                    <p>{product_code}</p>
-                  </div>
-                  <div>
-                    <p>Peso</p>
-                    <p>{product_weight}</p>
-                  </div>
-                  <div>
-                    <p>Vida Util</p>
-                    <p>{product_lifespan}</p>
+                <div className="pp-product-card__info">
+                  <h3 className="pp-product-card__info-title">
+                    {product_title}
+                  </h3>
+                  <p className="pp-product-card__info-type">{product_type}</p>
+                  <div className="pp-product-card__sub-info-blocks">
+                    <div className="pp-product-card__sub-info-block">
+                      <p className="pp-product-card__sub-info-block-label">
+                        Codigo
+                      </p>
+                      <p className="pp-product-card__sub-info-block-value">
+                        {product_code}
+                      </p>
+                    </div>
+                    <div className="pp-product-card__sub-info-block">
+                      <p className="pp-product-card__sub-info-block-label">
+                        Peso
+                      </p>
+                      <p className="pp-product-card__sub-info-block-value">
+                        {product_weight}
+                      </p>
+                    </div>
+                    <div className="pp-product-card__sub-info-block">
+                      <p className="pp-product-card__sub-info-block-label">
+                        Vida Util
+                      </p>
+                      <p className="pp-product-card__sub-info-block-value">
+                        {product_lifespan}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </article>
             );
           }
-          // <ProductCard key={product.product.link_type} product={product} />
         )}
       </Container>
     </Section>

@@ -19,11 +19,11 @@ export const Header = async () => {
 
   return (
     <Section>
-      <Container>
-        <header className="header">
+      <header className="header">
+        <Container>
           <NavBar productCategories={product_category} settings={settings} />
-        </header>
-      </Container>
+        </Container>
+      </header>
     </Section>
   );
 };

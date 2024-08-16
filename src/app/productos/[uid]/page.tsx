@@ -18,16 +18,18 @@ export default async function Page({ params }: { params: Params }) {
 
   const categories = await client.getAllByType("product_category");
 
-  const products = await client.getAllByType("single_product", {
-    fetchLinks: "product_category.product_category_title",
-  });
+  // const products = await client.getAllByType("single_product", {
+  //   fetchLinks: "product_category.product_category_title",
+  // });
 
   return (
-    <section className="container">
+    <section className="container--lg">
       <h1 className="choose-category-heading">Selecciona categoria</h1>
-      <CategoryProvider categories={categories} products={products}>
-        <ServerDropdown />
-        <ProductCardGrid />
+      <CategoryProvider categories={categories}>
+        <section className="pp-layout">
+          <ServerDropdown />
+          <ProductCardGrid />
+        </section>
       </CategoryProvider>
       {page.data.slices && page.data.slices.length > 0 ? (
         <SliceZone slices={page.data.slices} components={components} />
