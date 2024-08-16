@@ -214,14 +214,64 @@ export type HomepageDocument<Lang extends string = string> =
  */
 export interface ProductCategoryDocumentDataCategoryProductsItem {
   /**
-   * Product field in *Product Category → Category Products*
+   * Product Image field in *Product Category → Category Products*
    *
-   * - **Field Type**: Content Relationship
+   * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: product_category.category_products[].product
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   * - **API ID Path**: product_category.category_products[].product_image
+   * - **Documentation**: https://prismic.io/docs/field#image
    */
-  product: prismic.ContentRelationshipField;
+  product_image: prismic.ImageField<never>;
+
+  /**
+   * Product Title field in *Product Category → Category Products*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: product_category.category_products[].product_title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  product_title: prismic.KeyTextField;
+
+  /**
+   * Product Code field in *Product Category → Category Products*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: product_category.category_products[].product_code
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  product_code: prismic.KeyTextField;
+
+  /**
+   * Product Type field in *Product Category → Category Products*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: product_category.category_products[].product_type
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  product_type: prismic.KeyTextField;
+
+  /**
+   * Product Weight field in *Product Category → Category Products*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: product_category.category_products[].product_weight
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  product_weight: prismic.KeyTextField;
+
+  /**
+   * Product Lifespan field in *Product Category → Category Products*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: product_category.category_products[].product_lifespan
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  product_lifespan: prismic.KeyTextField;
 }
 
 /**
@@ -617,6 +667,17 @@ interface SingleProductDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   life_span: prismic.KeyTextField;
+
+  /**
+   * Product Category field in *Single Product*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: single_product.product_category
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  product_category: prismic.ContentRelationshipField;
 }
 
 /**

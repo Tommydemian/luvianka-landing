@@ -1,5 +1,3 @@
-// app/productos/[uid]/page.tsx
-
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { SliceZone } from "@prismicio/react";
@@ -7,6 +5,8 @@ import { SliceZone } from "@prismicio/react";
 import { createClient } from "@/prismicio";
 import { components } from "@/slices";
 import { ServerDropdown } from "@/components/ServerDropdown";
+import { ProductCardGrid } from "@/components/ProductCardGrid";
+import { CategoryProvider } from "@/context/CategoryContext";
 
 type Params = { uid: string };
 
@@ -16,12 +16,19 @@ export default async function Page({ params }: { params: Params }) {
     .getByUID("product_page", params.uid)
     .catch(() => notFound());
 
+  const categories = await client.getAllByType("product_category");
+
+  const products = await client.getAllByType("single_product", {
+    fetchLinks: "product_category.product_category_title",
+  });
+
   return (
     <section className="container">
       <h1 className="choose-category-heading">Selecciona categoria</h1>
-      {/* category dropdown */}
-      <ServerDropdown />
-      {/* <h1>Product: {params.uid}</h1> */}
+      <CategoryProvider categories={categories} products={products}>
+        <ServerDropdown />
+        <ProductCardGrid />
+      </CategoryProvider>
       {page.data.slices && page.data.slices.length > 0 ? (
         <SliceZone slices={page.data.slices} components={components} />
       ) : (

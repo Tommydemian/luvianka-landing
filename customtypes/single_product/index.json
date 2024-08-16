@@ -54,6 +54,13 @@
           "label": "Life Span",
           "placeholder": ""
         }
+      },
+      "product_category": {
+        "type": "Link",
+        "config": {
+          "label": "Product Category",
+          "select": "document"
+        }
       }
     }
   }

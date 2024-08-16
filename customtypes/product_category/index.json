@@ -42,11 +42,47 @@
           "label": "Category Products",
           "repeat": true,
           "fields": {
-            "product": {
-              "type": "Link",
+            "product_image": {
+              "type": "Image",
               "config": {
-                "label": "Product",
-                "select": "document"
+                "label": "Product Image",
+                "constraint": {},
+                "thumbnails": []
+              }
+            },
+            "product_title": {
+              "type": "Text",
+              "config": {
+                "label": "Product Title",
+                "placeholder": ""
+              }
+            },
+            "product_code": {
+              "type": "Text",
+              "config": {
+                "label": "Product Code",
+                "placeholder": ""
+              }
+            },
+            "product_type": {
+              "type": "Text",
+              "config": {
+                "label": "Product Type",
+                "placeholder": ""
+              }
+            },
+            "product_weight": {
+              "type": "Text",
+              "config": {
+                "label": "Product Weight",
+                "placeholder": ""
+              }
+            },
+            "product_lifespan": {
+              "type": "Text",
+              "config": {
+                "label": "Product Lifespan",
+                "placeholder": ""
               }
             }
           }
