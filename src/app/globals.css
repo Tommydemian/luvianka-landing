@@ -981,6 +981,14 @@ header {
     height: var(--slide-height);
     border-radius: var(--slide-border-radius);
     overflow: hidden;
+    opacity: 0.5;
+    transition: opacity var(--transition-duration-medium)
+      var(--transition-timing-ease-in-out);
+  }
+  .swiper-slide-active .product-card {
+    opacity: 1;
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
 }
 
