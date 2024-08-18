@@ -1,7 +1,6 @@
 import React from "react";
 import { Content } from "@prismicio/client";
 import { CTA } from "@/components/CTA";
-import { Container } from "@/components/Container";
 import { HeroClientWrapper } from "@/components/HeroClientWrapper";
 import { SliceComponentProps, PrismicRichText } from "@prismicio/react";
 import classNames from "classnames";

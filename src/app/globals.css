@@ -720,6 +720,11 @@ header {
   height: var(--hero-height);
   background-repeat: no-repeat !important;
   background-size: cover !important;
+  min-height: 80vh;
+}
+
+.hero > div {
+  min-height: 100%;
 }
 
 .hero__conttent-container--default {

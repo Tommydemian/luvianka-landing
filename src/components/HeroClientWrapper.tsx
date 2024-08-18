@@ -27,7 +27,8 @@ export const HeroClientWrapper: React.FC<HeroClientWrapperProps> = ({
     setIsMounted(true);
   }, []);
 
-  if (!isMounted) return;
+  if (!isMounted) return <div style={{ height: "100vh" }}></div>;
+
   return (
     <section
       className={classNames("hero", {
