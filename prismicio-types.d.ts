@@ -154,6 +154,17 @@ export type CorporationInfoDocument<Lang extends string = string> =
  */
 interface FeaturesDocumentData {
   /**
+   * Feature Title v2 field in *Feature*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: features.feature_title_v2
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  feature_title_v2: prismic.KeyTextField;
+
+  /**
    * Feature Image field in *Feature*
    *
    * - **Field Type**: Image
@@ -165,17 +176,6 @@ interface FeaturesDocumentData {
   feature_image: prismic.ImageField<never>;
 
   /**
-   * Feature Title field in *Feature*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: features.feature_title
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  feature_title: prismic.RichTextField;
-
-  /**
    * Feature Desciption field in *Feature*
    *
    * - **Field Type**: Rich Text
@@ -185,6 +185,18 @@ interface FeaturesDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   feature_desciption: prismic.RichTextField;
+
+  /**
+   * Image Position Is Left field in *Feature*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: features.image_position_is_left
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  image_position_is_left: prismic.BooleanField;
 }
 
 /**
@@ -1212,16 +1224,6 @@ export interface FeaturesSliceDefaultPrimaryFeaturesListItem {
  */
 export interface FeaturesSliceDefaultPrimary {
   /**
-   * Features Heading field in *Features → Default → Primary*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: features.default.primary.features_heading
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  features_heading: prismic.RichTextField;
-
-  /**
    * Features List field in *Features → Default → Primary*
    *
    * - **Field Type**: Group
@@ -1232,6 +1234,16 @@ export interface FeaturesSliceDefaultPrimary {
   features_list: prismic.GroupField<
     Simplify<FeaturesSliceDefaultPrimaryFeaturesListItem>
   >;
+
+  /**
+   * Features Section Heading field in *Features → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: features.default.primary.features_section_heading
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  features_section_heading: prismic.RichTextField;
 }
 
 /**

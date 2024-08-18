@@ -12,9 +12,9 @@ export const Atom: React.FC<IconElementProps> = ({ className }) => {
       <g
         fill="none"
         stroke="#05090c"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
       >
         <path d="M18.893 7.936a8.003 8.003 0 0 1-7.774 12.016m-6.012-3.888a8.003 8.003 0 0 1 7.774-12.016" />
         <circle
