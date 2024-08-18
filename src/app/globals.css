@@ -723,9 +723,9 @@ header {
   min-height: 80vh;
 }
 
-.hero > div {
+/* .hero > div {
   min-height: 100%;
-}
+} */
 
 .hero__conttent-container--default {
   display: flex;
