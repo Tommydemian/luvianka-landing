@@ -437,6 +437,16 @@ header {
   color: var(--color-primary);
 }
 
+/* Manage /products */
+.navbar__link[href="/productos"] {
+  pointer-events: none;
+}
+@media (max-width: 50em) {
+  .navbar__link[href="/productos"] {
+    pointer-events: auto;
+  }
+}
+
 /* Header responsive */
 /* Desktop - Button wrapping svg */
 .navbar__toggle-menu-button {
