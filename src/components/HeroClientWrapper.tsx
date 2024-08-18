@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useLayoutEffect } from "react";
 import { useIsMobile } from "@/hooks/useIsMobile";
 import { Content, ImageField } from "@prismicio/client";
 
@@ -11,10 +11,11 @@ type HeroClientWrapperProps = {
   slice: Content.HeroSlice;
 };
 
-export const HeroClientWrapper: React.FC<HeroClientWrapperProps> = ({
+const HeroClientWrapper: React.FC<HeroClientWrapperProps> = ({
   children,
   slice,
 }) => {
+  const [backgroundImage, setBackgroundImage] = useState<string>("");
   const [isMounted, setIsMounted] = useState(false);
   const isVar = slice.variation === "heroNoCta";
   const bgImage = slice.primary.hero_background_image;
@@ -27,7 +28,19 @@ export const HeroClientWrapper: React.FC<HeroClientWrapperProps> = ({
     setIsMounted(true);
   }, []);
 
-  if (!isMounted) return <div style={{ height: "100vh" }}></div>;
+  useEffect(() => {
+    const newBackgroundImage = isMobile
+      ? bgMobileImage?.url || bgImage.url
+      : bgImage.url;
+
+    if (newBackgroundImage) {
+      setBackgroundImage(newBackgroundImage);
+    } else {
+      setBackgroundImage(""); // or some default image URL
+    }
+  }, [isMobile, bgMobileImage, bgImage]);
+
+  if (!isMounted) return null;
 
   return (
     <section
@@ -37,11 +50,15 @@ export const HeroClientWrapper: React.FC<HeroClientWrapperProps> = ({
       })}
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      style={{
-        background: `url(${isMobile ? bgMobileImage?.url : bgImage.url})`,
-      }}
+      style={
+        {
+          "--bg-image": `url(${backgroundImage})`,
+        } as React.CSSProperties
+      }
     >
       {children}
     </section>
   );
 };
+
+export default HeroClientWrapper;

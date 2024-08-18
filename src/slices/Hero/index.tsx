@@ -1,7 +1,15 @@
 import React from "react";
+import dynamic from "next/dynamic";
 import { Content } from "@prismicio/client";
 import { CTA } from "@/components/CTA";
-import { HeroClientWrapper } from "@/components/HeroClientWrapper";
+
+const HeroClientWrapper = dynamic(
+  () => import("../../components/HeroClientWrapper"),
+  {
+    ssr: false,
+  }
+);
+
 import { SliceComponentProps, PrismicRichText } from "@prismicio/react";
 import classNames from "classnames";
 

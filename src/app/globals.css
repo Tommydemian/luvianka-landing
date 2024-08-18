@@ -721,6 +721,7 @@ header {
   background-repeat: no-repeat !important;
   background-size: cover !important;
   min-height: 80vh;
+  background-image: var(--bg-image);
 }
 
 /* .hero > div {
