@@ -33,7 +33,7 @@ const MobileSwiper: React.FC<MobileSwiperProps> = ({ productCards }) => {
       modules={[Navigation, Autoplay]}
       slidesPerView={1.5}
       spaceBetween={20}
-      centeredSlidesnavigation
+      // centeredSlidesnavigation
       autoplay={{
         delay: 2500,
         disableOnInteraction: true,
