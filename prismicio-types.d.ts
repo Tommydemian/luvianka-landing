@@ -5,6 +5,7 @@ import type * as prismic from "@prismicio/client";
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
 type AboutUsDocumentDataSlicesSlice =
+  | BrandsSlice
   | FeaturesSlice
   | ValuesSlice
   | CorportationDataSlice
@@ -918,6 +919,115 @@ export type AllDocumentTypes =
   | SingleProductDocument;
 
 /**
+ * Item in *Brands → Default → Primary → Brand Images*
+ */
+export interface BrandsSliceDefaultPrimaryBrandImagesItem {
+  /**
+   * Image1 field in *Brands → Default → Primary → Brand Images*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: brands.default.primary.brand_images[].image1
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image1: prismic.ImageField<never>;
+
+  /**
+   * Image2 field in *Brands → Default → Primary → Brand Images*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: brands.default.primary.brand_images[].image2
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image2: prismic.ImageField<never>;
+
+  /**
+   * Image3 field in *Brands → Default → Primary → Brand Images*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: brands.default.primary.brand_images[].image3
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image3: prismic.ImageField<never>;
+
+  /**
+   * Image4 field in *Brands → Default → Primary → Brand Images*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: brands.default.primary.brand_images[].image4
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image4: prismic.ImageField<never>;
+}
+
+/**
+ * Primary content in *Brands → Default → Primary*
+ */
+export interface BrandsSliceDefaultPrimary {
+  /**
+   * Heading field in *Brands → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: brands.default.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  heading: prismic.KeyTextField;
+
+  /**
+   * Body Text field in *Brands → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: brands.default.primary.body_text
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  body_text: prismic.RichTextField;
+
+  /**
+   * Brand Images field in *Brands → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: brands.default.primary.brand_images[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  brand_images: prismic.GroupField<
+    Simplify<BrandsSliceDefaultPrimaryBrandImagesItem>
+  >;
+}
+
+/**
+ * Default variation for Brands Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type BrandsSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<BrandsSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Brands*
+ */
+type BrandsSliceVariation = BrandsSliceDefault;
+
+/**
+ * Brands Shared Slice
+ *
+ * - **API ID**: `brands`
+ * - **Description**: Brands
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type BrandsSlice = prismic.SharedSlice<"brands", BrandsSliceVariation>;
+
+/**
  * Item in *ContentWithImage → ImageRight → Primary → Tick Field*
  */
 export interface ContentWithImageSliceImageRightPrimaryTickFieldItem {
@@ -1829,6 +1939,11 @@ declare module "@prismicio/client" {
       SingleProductDocument,
       SingleProductDocumentData,
       AllDocumentTypes,
+      BrandsSlice,
+      BrandsSliceDefaultPrimaryBrandImagesItem,
+      BrandsSliceDefaultPrimary,
+      BrandsSliceVariation,
+      BrandsSliceDefault,
       ContentWithImageSlice,
       ContentWithImageSliceDefaultPrimary,
       ContentWithImageSliceImageRightPrimaryTickFieldItem,

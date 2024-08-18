@@ -20,6 +20,9 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "brands": {
+              "type": "SharedSlice"
+            },
             "features": {
               "type": "SharedSlice"
             },

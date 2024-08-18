@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useLayoutEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useIsMobile } from "@/hooks/useIsMobile";
 import { Content, ImageField } from "@prismicio/client";
 
@@ -36,7 +36,7 @@ const HeroClientWrapper: React.FC<HeroClientWrapperProps> = ({
     if (newBackgroundImage) {
       setBackgroundImage(newBackgroundImage);
     } else {
-      setBackgroundImage(""); // or some default image URL
+      setBackgroundImage("");
     }
   }, [isMobile, bgMobileImage, bgImage]);
 
