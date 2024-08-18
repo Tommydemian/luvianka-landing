@@ -27,8 +27,6 @@ type MobileSwiperProps = {
   productCards: Product[];
 };
 
-// TODO: Add effect to active slice
-
 const MobileSwiper: React.FC<MobileSwiperProps> = ({ productCards }) => {
   return (
     <Swiper

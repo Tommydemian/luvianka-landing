@@ -10,11 +10,6 @@ import {
 import { Container } from "@/components/Container";
 import { useIsMobile } from "@/hooks/useIsMobile";
 
-// const containerStyle = {
-//   width: "400px",
-//   height: "325px",
-// };
-
 const locations = [
   {
     title: "Planta Avellaneda",
@@ -47,16 +42,20 @@ function MyComponent() {
     height: isMobile ? "225px" : "325px",
   };
 
-  const [map, setMap] = React.useState(null);
+  const [map, setMap] = React.useState<google.maps.Map | null>(null);
 
-  const onLoad = React.useCallback(function callback(map) {
+  const onLoad = React.useCallback(function callback(
+    map: google.maps.Map | null
+  ) {
     const bounds = new window.google.maps.LatLngBounds(center);
-    map.fitBounds(bounds);
+    map?.fitBounds(bounds);
 
     setMap(map);
   }, []);
 
-  const onUnmount = React.useCallback(function callback(map) {
+  const onUnmount = React.useCallback(function callback(
+    map: google.maps.Map | null
+  ) {
     setMap(null);
   }, []);
 
