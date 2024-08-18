@@ -1,0 +1,49 @@
+{
+  "format": "custom",
+  "id": "corporation_info",
+  "label": "Corporation info",
+  "repeatable": true,
+  "status": true,
+  "json": {
+    "Main": {
+      "uid": {
+        "config": {
+          "label": "UID"
+        },
+        "type": "UID"
+      },
+      "first_logo": {
+        "type": "Image",
+        "config": {
+          "label": "First Logo",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "second_logo": {
+        "type": "Image",
+        "config": {
+          "label": "Second Logo",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "corporation_data_heading": {
+        "type": "Text",
+        "config": {
+          "label": "Corporation Data Heading",
+          "placeholder": ""
+        }
+      },
+      "corporation_data_body": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Corporation Data body",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "paragraph,strong,em,list-item,o-list-item"
+        }
+      }
+    }
+  }
+}

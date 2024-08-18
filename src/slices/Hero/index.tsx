@@ -1,49 +1,66 @@
+import React from "react";
 import { Content } from "@prismicio/client";
-
 import { CTA } from "@/components/CTA";
-
+import { Container } from "@/components/Container";
+import { HeroClientWrapper } from "@/components/HeroClientWrapper";
 import { SliceComponentProps, PrismicRichText } from "@prismicio/react";
+import classNames from "classnames";
 
-/**
- * Props for `Hero`.
- */
 export type HeroProps = SliceComponentProps<Content.HeroSlice>;
 
-/**
- * Component for "Hero" Slices.
- */
 const Hero = ({ slice }: HeroProps): JSX.Element => {
-  const bgImage = slice.primary.hero_background_image;
-  return (
-    <section
-      className="hero"
-      data-slice-type={slice.slice_type}
-      data-slice-variation={slice.variation}
-      style={{
-        background: `url(${bgImage.url})`,
-      }}
-    >
-      <PrismicRichText
-        field={slice.primary.hero_heading}
-        components={{
-          heading1: ({ children }) => (
-            <h1 className="hero__main-heading heading-font">{children}</h1>
-          ),
-        }}
-      />
+  const showCTA = slice.variation === "default";
+  const isVar = slice.variation === "heroNoCta";
 
-      <PrismicRichText
-        field={slice.primary.hero_body}
-        components={{
-          paragraph: ({ children }) => <p className="hero__desc">{children}</p>,
-        }}
-      />
-      <CTA
-        link={slice.primary.button_link}
-        label={slice.primary.button_text}
-        variant="primary"
-      />
-    </section>
+  const ContentWrapper = isVar ? "div" : React.Fragment;
+  const contentWrapperProps = isVar
+    ? { className: "container", style: { width: "100%" } }
+    : {};
+
+  return (
+    <HeroClientWrapper slice={slice}>
+      <ContentWrapper {...contentWrapperProps}>
+        <div className={classNames({ "hero__desc-container-bg": isVar })}>
+          <PrismicRichText
+            field={slice.primary.hero_heading}
+            components={{
+              heading1: ({ children }) => (
+                <h1
+                  className={classNames("hero__main-heading heading-font", {
+                    "hero__main-heading--is-var": isVar,
+                    "hero__main-heading--default": !isVar,
+                  })}
+                >
+                  {children}
+                </h1>
+              ),
+            }}
+          />
+          <PrismicRichText
+            field={slice.primary.hero_body}
+            components={{
+              paragraph: ({ children }) => (
+                <p
+                  className={classNames("hero__desc", {
+                    "hero__desc--is-var": isVar,
+                  })}
+                >
+                  {children}
+                </p>
+              ),
+            }}
+          />
+        </div>
+        {showCTA && (
+          <CTA
+            link={slice.primary.button_link}
+            label={slice.primary.button_text}
+            variant="primary"
+            className="hero__cta"
+          />
+        )}
+      </ContentWrapper>
+    </HeroClientWrapper>
   );
 };
 

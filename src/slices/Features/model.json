@@ -1,0 +1,47 @@
+{
+  "id": "features",
+  "type": "SharedSlice",
+  "name": "Features",
+  "description": "Features",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "features_heading": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Features Heading",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+          }
+        },
+        "features_list": {
+          "type": "Group",
+          "config": {
+            "label": "Features List",
+            "repeat": true,
+            "fields": {
+              "feature": {
+                "type": "Link",
+                "config": {
+                  "label": "Individual Feature",
+                  "select": "document",
+                  "customtypes": [
+                    "features"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}
