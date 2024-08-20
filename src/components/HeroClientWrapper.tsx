@@ -18,6 +18,7 @@ const HeroClientWrapper: React.FC<HeroClientWrapperProps> = ({
   const [backgroundImage, setBackgroundImage] = useState<string>("");
   const [isMounted, setIsMounted] = useState(false);
   const isVar = slice.variation === "heroNoCta";
+  const onlyHeadingVariation = slice.variation === "heroOnlyHeading";
   const bgImage = slice.primary.hero_background_image;
   const bgMobileImage: ImageField | null = isVar
     ? slice.primary.hero_mobile_background_image
@@ -47,6 +48,7 @@ const HeroClientWrapper: React.FC<HeroClientWrapperProps> = ({
       className={classNames("hero", {
         "hero--default": !isVar,
         "hero--is-var": isVar,
+        "hero--only-heading": onlyHeadingVariation,
       })}
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}

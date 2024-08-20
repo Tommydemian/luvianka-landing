@@ -18,6 +18,7 @@ export type HeroProps = SliceComponentProps<Content.HeroSlice>;
 const Hero = ({ slice }: HeroProps): JSX.Element => {
   const showCTA = slice.variation === "default";
   const isVar = slice.variation === "heroNoCta";
+  const onlyHeadingVar = slice.variation === "heroOnlyHeading";
 
   const ContentWrapper = isVar ? "div" : React.Fragment;
   const contentWrapperProps = isVar
@@ -43,20 +44,22 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
               ),
             }}
           />
-          <PrismicRichText
-            field={slice.primary.hero_body}
-            components={{
-              paragraph: ({ children }) => (
-                <p
-                  className={classNames("hero__desc", {
-                    "hero__desc--is-var": isVar,
-                  })}
-                >
-                  {children}
-                </p>
-              ),
-            }}
-          />
+          {!onlyHeadingVar && (
+            <PrismicRichText
+              field={slice.primary?.hero_body}
+              components={{
+                paragraph: ({ children }) => (
+                  <p
+                    className={classNames("hero__desc", {
+                      "hero__desc--is-var": isVar,
+                    })}
+                  >
+                    {children}
+                  </p>
+                ),
+              }}
+            />
+          )}
         </div>
         {showCTA && (
           <CTA

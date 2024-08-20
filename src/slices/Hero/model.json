@@ -100,6 +100,42 @@
         }
       },
       "items": {}
+    },
+    {
+      "id": "heroOnlyHeading",
+      "name": "Hero - only heading",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "hero_heading": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Hero Heading",
+            "placeholder": "La mejor carne del mercado",
+            "allowTargetBlank": true,
+            "single": "heading1,heading2,heading3,heading4,heading5,heading6,strong,em"
+          }
+        },
+        "hero_background_image": {
+          "type": "Image",
+          "config": {
+            "label": "Hero Background Image",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "hero_mobile_background_image": {
+          "type": "Image",
+          "config": {
+            "label": "Hero Mobile Background Image",
+            "constraint": {},
+            "thumbnails": []
+          }
+        }
+      },
+      "items": {}
     }
   ]
 }

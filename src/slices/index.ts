@@ -11,5 +11,7 @@ export const components = {
   hero: dynamic(() => import("./Hero")),
   product_slice: dynamic(() => import("./ProductGrid")),
   products: dynamic(() => import("./Products")),
+  quality_description: dynamic(() => import("./QualityDescription")),
+  quality_feature: dynamic(() => import("./QualityFeature")),
   values: dynamic(() => import("./Values")),
 };

@@ -33,7 +33,7 @@
           "label": "Feature Desciption",
           "placeholder": "",
           "allowTargetBlank": true,
-          "multi": "paragraph,strong,em"
+          "multi": "paragraph,strong,em,list-item,o-list-item"
         }
       },
       "image_position_is_left": {

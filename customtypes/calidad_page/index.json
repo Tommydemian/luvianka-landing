@@ -1,35 +1,20 @@
 {
   "format": "page",
-  "id": "about_us",
-  "label": "About us ",
+  "id": "calidad_page",
+  "label": "Calidad page",
   "repeatable": false,
   "status": true,
   "json": {
     "Main": {
-      "features_section_heading": {
-        "type": "StructuredText",
-        "config": {
-          "label": "Features Section Heading",
-          "placeholder": "",
-          "allowTargetBlank": true,
-          "multi": "heading2"
-        }
-      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
-            "features": {
+            "quality_feature": {
               "type": "SharedSlice"
             },
-            "brands": {
-              "type": "SharedSlice"
-            },
-            "values": {
-              "type": "SharedSlice"
-            },
-            "corportation_data": {
+            "quality_description": {
               "type": "SharedSlice"
             },
             "hero": {

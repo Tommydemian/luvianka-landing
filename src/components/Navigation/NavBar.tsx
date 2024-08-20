@@ -30,7 +30,7 @@ export const NavBar = ({
   const { isMobile } = useIsMobile();
   const { state: isMenuOpen, toggle: toggleMenu } = useToggle(false);
   // const { state: isdropdownOpen, toggle: toggleDropdown } = useToggle(false);
-  const [isMounted, setIsMounted] = useState(false);
+  // const [isMounted, setIsMounted] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   useEffect(() => {
@@ -45,9 +45,9 @@ export const NavBar = ({
     };
   }, [isMenuOpen]);
 
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
+  // useEffect(() => {
+  //   setIsMounted(true);
+  // }, []);
 
   useEffect(() => {
     if (!isMobile && isMenuOpen) {
@@ -55,7 +55,7 @@ export const NavBar = ({
     }
   }, [isMobile, isMenuOpen, toggleMenu]);
 
-  if (!settings || !isMounted) return null;
+  // if (!settings || !isMounted) return null;
 
   return (
     <nav className={classNames("navbar", className, { "is-mobile": isMobile })}>

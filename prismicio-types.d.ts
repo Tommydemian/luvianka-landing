@@ -5,8 +5,8 @@ import type * as prismic from "@prismicio/client";
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
 type AboutUsDocumentDataSlicesSlice =
-  | BrandsSlice
   | FeaturesSlice
+  | BrandsSlice
   | ValuesSlice
   | CorportationDataSlice
   | HeroSlice;
@@ -82,6 +82,74 @@ export type AboutUsDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<
     Simplify<AboutUsDocumentData>,
     "about_us",
+    Lang
+  >;
+
+type CalidadPageDocumentDataSlicesSlice =
+  | QualityFeatureSlice
+  | QualityDescriptionSlice
+  | HeroSlice;
+
+/**
+ * Content for Calidad page documents
+ */
+interface CalidadPageDocumentData {
+  /**
+   * Slice Zone field in *Calidad page*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: calidad_page.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<CalidadPageDocumentDataSlicesSlice> /**
+   * Meta Title field in *Calidad page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: calidad_page.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *Calidad page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: calidad_page.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Calidad page*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: calidad_page.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * Calidad page document from Prismic
+ *
+ * - **API ID**: `calidad_page`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type CalidadPageDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<CalidadPageDocumentData>,
+    "calidad_page",
     Lang
   >;
 
@@ -910,6 +978,7 @@ export type SingleProductDocument<Lang extends string = string> =
 
 export type AllDocumentTypes =
   | AboutUsDocument
+  | CalidadPageDocument
   | CorporationInfoDocument
   | FeaturesDocument
   | HomepageDocument
@@ -1619,9 +1688,60 @@ export type HeroSliceHeroNoCta = prismic.SharedSliceVariation<
 >;
 
 /**
+ * Primary content in *Hero → Hero - only heading → Primary*
+ */
+export interface HeroSliceHeroOnlyHeadingPrimary {
+  /**
+   * Hero Heading field in *Hero → Hero - only heading → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: La mejor carne del mercado
+   * - **API ID Path**: hero.heroOnlyHeading.primary.hero_heading
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  hero_heading: prismic.RichTextField;
+
+  /**
+   * Hero Background Image field in *Hero → Hero - only heading → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.heroOnlyHeading.primary.hero_background_image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  hero_background_image: prismic.ImageField<never>;
+
+  /**
+   * Hero Mobile Background Image field in *Hero → Hero - only heading → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.heroOnlyHeading.primary.hero_mobile_background_image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  hero_mobile_background_image: prismic.ImageField<never>;
+}
+
+/**
+ * Hero - only heading variation for Hero Slice
+ *
+ * - **API ID**: `heroOnlyHeading`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type HeroSliceHeroOnlyHeading = prismic.SharedSliceVariation<
+  "heroOnlyHeading",
+  Simplify<HeroSliceHeroOnlyHeadingPrimary>,
+  never
+>;
+
+/**
  * Slice variation for *Hero*
  */
-type HeroSliceVariation = HeroSliceDefault | HeroSliceHeroNoCta;
+type HeroSliceVariation =
+  | HeroSliceDefault
+  | HeroSliceHeroNoCta
+  | HeroSliceHeroOnlyHeading;
 
 /**
  * Hero Shared Slice
@@ -1817,6 +1937,136 @@ export type ProductsSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Primary content in *QualityDescription → Default → Primary*
+ */
+export interface QualityDescriptionSliceDefaultPrimary {
+  /**
+   * Title field in *QualityDescription → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: quality_description.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Body Text field in *QualityDescription → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: quality_description.default.primary.body_text
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  body_text: prismic.RichTextField;
+
+  /**
+   * Image field in *QualityDescription → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: quality_description.default.primary.image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+}
+
+/**
+ * Default variation for QualityDescription Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type QualityDescriptionSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<QualityDescriptionSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *QualityDescription*
+ */
+type QualityDescriptionSliceVariation = QualityDescriptionSliceDefault;
+
+/**
+ * QualityDescription Shared Slice
+ *
+ * - **API ID**: `quality_description`
+ * - **Description**: QualityDescription
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type QualityDescriptionSlice = prismic.SharedSlice<
+  "quality_description",
+  QualityDescriptionSliceVariation
+>;
+
+/**
+ * Primary content in *QualityFeature → Default → Primary*
+ */
+export interface QualityFeatureSliceDefaultPrimary {
+  /**
+   * Title field in *QualityFeature → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: quality_feature.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Image field in *QualityFeature → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: quality_feature.default.primary.image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * Description field in *QualityFeature → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: quality_feature.default.primary.description
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField;
+}
+
+/**
+ * Default variation for QualityFeature Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type QualityFeatureSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<QualityFeatureSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *QualityFeature*
+ */
+type QualityFeatureSliceVariation = QualityFeatureSliceDefault;
+
+/**
+ * QualityFeature Shared Slice
+ *
+ * - **API ID**: `quality_feature`
+ * - **Description**: QualityFeature
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type QualityFeatureSlice = prismic.SharedSlice<
+  "quality_feature",
+  QualityFeatureSliceVariation
+>;
+
+/**
  * Item in *Values → Default → Primary → Value*
  */
 export interface ValuesSliceDefaultPrimaryValueItem {
@@ -1916,6 +2166,9 @@ declare module "@prismicio/client" {
       AboutUsDocument,
       AboutUsDocumentData,
       AboutUsDocumentDataSlicesSlice,
+      CalidadPageDocument,
+      CalidadPageDocumentData,
+      CalidadPageDocumentDataSlicesSlice,
       CorporationInfoDocument,
       CorporationInfoDocumentData,
       FeaturesDocument,
@@ -1969,9 +2222,11 @@ declare module "@prismicio/client" {
       HeroSlice,
       HeroSliceDefaultPrimary,
       HeroSliceHeroNoCtaPrimary,
+      HeroSliceHeroOnlyHeadingPrimary,
       HeroSliceVariation,
       HeroSliceDefault,
       HeroSliceHeroNoCta,
+      HeroSliceHeroOnlyHeading,
       ProductSliceSlice,
       ProductSliceSliceDefaultPrimaryProductGridItem,
       ProductSliceSliceDefaultPrimary,
@@ -1982,6 +2237,14 @@ declare module "@prismicio/client" {
       ProductsSliceDefaultPrimary,
       ProductsSliceVariation,
       ProductsSliceDefault,
+      QualityDescriptionSlice,
+      QualityDescriptionSliceDefaultPrimary,
+      QualityDescriptionSliceVariation,
+      QualityDescriptionSliceDefault,
+      QualityFeatureSlice,
+      QualityFeatureSliceDefaultPrimary,
+      QualityFeatureSliceVariation,
+      QualityFeatureSliceDefault,
       ValuesSlice,
       ValuesSliceDefaultPrimaryValueItem,
       ValuesSliceDefaultPrimary,
