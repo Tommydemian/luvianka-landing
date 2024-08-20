@@ -1,0 +1,26 @@
+{
+  "id": "state_and_form",
+  "type": "SharedSlice",
+  "name": "StateAndForm",
+  "description": "StateAndForm",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "placeholder": {
+          "type": "Text",
+          "config": {
+            "label": "placeHolder",
+            "placeholder": ""
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

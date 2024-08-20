@@ -33,8 +33,10 @@ function MyComponent() {
   const { isMobile } = useIsMobile();
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
-    googleMapsApiKey: "AIzaSyBWfDV8wTm14hknQT_bqG1WFhKi4b2FK5Y",
+    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY as string,
   });
+
+  console.log(process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY as string);
 
   const containerStyle = {
     width: isMobile ? "300px" : "400px",

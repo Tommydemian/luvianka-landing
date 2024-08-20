@@ -153,6 +153,71 @@ export type CalidadPageDocument<Lang extends string = string> =
     Lang
   >;
 
+type ContactanosDocumentDataSlicesSlice = StateAndFormSlice | HeroSlice;
+
+/**
+ * Content for Contactanos documents
+ */
+interface ContactanosDocumentData {
+  /**
+   * Slice Zone field in *Contactanos*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contactanos.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<ContactanosDocumentDataSlicesSlice> /**
+   * Meta Title field in *Contactanos*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: contactanos.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *Contactanos*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: contactanos.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Contactanos*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contactanos.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * Contactanos document from Prismic
+ *
+ * - **API ID**: `contactanos`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ContactanosDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<ContactanosDocumentData>,
+    "contactanos",
+    Lang
+  >;
+
 /**
  * Content for Corporation info documents
  */
@@ -687,6 +752,38 @@ export type ProductPageDocument<Lang extends string = string> =
   >;
 
 /**
+ * Content for Section paragraph description documents
+ */
+interface SectionParagraphDescriptionDocumentData {
+  /**
+   * Section Paragraph Description field in *Section paragraph description*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: section_paragraph_description.section_paragraph_description
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  section_paragraph_description: prismic.RichTextField;
+}
+
+/**
+ * Section paragraph description document from Prismic
+ *
+ * - **API ID**: `section_paragraph_description`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type SectionParagraphDescriptionDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<SectionParagraphDescriptionDocumentData>,
+    "section_paragraph_description",
+    Lang
+  >;
+
+/**
  * Item in *Settings → Navigation*
  */
 export interface SettingsDocumentDataNavigationItem {
@@ -979,11 +1076,13 @@ export type SingleProductDocument<Lang extends string = string> =
 export type AllDocumentTypes =
   | AboutUsDocument
   | CalidadPageDocument
+  | ContactanosDocument
   | CorporationInfoDocument
   | FeaturesDocument
   | HomepageDocument
   | ProductCategoryDocument
   | ProductPageDocument
+  | SectionParagraphDescriptionDocument
   | SettingsDocument
   | SingleProductDocument;
 
@@ -1454,112 +1553,6 @@ export type FeaturesSlice = prismic.SharedSlice<
   "features",
   FeaturesSliceVariation
 >;
-
-/**
- * Item in *Footer → Default → Primary → Corporation Section*
- */
-export interface FooterSliceDefaultPrimaryCorporationSectionItem {
-  /**
-   * First Image field in *Footer → Default → Primary → Corporation Section*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: footer.default.primary.corporation_section[].first_image
-   * - **Documentation**: https://prismic.io/docs/field#image
-   */
-  first_image: prismic.ImageField<never>;
-
-  /**
-   * Second Image field in *Footer → Default → Primary → Corporation Section*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: footer.default.primary.corporation_section[].second_image
-   * - **Documentation**: https://prismic.io/docs/field#image
-   */
-  second_image: prismic.ImageField<never>;
-
-  /**
-   * Brief Text field in *Footer → Default → Primary → Corporation Section*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: footer.default.primary.corporation_section[].brief_text
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  brief_text: prismic.KeyTextField;
-}
-
-/**
- * Item in *Footer → Default → Primary → Location Fields*
- */
-export interface FooterSliceDefaultPrimaryLocationFieldsItem {
-  /**
-   * First Locatiion field in *Footer → Default → Primary → Location Fields*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: footer.default.primary.location_fields[].first_locatiion
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  first_locatiion: prismic.KeyTextField;
-}
-
-/**
- * Primary content in *Footer → Default → Primary*
- */
-export interface FooterSliceDefaultPrimary {
-  /**
-   * Corporation Section field in *Footer → Default → Primary*
-   *
-   * - **Field Type**: Group
-   * - **Placeholder**: *None*
-   * - **API ID Path**: footer.default.primary.corporation_section[]
-   * - **Documentation**: https://prismic.io/docs/field#group
-   */
-  corporation_section: prismic.GroupField<
-    Simplify<FooterSliceDefaultPrimaryCorporationSectionItem>
-  >;
-
-  /**
-   * Location Fields field in *Footer → Default → Primary*
-   *
-   * - **Field Type**: Group
-   * - **Placeholder**: *None*
-   * - **API ID Path**: footer.default.primary.location_fields[]
-   * - **Documentation**: https://prismic.io/docs/field#group
-   */
-  location_fields: prismic.GroupField<
-    Simplify<FooterSliceDefaultPrimaryLocationFieldsItem>
-  >;
-}
-
-/**
- * Default variation for Footer Slice
- *
- * - **API ID**: `default`
- * - **Description**: Default
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type FooterSliceDefault = prismic.SharedSliceVariation<
-  "default",
-  Simplify<FooterSliceDefaultPrimary>,
-  never
->;
-
-/**
- * Slice variation for *Footer*
- */
-type FooterSliceVariation = FooterSliceDefault;
-
-/**
- * Footer Shared Slice
- *
- * - **API ID**: `footer`
- * - **Description**: Footer
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type FooterSlice = prismic.SharedSlice<"footer", FooterSliceVariation>;
 
 /**
  * Primary content in *Hero → Default → Primary*
@@ -2067,6 +2060,51 @@ export type QualityFeatureSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Primary content in *StateAndForm → Default → Primary*
+ */
+export interface StateAndFormSliceDefaultPrimary {
+  /**
+   * placeHolder field in *StateAndForm → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: state_and_form.default.primary.placeholder
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  placeholder: prismic.KeyTextField;
+}
+
+/**
+ * Default variation for StateAndForm Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type StateAndFormSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<StateAndFormSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *StateAndForm*
+ */
+type StateAndFormSliceVariation = StateAndFormSliceDefault;
+
+/**
+ * StateAndForm Shared Slice
+ *
+ * - **API ID**: `state_and_form`
+ * - **Description**: StateAndForm
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type StateAndFormSlice = prismic.SharedSlice<
+  "state_and_form",
+  StateAndFormSliceVariation
+>;
+
+/**
  * Item in *Values → Default → Primary → Value*
  */
 export interface ValuesSliceDefaultPrimaryValueItem {
@@ -2169,6 +2207,9 @@ declare module "@prismicio/client" {
       CalidadPageDocument,
       CalidadPageDocumentData,
       CalidadPageDocumentDataSlicesSlice,
+      ContactanosDocument,
+      ContactanosDocumentData,
+      ContactanosDocumentDataSlicesSlice,
       CorporationInfoDocument,
       CorporationInfoDocumentData,
       FeaturesDocument,
@@ -2184,6 +2225,8 @@ declare module "@prismicio/client" {
       ProductPageDocument,
       ProductPageDocumentData,
       ProductPageDocumentDataSlicesSlice,
+      SectionParagraphDescriptionDocument,
+      SectionParagraphDescriptionDocumentData,
       SettingsDocument,
       SettingsDocumentData,
       SettingsDocumentDataNavigationItem,
@@ -2213,12 +2256,6 @@ declare module "@prismicio/client" {
       FeaturesSliceDefaultPrimary,
       FeaturesSliceVariation,
       FeaturesSliceDefault,
-      FooterSlice,
-      FooterSliceDefaultPrimaryCorporationSectionItem,
-      FooterSliceDefaultPrimaryLocationFieldsItem,
-      FooterSliceDefaultPrimary,
-      FooterSliceVariation,
-      FooterSliceDefault,
       HeroSlice,
       HeroSliceDefaultPrimary,
       HeroSliceHeroNoCtaPrimary,
@@ -2245,6 +2282,10 @@ declare module "@prismicio/client" {
       QualityFeatureSliceDefaultPrimary,
       QualityFeatureSliceVariation,
       QualityFeatureSliceDefault,
+      StateAndFormSlice,
+      StateAndFormSliceDefaultPrimary,
+      StateAndFormSliceVariation,
+      StateAndFormSliceDefault,
       ValuesSlice,
       ValuesSliceDefaultPrimaryValueItem,
       ValuesSliceDefaultPrimary,

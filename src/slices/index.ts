@@ -7,11 +7,11 @@ export const components = {
   content_with_image: dynamic(() => import("./ContentWithImage")),
   corportation_data: dynamic(() => import("./CorportationData")),
   features: dynamic(() => import("./Features")),
-  footer: dynamic(() => import("./Footer")),
   hero: dynamic(() => import("./Hero")),
   product_slice: dynamic(() => import("./ProductGrid")),
   products: dynamic(() => import("./Products")),
   quality_description: dynamic(() => import("./QualityDescription")),
   quality_feature: dynamic(() => import("./QualityFeature")),
+  state_and_form: dynamic(() => import("./StateAndForm")),
   values: dynamic(() => import("./Values")),
 };

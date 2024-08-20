@@ -1,0 +1,26 @@
+{
+  "format": "custom",
+  "id": "section_paragraph_description",
+  "label": "Section paragraph description",
+  "repeatable": true,
+  "status": true,
+  "json": {
+    "Main": {
+      "uid": {
+        "config": {
+          "label": "UID"
+        },
+        "type": "UID"
+      },
+      "section_paragraph_description": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Section Paragraph Description",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "paragraph,strong,em,list-item,o-list-item"
+        }
+      }
+    }
+  }
+}
