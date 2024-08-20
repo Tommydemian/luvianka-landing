@@ -7,7 +7,6 @@ import {
   MarkerF,
   InfoWindowF,
 } from "@react-google-maps/api";
-import { Container } from "@/components/Container";
 import { useIsMobile } from "@/hooks/useIsMobile";
 
 const locations = [
@@ -34,7 +33,7 @@ function MyComponent() {
   const { isMobile } = useIsMobile();
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
-    googleMapsApiKey: process.env.GOOGLE_MAP_API_KEY!,
+    googleMapsApiKey: "AIzaSyBWfDV8wTm14hknQT_bqG1WFhKi4b2FK5Y",
   });
 
   const containerStyle = {

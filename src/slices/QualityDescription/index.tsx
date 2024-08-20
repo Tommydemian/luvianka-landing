@@ -1,5 +1,7 @@
 import { Content } from "@prismicio/client";
-import { SliceComponentProps } from "@prismicio/react";
+import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
+import { Container } from "@/components/Container";
+import { PrismicNextImage } from "@prismicio/next";
 
 /**
  * Props for `QualityDescription`.
@@ -17,10 +19,29 @@ const QualityDescription = ({
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="feature-description"
+      className="quality-main-content"
     >
-      Placeholder component for quality_description (variation:{" "}
-      {slice.variation}) Slices
+      <Container>
+        <div className="quality-main-content__layout">
+          <div className="quality-main-content__text">
+            <h3 className="quality-main-content__title">
+              {slice.primary.title}
+            </h3>
+            <PrismicRichText
+              field={slice.primary.body_text}
+              components={{
+                paragraph: ({ children }) => (
+                  <p className="quality-main-content__body-text">{children}</p>
+                ),
+              }}
+            />
+          </div>
+          <PrismicNextImage
+            field={slice.primary.image}
+            className="quality-main-content__image"
+          />
+        </div>
+      </Container>
     </section>
   );
 };
