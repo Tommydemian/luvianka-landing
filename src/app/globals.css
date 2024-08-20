@@ -1843,6 +1843,8 @@ section[data-slice-type="quality_feature"] {
   display: grid;
   color: var(--color-text);
   font-size: var(--font-size-base);
+  width: 100%;
+  margin-inline: auto;
 }
 .quality__feature img {
   margin-bottom: var(--spacing-sm);
