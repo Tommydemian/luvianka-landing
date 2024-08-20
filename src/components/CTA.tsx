@@ -1,7 +1,7 @@
 import React from "react";
 import { PrismicNextLink } from "@prismicio/next";
 import { LinkField, KeyTextField } from "@prismicio/client";
-import clsx from "clsx";
+import classNames from "classnames";
 
 type CTAVariant = "primary" | "secondary";
 
@@ -11,6 +11,7 @@ type CTAProps = {
   className?: string;
   variant?: CTAVariant;
   inProd?: boolean;
+  onClick?: () => void;
 };
 
 export const CTA: React.FC<CTAProps> = ({
@@ -19,8 +20,9 @@ export const CTA: React.FC<CTAProps> = ({
   className,
   variant = "primary",
   inProd = false,
+  onClick,
 }) => {
-  const ctaClass = clsx(
+  const ctaClass = classNames(
     "cta",
     {
       "cta--primary": variant === "primary",
@@ -30,7 +32,7 @@ export const CTA: React.FC<CTAProps> = ({
     className
   );
   return (
-    <PrismicNextLink field={link} className={ctaClass}>
+    <PrismicNextLink field={link} onClick={onClick} className={ctaClass}>
       {label}
     </PrismicNextLink>
   );

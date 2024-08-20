@@ -30,7 +30,6 @@ export const NavBar = ({
   const { isMobile } = useIsMobile();
   const { state: isMenuOpen, toggle: toggleMenu } = useToggle(false);
   // const { state: isdropdownOpen, toggle: toggleDropdown } = useToggle(false);
-  // const [isMounted, setIsMounted] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   useEffect(() => {
@@ -45,17 +44,17 @@ export const NavBar = ({
     };
   }, [isMenuOpen]);
 
-  // useEffect(() => {
-  //   setIsMounted(true);
-  // }, []);
-
   useEffect(() => {
     if (!isMobile && isMenuOpen) {
       toggleMenu();
     }
   }, [isMobile, isMenuOpen, toggleMenu]);
 
-  // if (!settings || !isMounted) return null;
+  const handleLinkClick = () => {
+    if (isMobile) {
+      toggleMenu();
+    }
+  };
 
   return (
     <nav className={classNames("navbar", className, { "is-mobile": isMobile })}>
@@ -93,6 +92,7 @@ export const NavBar = ({
                 <li key={label} className="navbar__item">
                   <PrismicNextLink
                     field={link}
+                    onClick={handleLinkClick}
                     className="navbar__link navbar__link--products"
                   >
                     {label}
@@ -136,7 +136,11 @@ export const NavBar = ({
           <ul role="list" className="navbar__list">
             {settings.data.navigation.map((item) => (
               <li key={item.label} className="navbar__item">
-                <PrismicNextLink field={item.link} className="navbar__link">
+                <PrismicNextLink
+                  field={item.link}
+                  onClick={handleLinkClick}
+                  className="navbar__link"
+                >
                   {item.label}
                 </PrismicNextLink>
               </li>
@@ -145,6 +149,7 @@ export const NavBar = ({
           <CTA
             label={settings.data.button_text}
             link={settings.data.button_link}
+            onClick={handleLinkClick}
             variant="primary"
             className="navbar__cta"
           />
