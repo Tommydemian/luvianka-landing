@@ -36,8 +36,6 @@ function MyComponent() {
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY as string,
   });
 
-  console.log(process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY as string);
-
   const containerStyle = {
     width: isMobile ? "300px" : "400px",
     height: isMobile ? "225px" : "325px",
