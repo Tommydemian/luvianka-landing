@@ -157,6 +157,10 @@
   /* Shadows */
   --shadow-nav-cta-container: 0px -1px 42.8px 0px #0000001a;
 
+  --shadow-base: 0 2px 4px rgba(0, 0, 0, 0.05), 0 4px 8px rgba(0, 0, 0, 0.03);
+  --shadow-base-transition: 0 4px 8px rgba(0, 0, 0, 0.08),
+    0 8px 16px rgba(0, 0, 0, 0.05);
+
   --max-width-v2: 1350px;
 
   --section-gap: 5.063rem;
@@ -731,7 +735,7 @@ header {
   background-size: cover !important;
   min-height: 80vh;
   background-image: var(--bg-image);
-  /* background-image: url("https://images.unsplash.com/photo-1519003722824-194d4455a60c?q=80&w=2075&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"); */
+  /* background-image: url("https://images.unsplash.com/photo-1485575301924-6891ef935dcd?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"); */
 }
 
 .hero.hero--only-heading {
@@ -1835,6 +1839,18 @@ footer .subfooter-layout p {
   color: var(--color-accent);
 }
 
+.text-left {
+  text-align: left;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
 @media screen and (min-width: 50em) {
   .section-title {
     font-size: var(--font-size-4xl);
@@ -1995,7 +2011,19 @@ section[data-slice-type="quality_feature"] {
   border-radius: var(--spacing-sm);
   border: 1px solid var(--color-border-gray-light);
   cursor: pointer;
+  box-shadow: var(--shadow-base);
+
+  transition: all var(--transition-duration-medium)
+    var(--transition--timing-cubic-bezier-base);
 }
+.contact-us__state-box--active {
+  background-color: var(--color-border-gray-light);
+  box-shadow: var(--shadow-base-transition);
+}
+.contact-us__state-box--active h4 {
+  color: var(--color-primary);
+}
+
 .contact-us__state-box:first-child {
   margin-left: var(--spacing-xl);
 }
@@ -2016,6 +2044,8 @@ section[data-slice-type="quality_feature"] {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
+  max-width: 31.375rem;
+  margin-inline: auto;
 }
 
 .form-group {
@@ -2048,6 +2078,48 @@ section[data-slice-type="quality_feature"] {
 }
 .form textarea {
   resize: vertical;
+}
+
+/* TODO: transitions and such */
+.form__submit-button {
+  font-weight: bold;
+  color: var(--color-text-light);
+  background-color: var(--color-primary);
+  text-transform: uppercase;
+  padding: var(--spacing-padding-sm) var(--spacing-padding-base);
+  border: none;
+  outline: none;
+  border-radius: var(--spacing-4xl);
+  cursor: pointer;
+}
+
+.form__error {
+  color: var(--color-accent-dark);
+}
+
+.form__input-label {
+  color: var(--color-text-dark-light);
+  margin-block: var(--spacing-unit);
+  font-style: italic;
+  margin-left: var(--spacing-padding-sm);
+}
+
+.form input[type="file"] {
+  display: inline-block;
+}
+.form .file-label {
+  display: inline-block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 1em;
+  color: var(--color-text-dark-light);
+  width: 100%;
+  padding: var(--spacing-padding-x-sm) var(--spacing-padding-base);
+  border: 1px solid var(--color-border-gray-light);
+  border-radius: 4px;
+  font-style: italic;
+  font-weight: 600;
 }
 
 @media screen and (min-width: 50em) {

@@ -16,17 +16,8 @@ export type Product = {
   product_link: LinkField;
 };
 
-type NavigationItem = {
-  label: string;
-  link: LinkField;
-  is_product_category: boolean;
-};
-
-type ProductCategory = {
-  category_label: string;
-  products: {
-    product_image: ImageField;
-    product_name: string;
-    product_link: LinkField;
-  }[];
-};
+export enum ContactType {
+  COMERCIALIZA = "Comercializá",
+  ATENCION = "Atención",
+  TRABAJA = "Trabaja",
+}
