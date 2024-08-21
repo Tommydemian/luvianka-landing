@@ -443,6 +443,20 @@ header {
   font-size: var(--font-size-nav);
   transition: var(--nav-item-transition);
 }
+
+.navbar__item--is-product {
+  display: flex;
+  align-items: center;
+}
+
+.chevron-down {
+  vertical-align: bottom;
+  transition: var(--nav-item-transition);
+}
+.chevron-down:hover path {
+  stroke: var(--color-primary);
+}
+
 .navbar__item:first-child {
   position: relative;
 }

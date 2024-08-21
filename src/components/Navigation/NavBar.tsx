@@ -1,16 +1,20 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+// import { useRouter } from "next/router";
+
 import { CTA } from "@/components/CTA";
 import Link from "next/link";
 import Image from "next/image";
 import { PrismicNextLink } from "@prismicio/next";
-import { Content } from "@prismicio/client";
+import { Content, LinkField } from "@prismicio/client";
+import { linkResolver } from "../../prismicio";
 
 import { ProductCategoryList } from "@/components/ProductCategories/ProductCategoryList";
 import { HamburguerIcon } from "@/components/Icons/Hamburguer";
 import { CloseIcon } from "@/components/Icons/Close";
 import { ChevronIcon } from "@/components/Icons/Chevron";
+import { ChevronDownIcon } from "@/components/Icons/ChevronDown";
 import { useIsMobile } from "@/hooks/useIsMobile";
 import { useToggle } from "@/hooks/useToggle";
 
@@ -27,9 +31,9 @@ export const NavBar = ({
   className,
   productCategories,
 }: NavBarProps) => {
+  // const router = useRouter();
   const { isMobile } = useIsMobile();
   const { state: isMenuOpen, toggle: toggleMenu } = useToggle(false);
-  // const { state: isdropdownOpen, toggle: toggleDropdown } = useToggle(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   useEffect(() => {
@@ -55,6 +59,16 @@ export const NavBar = ({
       toggleMenu();
     }
   };
+
+  // const isActive = (link: LinkField) => {
+  //   if (link.link_type === 'Web') {
+  //     return router.asPath === link.url;
+  //   }
+  //   if (link.link_type === 'Document' && link.uid) {
+  //     return router.asPath.includes(link.uid);
+  //   }
+  //   return false;
+  // };
 
   return (
     <nav className={classNames("navbar", className, { "is-mobile": isMobile })}>
@@ -135,7 +149,12 @@ export const NavBar = ({
         <>
           <ul role="list" className="navbar__list">
             {settings.data.navigation.map((item) => (
-              <li key={item.label} className="navbar__item">
+              <li
+                key={item.label}
+                className={classNames("navbar__item", {
+                  "navbar__item--is-products": item.is_product_category,
+                })}
+              >
                 <PrismicNextLink
                   field={item.link}
                   onClick={handleLinkClick}
@@ -143,6 +162,20 @@ export const NavBar = ({
                 >
                   {item.label}
                 </PrismicNextLink>
+                {item.is_product_category && (
+                  <>
+                    <span
+                      onClick={() => setDropdownOpen(!dropdownOpen)}
+                      className="chevron-wrapper"
+                    >
+                      <ChevronDownIcon
+                        className={classNames("chevron-down pointer", {
+                          "chevron--rotate": dropdownOpen,
+                        })}
+                      />
+                    </span>
+                  </>
+                )}
               </li>
             ))}
           </ul>

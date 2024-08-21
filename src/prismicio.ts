@@ -61,3 +61,25 @@ export const createClient = (config: prismicNext.CreateClientConfig = {}) => {
 
   return client;
 };
+
+/**
+ * Resolves a Prismic document to a URL.
+ *
+ * @param doc - The Prismic document.
+ */
+export const linkResolver = (doc: prismic.PrismicDocument): string => {
+  switch (doc.type) {
+    case "homepage":
+      return "/";
+    case "product_page":
+      return `/productos/${doc.uid}`;
+    case "about_us":
+      return "/empresa";
+    case "calidad_page":
+      return "/calidad";
+    case "contactanos":
+      return "/contactanos";
+    default:
+      return "/";
+  }
+};
