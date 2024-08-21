@@ -5,6 +5,7 @@ import { SliceComponentProps } from "@prismicio/react";
 import { CTA } from "@/components/CTA";
 import Image from "next/image";
 import { Tick } from "@/assets/svgs/TickSvg";
+import classNames from "classnames";
 
 export type ContentWithImageProps =
   SliceComponentProps<Content.ContentWithImageSlice>;
@@ -48,7 +49,11 @@ const ContentWithImage = ({ slice }: ContentWithImageProps): JSX.Element => {
         <div
           className={`content-with-image-image ${isImgRight ? "imgrightvar" : ""}`}
         >
-          <div className="main-image-wrapper">
+          <div
+            className={classNames("main-image-wrapper", {
+              "main-image-wrapper-imgright": isImgRight,
+            })}
+          >
             <PrismicNextImage
               field={slice.primary.image}
               className="content-with-image-main-img"
