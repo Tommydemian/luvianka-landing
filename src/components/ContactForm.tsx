@@ -46,11 +46,43 @@ export const ContactForm = () => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<FormInputs>();
 
-  const onSubmit: SubmitHandler<FormInputs> = (data) => {
-    console.log(data);
-    // Here you would typically send the data to your server or API
+  const onSubmit: SubmitHandler<FormInputs> = async (data) => {
+    try {
+      const formData = new FormData();
+
+      // Append text fields
+      Object.keys(data).forEach((key) => {
+        if (key !== "file") {
+          formData.append(key, data[key as keyof FormInputs] as string);
+        }
+      });
+
+      // Append contactType
+      formData.append("contactType", contactType);
+
+      // Append file if it exists
+      if (data.file && data.file.length > 0) {
+        formData.append("file", data.file[0]);
+      }
+
+      const response = await fetch("https://formspree.io/f/meojrqkz", {
+        method: "POST",
+        body: formData, // Send formData instead of JSON
+      });
+
+      if (response.ok) {
+        alert("Mensaje enviado con éxito");
+        reset();
+      } else {
+        throw new Error("Error al enviar el formulario");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("Error al enviar el mensaje. Por favor, inténtelo de nuevo.");
+    }
   };
 
   return (
@@ -79,7 +111,7 @@ export const ContactForm = () => {
             {...register("direction", { required: "El campo es obligatorio." })}
             type="text"
             id="direction"
-            placeholder="Calle España 234"
+            placeholder="España 234"
           />
           {errors.direction && (
             <span className="form__error">{errors.direction.message}</span>
