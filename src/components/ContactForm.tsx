@@ -14,7 +14,7 @@ type FormInputs = {
   city: string;
   provincia: string;
   message: string;
-  file: any;
+  file: FileList;
 };
 
 export const ContactForm = () => {
@@ -113,9 +113,9 @@ export const ContactForm = () => {
             {...register("phone", {
               required: "El número de teléfono es requerido",
               pattern: {
-                value: /^(0?11|11)?[2-9]\d{8}$/,
+                value: /^(0?)(11|15)\d{8}$/,
                 message:
-                  "Ingrese un número de celular válido (ej: 11-3333-2222).",
+                  "Ingrese un número de celular válido (ej: 1133332222 o 01133332222).",
               },
             })}
             type="tel"
@@ -171,9 +171,46 @@ export const ContactForm = () => {
         </div>
         {contactType !== ContactType.COMERCIALIZA && (
           <div className="form-group full-col">
-            <input {...register("file")} id="file" type="file" />
-            <label htmlFor="file" className="file-label">
+            <input
+              {...register("file", {
+                validate: {
+                  fileType: (value) => {
+                    if (!value[0]) return true;
+                    const acceptedFileTypes = [
+                      "image/jpeg",
+                      "image/png",
+                      "image/gif",
+                      "application/pdf",
+                      "application/msword",
+                      "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                    ];
+                    return (
+                      acceptedFileTypes.includes(value[0].type) ||
+                      "Tipo de archivo no permitido"
+                    );
+                  },
+                  fileSize: (value) => {
+                    if (!value[0]) return true;
+                    const maxSize = 5 * 1024 * 1024; // 5MB
+                    return (
+                      value[0].size <= maxSize ||
+                      "El archivo es demasiado grande (máx. 5MB)"
+                    );
+                  },
+                },
+              })}
+              id="file"
+              type="file"
+              accept=".jpg,.jpeg,.png,.gif,.pdf,.doc,.docx"
+            />
+            {errors.file && (
+              <p className="error-message">{errors.file.message}</p>
+            )}
+            <label htmlFor="file" className="file-label pointer">
               <UploadIcon /> {mediaLabels[contactType]}
+              {errors.file && (
+                <p className="error-message">{errors.file.message as string}</p>
+              )}
             </label>
           </div>
         )}

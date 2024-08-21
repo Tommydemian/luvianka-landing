@@ -22,10 +22,7 @@ export const ContactPageContent = async () => {
             ),
           }}
         />
-
-        <Container>
-          <ClientContactWrapper />
-        </Container>
+        <ClientContactWrapper />
       </div>
     </Section>
   );
