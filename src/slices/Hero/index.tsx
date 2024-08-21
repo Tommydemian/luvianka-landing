@@ -45,7 +45,7 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
           }}
         />
         <PrismicRichText
-          field={slice.primary?.hero_body}
+          field={!headingOnly ? slice.primary?.hero_body : null}
           components={{
             paragraph: ({ children }) => (
               <p
