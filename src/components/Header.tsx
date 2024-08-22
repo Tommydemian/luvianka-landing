@@ -7,9 +7,10 @@ import { createClient } from "../prismicio";
 
 export const Header = async () => {
   const client = createClient();
+  // const settingsData = await client.getSingle("settings");
 
   const [settings, product_category] = await Promise.all([
-    client.getSingle("settings").catch(() => null),
+    client.getAllByType("settings").catch(() => null),
     client.getAllByType("product_category").catch(() => null),
   ]);
 

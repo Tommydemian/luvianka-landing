@@ -90,6 +90,14 @@
                 "constraint": {},
                 "thumbnails": []
               }
+            },
+            "product_link": {
+              "type": "Link",
+              "config": {
+                "label": "Product Link",
+                "placeholder": "",
+                "select": null
+              }
             }
           }
         }

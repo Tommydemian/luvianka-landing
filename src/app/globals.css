@@ -418,18 +418,19 @@ header {
   }
 }
 
+/* Navbar */
+/* Logo */
+.navbar__logo {
+  width: var(--logo-width);
+  height: auto;
+}
+
 .navbar {
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.navbar__logo {
-  width: var(--logo-width);
-  height: auto;
-  /* margin-right: auto; */
 }
 
 .navbar__list {
@@ -444,27 +445,124 @@ header {
   transition: var(--nav-item-transition);
 }
 
+/* li with dropdown */
 .navbar__item--is-product {
   display: flex;
   align-items: center;
+  width: 100%;
 }
 
+/* chevron */
 .chevron-down {
   vertical-align: bottom;
-  transition: var(--nav-item-transition);
+}
+.chevron-down path {
+  vertical-align: bottom;
 }
 .chevron-down:hover path {
   stroke: var(--color-primary);
 }
 
-.navbar__item:first-child {
-  position: relative;
+.navbar__item--is-products:hover > .navbar__link {
+  color: var(--color-primary);
+  transition: color 0.3s ease;
+}
+
+/* Mobile NavItem--is-products */
+.m-navbar__item--is-products {
+  width: 100% !important;
+  position: relative !important;
+}
+
+.navbar__item--is-products:hover > .navbar__link .chevron-wrapper svg path {
+  stroke: var(--color-primary);
+  transition: stroke 0.3s ease;
+}
+
+.navbar__item--is-products:hover
+  > .navbar__link
+  .chevron-wrapper
+  .chevron-down {
+  transform: rotate(180deg);
+  transition: transform 0.3s ease;
+}
+
+/* .navbar__link {
+  display: flex;
+  align-items: center;
+} */
+
+.chevron-wrapper {
+  display: inline-flex;
+  margin-left: 4px;
+  vertical-align: middle;
+}
+
+.navbar__item--is-products.dropdown-open > .navbar__link,
+.navbar__item--is-products.dropdown-open
+  > .navbar__link
+  .chevron-wrapper
+  svg
+  path {
+  color: var(--color-primary);
+  stroke: var(--color-primary);
+}
+
+.navbar__item--is-products.dropdown-open
+  > .navbar__link
+  .chevron-wrapper
+  .chevron-down {
+  transform: rotate(180deg);
 }
 
 .navbar__item:hover,
 .navbar__item:focus-within,
 .navbar__item:active {
   color: var(--color-primary);
+}
+
+/* Nav desktop dropdown */
+.d-nav-dropdown {
+  position: relative;
+}
+.d-nav-dropdown__menu {
+  position: absolute;
+  left: -1.5em;
+  top: calc(100% + var(--spacing-md));
+  background-color: var(--color-background);
+  padding: var(--spacing-md);
+  box-shadow: 0 2px 13px -2px rgba(0, 0, 0, 0.2);
+  transition: all 0.3 var(--transition--timing-cubic-bezier-base);
+  width: max-content;
+  border-radius: var(--border-radius-dropdown);
+
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-10px);
+  transition: all 0.3s var(--transition--timing-cubic-bezier-base);
+  z-index: 3;
+}
+
+.d-nav-dropdown.is-open > .d-nav-dropdown__menu,
+.d-nav-dropdown__menu.open {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.d-nav__link {
+  font-size: var(--font-size-lg);
+  transition:
+    color 0.3 ease,
+    opacity 0.5 ease-in-out;
+}
+.d-nav__link:hover,
+.d-nav__link:active,
+.d-nav__link:focus {
+  color: var(--color-accent-dark);
+  opacity: 0.9;
 }
 
 /* Manage /products */
@@ -537,8 +635,11 @@ header {
   }
 
   .navbar__item {
-    width: 100%;
+    width: fit-content;
     display: inline-block;
+  }
+  .navbar__item--is-products {
+    width: 100%;
   }
 
   .mobile-menu-wrapper,
@@ -635,6 +736,7 @@ header {
   .chevron-wrapper {
     position: absolute;
     right: 0;
+    transform: translate(0, 4.5px);
   }
 
   .chevron {
@@ -1285,7 +1387,7 @@ footer .footer-corporate-section {
   height: auto;
 }
 .footer-corporate-section .corporate-section-images img:last-child {
-  width: 92px;
+  width: var(--logo-width);
   height: auto;
 }
 .footer-corporate-section p {
@@ -1901,6 +2003,15 @@ footer .subfooter-layout p {
   margin-bottom: 0;
 }
 
+.flow-content--sm > * {
+  /* 1rem */
+  /* --spacer: var(--spacing-md); */
+  margin-bottom: var(--spacing-sm);
+}
+.flow-content--sm > *:last-child {
+  margin-bottom: 0;
+}
+
 @media screen and (min-width: 50em) {
   .section-title {
     font-size: var(--font-size-4xl);
@@ -2166,9 +2277,9 @@ input#file-upload-button {
   color: var(--color-text-dark-light);
   width: 100%;
   padding: var(--spacing-padding-x-sm) var(--spacing-padding-base);
-  border: 1px solid var(--color-border-gray-light);
+  /* border: 1px solid var(--color-border-gray-light); */
   border-radius: 4px;
-  font-style: italic;
+  /* font-style: italic; */
   font-weight: 600;
 }
 

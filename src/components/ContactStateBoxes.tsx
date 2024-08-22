@@ -69,11 +69,7 @@ export const ContactStateBoxes = () => {
         modules={[Navigation, Autoplay, Pagination]}
         slidesPerView={1.75}
         spaceBetween={20}
-        centeredSlides={false}
-        // autoplay={{
-        //   delay: 2500,
-        //   disableOnInteraction: false,
-        // }}
+        centeredSlides={true}
         pagination={{
           clickable: true,
           bulletClass: "swiper-pagination-bullet",

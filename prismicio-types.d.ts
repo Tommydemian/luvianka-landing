@@ -853,6 +853,16 @@ export interface SettingsDocumentDataProductsItem {
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   product_image: prismic.ImageField<never>;
+
+  /**
+   * Product Link field in *Settings → Products*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.products[].product_link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  product_link: prismic.LinkField;
 }
 
 type SettingsDocumentDataSlicesSlice = never;
