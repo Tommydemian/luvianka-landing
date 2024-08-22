@@ -6,7 +6,6 @@ import { createClient } from "@/prismicio";
 import { components } from "@/slices";
 import { ServerDropdown } from "@/components/ServerDropdown";
 import { ProductCardGrid } from "@/components/ProductCardGrid";
-import { CategoryProvider } from "@/context/CategoryContext";
 
 type Params = { uid: string };
 
@@ -18,19 +17,16 @@ export default async function Page({ params }: { params: Params }) {
 
   const categories = await client.getAllByType("product_category");
 
-  // const products = await client.getAllByType("single_product", {
-  //   fetchLinks: "product_category.product_category_title",
-  // });
+  var selectedCategory = categories.find((c) => c.uid === params.uid);
+  var products = selectedCategory?.data.category_products;
 
   return (
     <section className="container--lg">
       <h1 className="choose-category-heading">Selecciona categoria</h1>
-      <CategoryProvider categories={categories}>
-        <section className="pp-layout">
-          <ServerDropdown />
-          <ProductCardGrid />
-        </section>
-      </CategoryProvider>
+      <section className="pp-layout">
+        <ServerDropdown categories={categories} />
+        <ProductCardGrid products={products} />
+      </section>
       {page.data.slices && page.data.slices.length > 0 ? (
         <SliceZone slices={page.data.slices} components={components} />
       ) : (

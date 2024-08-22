@@ -555,8 +555,8 @@ header {
 .d-nav__link {
   font-size: var(--font-size-lg);
   transition:
-    color 0.3 ease,
-    opacity 0.5 ease-in-out;
+    color 0.15s ease,
+    opacity 0.3s ease-in-out;
 }
 .d-nav__link:hover,
 .d-nav__link:active,
@@ -841,9 +841,6 @@ header {
 }
 
 /* HERO  */
-.hero {
-}
-
 .hero::before {
   content: "";
   position: absolute;
@@ -1553,7 +1550,7 @@ footer .subfooter-layout p {
   .pp-product-card-grid {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    column-gap: var(--spacing-lg);
+    gap: var(--spacing-lg);
     max-width: var(--container-max-width-lg);
     /* margin-block: var(--spacing-lg); */
   }

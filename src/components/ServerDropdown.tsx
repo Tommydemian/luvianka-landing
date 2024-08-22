@@ -1,5 +1,12 @@
 import { ClientDropdown } from "./ClientDropdown";
+import { Content } from "@prismicio/client";
 
-export function ServerDropdown() {
-  return <ClientDropdown />;
-}
+type ServerDropdownProps = {
+  categories: Content.ProductCategoryDocument[];
+};
+
+export const ServerDropdown: React.FC<ServerDropdownProps> = ({
+  categories,
+}) => {
+  return <ClientDropdown categories={categories} />;
+};

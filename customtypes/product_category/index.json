@@ -84,8 +84,30 @@
                 "label": "Product Lifespan",
                 "placeholder": ""
               }
+            },
+            "quantity_per_box": {
+              "type": "Text",
+              "config": {
+                "label": "Quantity per box",
+                "placeholder": ""
+              }
+            },
+            "weight_per_box": {
+              "type": "Text",
+              "config": {
+                "label": "Weight per Box",
+                "placeholder": ""
+              }
             }
           }
+        }
+      },
+      "product_page": {
+        "type": "Link",
+        "config": {
+          "label": "Product Page",
+          "placeholder": "",
+          "select": null
         }
       }
     }

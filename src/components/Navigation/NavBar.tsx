@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
 import { Content, LinkField } from "@prismicio/client";
 // Nav Components
@@ -26,6 +27,7 @@ export const NavBar = ({
   className,
   productCategories,
 }: NavBarProps) => {
+  const pathname = usePathname();
   const { isMobile } = useIsMobile();
   const { state: isMenuOpen, toggle: toggleMenu } = useToggle(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -55,16 +57,6 @@ export const NavBar = ({
       toggleMenu();
     }
   };
-
-  // const isActive = (link: LinkField) => {
-  //   if (link.link_type === 'Web') {
-  //     return router.asPath === link.url;
-  //   }
-  //   if (link.link_type === 'Document' && link.uid) {
-  //     return router.asPath.includes(link.uid);
-  //   }
-  //   return false;
-  // };
 
   return (
     <nav className={classNames("navbar", className, { "is-mobile": isMobile })}>

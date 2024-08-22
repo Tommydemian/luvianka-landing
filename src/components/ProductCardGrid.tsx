@@ -1,17 +1,22 @@
-"use client";
-
 import React from "react";
 import { Section } from "@/components/Section";
 import { Container } from "@/components/Container";
-import { useCategory } from "@/context/CategoryContext";
 import { PrismicNextImage } from "@prismicio/next";
+import { GroupField } from "@prismicio/client";
+import {
+  ProductCategoryDocumentDataCategoryProductsItem,
+  Simplify,
+} from "../../prismicio-types";
 
-export const ProductCardGrid: React.FC = () => {
-  const { selectedCategoryId, categories } = useCategory();
+type ProductCardGridProps = {
+  products:
+    | GroupField<Simplify<ProductCategoryDocumentDataCategoryProductsItem>>
+    | undefined;
+};
 
-  var category = categories.find((c) => c.id === selectedCategoryId);
-  var products = category?.data.category_products;
-
+export const ProductCardGrid: React.FC<ProductCardGridProps> = ({
+  products,
+}) => {
   return (
     <Section>
       <Container className="pp-product-card-grid">
@@ -23,6 +28,8 @@ export const ProductCardGrid: React.FC = () => {
             product_title,
             product_type,
             product_weight,
+            quantity_per_box,
+            weight_per_box,
           }) => {
             return (
               <article key={product_code} className="pp-product-card">
@@ -60,6 +67,22 @@ export const ProductCardGrid: React.FC = () => {
                       </p>
                       <p className="pp-product-card__sub-info-block-value">
                         {product_lifespan}
+                      </p>
+                    </div>
+                    <div className="pp-product-card__sub-info-block">
+                      <p className="pp-product-card__sub-info-block-label">
+                        Cantidad por caja
+                      </p>
+                      <p className="pp-product-card__sub-info-block-value">
+                        {quantity_per_box}
+                      </p>
+                    </div>
+                    <div className="pp-product-card__sub-info-block">
+                      <p className="pp-product-card__sub-info-block-label">
+                        Peso por caja
+                      </p>
+                      <p className="pp-product-card__sub-info-block-value">
+                        {weight_per_box}
                       </p>
                     </div>
                   </div>

@@ -617,6 +617,26 @@ export interface ProductCategoryDocumentDataCategoryProductsItem {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   product_lifespan: prismic.KeyTextField;
+
+  /**
+   * Quantity per box field in *Product Category → Category Products*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: product_category.category_products[].quantity_per_box
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  quantity_per_box: prismic.KeyTextField;
+
+  /**
+   * Weight per Box field in *Product Category → Category Products*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: product_category.category_products[].weight_per_box
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  weight_per_box: prismic.KeyTextField;
 }
 
 /**
@@ -668,6 +688,17 @@ interface ProductCategoryDocumentData {
   category_products: prismic.GroupField<
     Simplify<ProductCategoryDocumentDataCategoryProductsItem>
   >;
+
+  /**
+   * Product Page field in *Product Category*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: product_category.product_page
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  product_page: prismic.LinkField;
 }
 
 /**

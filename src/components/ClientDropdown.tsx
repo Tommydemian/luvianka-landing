@@ -1,29 +1,42 @@
 "use client";
 
-import React from "react";
+import React, { useState, useCallback } from "react";
 import classNames from "classnames";
-import { DropdownOffChevronIcon } from "@/components/Icons/DropdownOffChevron";
-import { useCategory } from "@/context/CategoryContext";
 
-export const ClientDropdown: React.FC = () => {
-  const { categories, selectedCategoryId, setSelectedCategoryId } =
-    useCategory();
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+import { usePathname } from "next/navigation";
+
+import { DropdownOffChevronIcon } from "@/components/Icons/DropdownOffChevron";
+import { PrismicNextLink } from "@prismicio/next";
+
+import { Content } from "@prismicio/client";
+
+type ClientDropdownProps = {
+  categories: Content.ProductCategoryDocument[];
+};
+
+export const ClientDropdown: React.FC<ClientDropdownProps> = ({
+  categories,
+}) => {
+  const pathname = usePathname();
+  // grab slug
+  const splittedArr = pathname.split("/");
+  const slug = splittedArr[splittedArr.length - 1];
+
+  console.log(slug, "path");
+
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeCategory, setActiveCategory] = useState<string | null>(slug);
 
   const handleMenu = React.useCallback(() => {
     setIsMenuOpen((prev) => !prev);
   }, []);
 
-  const handleCategorySelect = React.useCallback(
-    (categoryId: string) => {
-      setSelectedCategoryId(categoryId);
+  const handleCategorySelect = useCallback(
+    (categoryUid: string) => {
+      setActiveCategory(categoryUid);
       setIsMenuOpen(false);
     },
-    [setSelectedCategoryId]
-  );
-
-  const selectedCategory = categories.find(
-    (category) => category.id === selectedCategoryId
+    [setActiveCategory]
   );
 
   return (
@@ -34,7 +47,7 @@ export const ClientDropdown: React.FC = () => {
           "dropdown__field--is-active": isMenuOpen,
         })}
       >
-        {selectedCategory?.data.product_category_title || "Select a category"}
+        {activeCategory}
         <DropdownOffChevronIcon bold={isMenuOpen} />
       </div>
       <div
@@ -48,11 +61,13 @@ export const ClientDropdown: React.FC = () => {
               key={category.id}
               className={classNames("dropdown__menu-item", {
                 "dropdown__menu-item--is-selected":
-                  category.id === selectedCategoryId,
+                  category.uid === activeCategory,
               })}
-              onClick={() => handleCategorySelect(category.id)}
+              onClick={() => handleCategorySelect(category.uid)}
             >
-              {category.data.product_category_title}
+              <PrismicNextLink field={category.data.product_page}>
+                {category.data.product_category_title}
+              </PrismicNextLink>
             </li>
           ))}
         </ul>
