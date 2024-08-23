@@ -1,54 +1,70 @@
 "use client";
 
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect, useRef } from "react";
 import classNames from "classnames";
-
-import { usePathname } from "next/navigation";
-
 import { DropdownOffChevronIcon } from "@/components/Icons/DropdownOffChevron";
 import { PrismicNextLink } from "@prismicio/next";
-
 import { Content } from "@prismicio/client";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 type ClientDropdownProps = {
   categories: Content.ProductCategoryDocument[];
+  activeUid: string;
 };
 
 export const ClientDropdown: React.FC<ClientDropdownProps> = ({
   categories,
+  activeUid,
 }) => {
-  const pathname = usePathname();
-  // grab slug
-  const splittedArr = pathname.split("/");
-  const slug = splittedArr[splittedArr.length - 1];
-
-  console.log(slug, "path");
+  const { isMobile } = useIsMobile();
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeCategory, setActiveCategory] = useState<string | null>(slug);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
-  const handleMenu = React.useCallback(() => {
+  const handleMenu = useCallback(() => {
     setIsMenuOpen((prev) => !prev);
   }, []);
 
-  const handleCategorySelect = useCallback(
-    (categoryUid: string) => {
-      setActiveCategory(categoryUid);
-      setIsMenuOpen(false);
-    },
-    [setActiveCategory]
+  const handleCategorySelect = useCallback((categoryUid: string) => {
+    setIsMenuOpen(false);
+    //
+  }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        isMobile &&
+        isMenuOpen &&
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isMobile, isMenuOpen]);
+
+  const activeCategory = categories.find(
+    (category) => category.uid === activeUid
   );
 
   return (
-    <div className="dropdown relative">
+    <div className="dropdown relative" ref={dropdownRef}>
       <div
         onClick={handleMenu}
         className={classNames("dropdown__field", {
           "dropdown__field--is-active": isMenuOpen,
         })}
       >
-        {activeCategory}
-        <DropdownOffChevronIcon bold={isMenuOpen} />
+        {activeCategory?.data.product_category_title || "Selecciona categoría"}
+        <DropdownOffChevronIcon
+          bold={isMenuOpen}
+          className="interactivity-none"
+        />
       </div>
       <div
         className={classNames("dropdown__menu", {
@@ -60,8 +76,7 @@ export const ClientDropdown: React.FC<ClientDropdownProps> = ({
             <li
               key={category.id}
               className={classNames("dropdown__menu-item", {
-                "dropdown__menu-item--is-selected":
-                  category.uid === activeCategory,
+                "dropdown__menu-item--is-selected": category.uid === activeUid,
               })}
               onClick={() => handleCategorySelect(category.uid)}
             >

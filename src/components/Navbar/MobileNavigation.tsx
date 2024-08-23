@@ -1,28 +1,33 @@
 import React from "react";
 import { PrismicNextLink } from "@prismicio/next";
-import { Content } from "@prismicio/client";
+import { Content, GroupField } from "@prismicio/client";
 import classNames from "classnames";
 import { ChevronIcon } from "@/components/Icons/Chevron";
 import { ProductCategoryList } from "@/components/ProductCategories/ProductCategoryList";
 import { CTA } from "@/components/CTA";
+import { Simplify } from "../../../prismicio-types";
 
 type MobileNavigationProps = {
   settings: Content.SettingsDocument;
-  productCategories: Content.ProductCategoryDocument[];
+  productList: GroupField<Simplify<Content.SettingsDocumentDataProductsItem>>;
   isMenuOpen: boolean;
+  onClose: () => void;
   dropdownOpen: boolean;
   setDropdownOpen: (isOpen: boolean) => void;
-  handleLinkClick: () => void;
 };
 
 export const MobileNavigation: React.FC<MobileNavigationProps> = ({
   settings,
-  productCategories,
+  productList,
   isMenuOpen,
+  onClose,
   dropdownOpen,
   setDropdownOpen,
-  handleLinkClick,
 }) => {
+  const handleItemClick = () => {
+    setDropdownOpen(false);
+    onClose();
+  };
   return (
     <div
       className={classNames("navbar__menu-container", {
@@ -40,29 +45,31 @@ export const MobileNavigation: React.FC<MobileNavigationProps> = ({
             >
               <PrismicNextLink
                 field={link}
-                onClick={handleLinkClick}
+                onClick={onClose}
                 className="navbar__link navbar__link--products"
               >
                 {label}
               </PrismicNextLink>
               {is_product_category && (
                 <>
-                  <span
+                  <button
                     onClick={() => setDropdownOpen(!dropdownOpen)}
                     className="chevron-wrapper"
+                    aria-expanded={dropdownOpen}
                   >
                     <ChevronIcon
                       className={classNames("chevron", {
                         "chevron--rotate": dropdownOpen,
                       })}
                     />
-                  </span>
+                  </button>
                   <ProductCategoryList
                     displayImage
-                    productCategories={productCategories}
+                    productList={productList}
                     className={
                       dropdownOpen ? "m-product-category-list--open" : ""
                     }
+                    onItemClick={handleItemClick}
                   />
                 </>
               )}

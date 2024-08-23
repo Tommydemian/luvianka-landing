@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
 
 import { Content, LinkField } from "@prismicio/client";
 // Nav Components
@@ -18,21 +17,18 @@ import classNames from "classnames";
 
 type NavBarProps = {
   settings: Content.SettingsDocument[];
-  productCategories: Content.ProductCategoryDocument[];
+  // productCategories: Content.ProductCategoryDocument[];
   className?: string;
 };
 
-export const NavBar = ({
-  settings,
-  className,
-  productCategories,
-}: NavBarProps) => {
-  const pathname = usePathname();
+export const NavBar = ({ settings, className }: NavBarProps) => {
   const { isMobile } = useIsMobile();
   const { state: isMenuOpen, toggle: toggleMenu } = useToggle(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const settingsData = settings[0];
+
+  console.log(settingsData.data.products);
 
   useEffect(() => {
     if (isMenuOpen) {
@@ -67,11 +63,11 @@ export const NavBar = ({
       {isMobile ? (
         <MobileNavigation
           settings={settingsData}
-          productCategories={productCategories}
+          productList={settingsData.data.products}
           isMenuOpen={isMenuOpen}
+          onClose={toggleMenu}
           dropdownOpen={dropdownOpen}
           setDropdownOpen={setDropdownOpen}
-          handleLinkClick={handleLinkClick}
         />
       ) : (
         <DesktopNavigation

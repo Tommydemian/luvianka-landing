@@ -1,55 +1,51 @@
 import React, { useMemo } from "react";
+import { PrismicNextLink } from "@prismicio/next";
+
 import Link from "next/link";
-import { createClient } from "../../prismicio";
+
 import { PrismicNextImage } from "@prismicio/next";
-import { Content } from "@prismicio/client";
+import { Content, GroupField } from "@prismicio/client";
 import classNames from "classnames";
+import { Simplify } from "../../../prismicio-types";
 
 type ProductCategoryListProps = {
   displayImage: boolean;
-  productCategories: Content.ProductCategoryDocument[];
+  productList: GroupField<Simplify<Content.SettingsDocumentDataProductsItem>>;
   className: string;
+  onitemClick: () => void;
 };
-
-// async function getProductCategory() {
-//   const client = createClient();
-//   return client.getAllByType("product_category");
-// }
 
 export const ProductCategoryList: React.FC<ProductCategoryListProps> = ({
   displayImage,
-  productCategories,
+  productList,
   className,
+  onitemClick,
 }) => {
-  const categories = useMemo(
-    () => [...productCategories].reverse(),
-    [productCategories]
-  );
+  const handleRedirect = (e: React.MouseEvent) => {
+    e.preventDefault();
+    onitemClick();
+  };
 
   return (
     <ul
       role="list"
       className={classNames("m-product-category-list", className)}
     >
-      {categories.map((item) => (
-        <li
-          key={item.data.product_category_title}
-          className="m-product-category-list__item"
-        >
-          <Link
-            href={`productos/${item.uid}`}
+      {productList.map(({ product_name, product_image, product_link }) => (
+        <li key={product_name} className="m-product-category-list__item">
+          <PrismicNextLink
+            field={product_link}
             className="m-product-category-list__link"
+            onClick={handleRedirect}
           >
-            <p className="m-product-category-list__title">
-              {item.data.product_category_title}
-            </p>
+            <p className="m-product-category-list__title">{product_name}</p>
             {displayImage && (
               <PrismicNextImage
-                field={item.data.product_category_image}
+                field={product_image}
                 className="m-product-category-list__image"
               />
             )}
-          </Link>
+          </PrismicNextLink>
         </li>
       ))}
     </ul>

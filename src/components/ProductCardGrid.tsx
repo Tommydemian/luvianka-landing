@@ -69,22 +69,26 @@ export const ProductCardGrid: React.FC<ProductCardGridProps> = ({
                         {product_lifespan}
                       </p>
                     </div>
-                    <div className="pp-product-card__sub-info-block">
-                      <p className="pp-product-card__sub-info-block-label">
-                        Cantidad por caja
-                      </p>
-                      <p className="pp-product-card__sub-info-block-value">
-                        {quantity_per_box}
-                      </p>
-                    </div>
-                    <div className="pp-product-card__sub-info-block">
-                      <p className="pp-product-card__sub-info-block-label">
-                        Peso por caja
-                      </p>
-                      <p className="pp-product-card__sub-info-block-value">
-                        {weight_per_box}
-                      </p>
-                    </div>
+                    {quantity_per_box && (
+                      <div className="pp-product-card__sub-info-block">
+                        <p className="pp-product-card__sub-info-block-label">
+                          Cantidad por caja
+                        </p>
+                        <p className="pp-product-card__sub-info-block-value">
+                          {quantity_per_box}
+                        </p>
+                      </div>
+                    )}
+                    {weight_per_box && (
+                      <div className="pp-product-card__sub-info-block">
+                        <p className="pp-product-card__sub-info-block-label">
+                          Peso por caja
+                        </p>
+                        <p className="pp-product-card__sub-info-block-value">
+                          {weight_per_box}
+                        </p>
+                      </div>
+                    )}
                   </div>
                 </div>
               </article>
