@@ -28,6 +28,7 @@ export const MobileNavigation: React.FC<MobileNavigationProps> = ({
     setDropdownOpen(false);
     onClose();
   };
+
   return (
     <div
       className={classNames("navbar__menu-container", {
@@ -66,10 +67,10 @@ export const MobileNavigation: React.FC<MobileNavigationProps> = ({
                   <ProductCategoryList
                     displayImage
                     productList={productList}
+                    onItemClick={handleItemClick}
                     className={
                       dropdownOpen ? "m-product-category-list--open" : ""
                     }
-                    onItemClick={handleItemClick}
                   />
                 </>
               )}

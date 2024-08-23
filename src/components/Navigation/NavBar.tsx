@@ -17,7 +17,6 @@ import classNames from "classnames";
 
 type NavBarProps = {
   settings: Content.SettingsDocument[];
-  // productCategories: Content.ProductCategoryDocument[];
   className?: string;
 };
 

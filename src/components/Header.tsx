@@ -7,7 +7,6 @@ import { createClient } from "../prismicio";
 
 export const Header = async () => {
   const client = createClient();
-  // const settingsData = await client.getSingle("settings");
 
   const [settings, product_category] = await Promise.all([
     client.getAllByType("settings").catch(() => null),
@@ -22,7 +21,7 @@ export const Header = async () => {
     <Section>
       <header className="header">
         <Container>
-          <NavBar productCategories={product_category} settings={settings} />
+          <NavBar settings={settings} />
         </Container>
       </header>
     </Section>

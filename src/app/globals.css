@@ -496,6 +496,9 @@ header {
   display: inline-flex;
   margin-left: 4px;
   vertical-align: middle;
+  background: none;
+  border: none;
+  outline: none;
 }
 
 .navbar__item--is-products.dropdown-open > .navbar__link,
@@ -1500,7 +1503,7 @@ footer .subfooter-layout p {
   top: calc(100% + 0.25em);
   border-radius: var(--border-radius-dropdown);
   box-shadow: 0px 4px 15.7px 3px #0000000f;
-  width: 100%;
+  width: fit-content;
   z-index: 100;
   opacity: 0;
   cursor: pointer;
@@ -1552,7 +1555,6 @@ footer .subfooter-layout p {
     grid-template-columns: 1fr 1fr 1fr;
     gap: var(--spacing-lg);
     max-width: var(--container-max-width-lg);
-    /* margin-block: var(--spacing-lg); */
   }
 }
 

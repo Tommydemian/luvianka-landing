@@ -12,18 +12,17 @@ type ProductCategoryListProps = {
   displayImage: boolean;
   productList: GroupField<Simplify<Content.SettingsDocumentDataProductsItem>>;
   className: string;
-  onitemClick: () => void;
+  onItemClick: () => void;
 };
 
 export const ProductCategoryList: React.FC<ProductCategoryListProps> = ({
   displayImage,
   productList,
   className,
-  onitemClick,
+  onItemClick,
 }) => {
   const handleRedirect = (e: React.MouseEvent) => {
-    e.preventDefault();
-    onitemClick();
+    onItemClick();
   };
 
   return (
