@@ -35,11 +35,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ category }) => {
         }}
       />
       {product_page && (
-        <CTA
-          link={product_page}
-          label="View Products"
-          className="cta in-prod"
-        />
+        <CTA link={product_page} label="View Products" className="cta" />
       )}
     </div>
   );

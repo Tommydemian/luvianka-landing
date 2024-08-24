@@ -2,7 +2,6 @@ import { Metadata } from "next";
 import { SliceZone } from "@prismicio/react";
 import { createClient } from "@/prismicio";
 import { components } from "@/slices";
-import { ProductGrid } from "@/components/ProductGrid";
 import styles from "./page.module.css";
 
 export async function generateMetadata(): Promise<Metadata> {

@@ -27,8 +27,6 @@ export const NavBar = ({ settings, className }: NavBarProps) => {
 
   const settingsData = settings[0];
 
-  console.log(settingsData.data.products);
-
   useEffect(() => {
     if (isMenuOpen) {
       document.body.classList.add("no-scroll");

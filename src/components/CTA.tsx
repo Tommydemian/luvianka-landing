@@ -19,7 +19,6 @@ export const CTA: React.FC<CTAProps> = ({
   link,
   className,
   variant = "primary",
-  inProd = false,
   onClick,
 }) => {
   const ctaClass = classNames(
@@ -27,7 +26,6 @@ export const CTA: React.FC<CTAProps> = ({
     {
       "cta--primary": variant === "primary",
       "cta--secondary": variant === "secondary",
-      "cta--in-prod": inProd,
     },
     className
   );

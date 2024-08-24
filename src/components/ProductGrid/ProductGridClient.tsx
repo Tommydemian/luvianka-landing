@@ -33,24 +33,30 @@ const ProductGridClient: React.FC<ProductGridClientProps> = ({
   return (
     <div className="landing-product-grid desktop-grid">
       {productCategories.map((category) => (
-        <div key={category.id} className="product-card">
+        <div key={category.id} className="landing-product-grid__card">
           <PrismicNextImage field={category.data.product_category_image} />
-          <h3 className="product-title">
-            {category.data.product_category_title || ""}
-          </h3>
-          <PrismicRichText
-            field={category.data.product_category_description}
-            components={{
-              paragraph: ({ children }) => <p>{children}</p>,
-            }}
-          />
-          {category.data.product_page && (
-            <CTA
-              link={category.data.product_page}
-              label="View Products"
-              className="cta in-prod"
+          <div className="landing-product-grid__text-wrapper flow-content--sm">
+            <h3 className="product-title">
+              {category.data.product_category_title || ""}
+            </h3>
+            <PrismicRichText
+              field={category.data.product_category_description}
+              components={{
+                paragraph: ({ children }) => (
+                  <p className="landing-product-grid__description line-clamp">
+                    {children}
+                  </p>
+                ),
+              }}
             />
-          )}
+            {category.data.product_page && (
+              <CTA
+                link={category.data.product_page}
+                label="View Products"
+                className="landing-product-grid__cta cta"
+              />
+            )}
+          </div>
         </div>
       ))}
     </div>
