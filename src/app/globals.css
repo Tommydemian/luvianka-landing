@@ -1034,6 +1034,7 @@ header {
   gap: var(--prod-grid-gap);
   margin-inline: auto;
   max-width: fit-content;
+  margin-block: var(--spacing-padding-base);
 }
 
 @media screen and (max-width: 768px) {
@@ -1741,12 +1742,16 @@ footer .subfooter-layout p {
     0 2px 4px rgba(0, 0, 0, 0.05),
     0 4px 8px rgba(0, 0, 0, 0.03);
   transition: box-shadow 0.3s ease-in-out;
+  transform: translateZ(0);
+
+  will-change: transform;
 }
 
 .values__card:hover {
   box-shadow:
     0 4px 8px rgba(0, 0, 0, 0.08),
     0 8px 16px rgba(0, 0, 0, 0.05);
+  /* transform: translateY(-2px); */
 }
 
 .values__card-title {

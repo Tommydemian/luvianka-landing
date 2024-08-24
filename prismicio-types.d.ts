@@ -1842,6 +1842,21 @@ export interface ProductSliceSliceDefaultPrimaryProductGridItem {
 }
 
 /**
+ * Item in *ProductGrid → Default → Primary → Products*
+ */
+export interface ProductSliceSliceDefaultPrimaryProductsItem {
+  /**
+   * Product Category  field in *ProductGrid → Default → Primary → Products*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: product_slice.default.primary.products[].product_category
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  product_category: prismic.ContentRelationshipField<"product_category">;
+}
+
+/**
  * Primary content in *ProductGrid → Default → Primary*
  */
 export interface ProductSliceSliceDefaultPrimary {
@@ -1876,6 +1891,18 @@ export interface ProductSliceSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   main_heading: prismic.KeyTextField;
+
+  /**
+   * Products field in *ProductGrid → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: product_slice.default.primary.products[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  products: prismic.GroupField<
+    Simplify<ProductSliceSliceDefaultPrimaryProductsItem>
+  >;
 }
 
 /**
@@ -2307,6 +2334,7 @@ declare module "@prismicio/client" {
       HeroSliceHeroOnlyHeading,
       ProductSliceSlice,
       ProductSliceSliceDefaultPrimaryProductGridItem,
+      ProductSliceSliceDefaultPrimaryProductsItem,
       ProductSliceSliceDefaultPrimary,
       ProductSliceSliceVariation,
       ProductSliceSliceDefault,

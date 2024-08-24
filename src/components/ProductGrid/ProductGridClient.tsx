@@ -2,42 +2,18 @@
 
 import React, { useEffect, useState } from "react";
 import { PrismicNextImage } from "@prismicio/next";
+import { PrismicRichText } from "@prismicio/react";
 import { CTA } from "../CTA";
 import MobileSwiper from "./MobileSwiper";
 import { useIsMobile } from "../../hooks/useIsMobile";
-import { KeyTextField, ImageField, LinkField } from "@prismicio/client";
-
-export type Product = {
-  product_image: ImageField;
-  product_title: KeyTextField;
-  product_description: KeyTextField;
-  button_link: LinkField;
-  button_text: KeyTextField;
-};
-
-export type ProductCardProps = {
-  product: Product;
-};
-
-const ProductCard: React.FC<ProductCardProps> = ({ product }) => (
-  <div className="product-card">
-    <PrismicNextImage field={product.product_image} />
-    <h3 className="product-title">{product.product_title || ""}</h3>
-    <p>{product.product_description || ""}</p>
-    {/* <CTA
-      link={product.button_link}
-      label={product.button_text || ""}
-      className="cta in-prod"
-    /> */}
-  </div>
-);
+import { Content } from "@prismicio/client";
 
 export type ProductGridClientProps = {
-  productCards: Product[];
+  productCategories: Content.ProductCategoryDocument<string>[];
 };
 
 const ProductGridClient: React.FC<ProductGridClientProps> = ({
-  productCards,
+  productCategories,
 }) => {
   const { isMobile } = useIsMobile();
   const [isMounted, setIsMounted] = useState(false);
@@ -51,13 +27,31 @@ const ProductGridClient: React.FC<ProductGridClientProps> = ({
   }
 
   if (isMobile) {
-    return <MobileSwiper productCards={productCards} />;
+    return <MobileSwiper productCategories={productCategories} />;
   }
 
   return (
     <div className="landing-product-grid desktop-grid">
-      {productCards.map((product, index) => (
-        <ProductCard key={index} product={product} />
+      {productCategories.map((category) => (
+        <div key={category.id} className="product-card">
+          <PrismicNextImage field={category.data.product_category_image} />
+          <h3 className="product-title">
+            {category.data.product_category_title || ""}
+          </h3>
+          <PrismicRichText
+            field={category.data.product_category_description}
+            components={{
+              paragraph: ({ children }) => <p>{children}</p>,
+            }}
+          />
+          {category.data.product_page && (
+            <CTA
+              link={category.data.product_page}
+              label="View Products"
+              className="cta in-prod"
+            />
+          )}
+        </div>
       ))}
     </div>
   );

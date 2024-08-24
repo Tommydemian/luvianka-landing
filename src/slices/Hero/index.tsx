@@ -21,6 +21,7 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
       })}
     >
       <PrismicNextImage
+        loading="eager"
         field={slice.primary.hero_background_image}
         className="hero__bg-image"
       />

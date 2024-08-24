@@ -71,6 +71,25 @@
             "label": "Main Heading",
             "placeholder": ""
           }
+        },
+        "products": {
+          "type": "Group",
+          "config": {
+            "label": "Products",
+            "repeat": true,
+            "fields": {
+              "product_category": {
+                "type": "Link",
+                "config": {
+                  "label": "Product Category ",
+                  "select": "document",
+                  "customtypes": [
+                    "product_category"
+                  ]
+                }
+              }
+            }
+          }
         }
       },
       "items": {}
