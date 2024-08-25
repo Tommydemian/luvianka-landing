@@ -12,11 +12,11 @@ type AboutUsDocumentDataSlicesSlice =
   | HeroSlice;
 
 /**
- * Content for About us  documents
+ * Content for Empresa documents
  */
 interface AboutUsDocumentData {
   /**
-   * Features Section Heading field in *About us *
+   * Features Section Heading field in *Empresa*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
@@ -27,7 +27,7 @@ interface AboutUsDocumentData {
   features_section_heading: prismic.RichTextField;
 
   /**
-   * Slice Zone field in *About us *
+   * Slice Zone field in *Empresa*
    *
    * - **Field Type**: Slice Zone
    * - **Placeholder**: *None*
@@ -36,7 +36,7 @@ interface AboutUsDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#slices
    */
   slices: prismic.SliceZone<AboutUsDocumentDataSlicesSlice> /**
-   * Meta Title field in *About us *
+   * Meta Title field in *Empresa*
    *
    * - **Field Type**: Text
    * - **Placeholder**: A title of the page used for social media and search engines
@@ -47,7 +47,7 @@ interface AboutUsDocumentData {
   meta_title: prismic.KeyTextField;
 
   /**
-   * Meta Description field in *About us *
+   * Meta Description field in *Empresa*
    *
    * - **Field Type**: Text
    * - **Placeholder**: A brief summary of the page
@@ -58,7 +58,7 @@ interface AboutUsDocumentData {
   meta_description: prismic.KeyTextField;
 
   /**
-   * Meta Image field in *About us *
+   * Meta Image field in *Empresa*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
@@ -70,7 +70,7 @@ interface AboutUsDocumentData {
 }
 
 /**
- * About us  document from Prismic
+ * Empresa document from Prismic
  *
  * - **API ID**: `about_us`
  * - **Repeatable**: `false`
