@@ -38,9 +38,9 @@ export const Footer = async () => {
           );
         })}
         <nav aria-label="Footer">
-          <ul role="list">
+          <ul className="flow-content uppercase" role="list">
             {settings?.data.navigation.map((item) => (
-              <li key={item.label}>
+              <li className="footer__nav-list-item" key={item.label}>
                 <PrismicNextLink field={item.link}>
                   {item.label}
                 </PrismicNextLink>

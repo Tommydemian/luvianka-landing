@@ -1696,16 +1696,6 @@ export interface HeroSliceHeroNoCtaPrimary {
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   hero_background_image: prismic.ImageField<never>;
-
-  /**
-   * Hero Mobile Background Image field in *Hero → Hero - No CTA → Primary*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: hero.heroNoCta.primary.hero_mobile_background_image
-   * - **Documentation**: https://prismic.io/docs/field#image
-   */
-  hero_mobile_background_image: prismic.ImageField<never>;
 }
 
 /**

@@ -1360,6 +1360,7 @@ header {
 
   &--var {
     background-color: var(--color-primary-dark);
+    overflow-x: clip;
   }
 }
 
@@ -1521,7 +1522,7 @@ footer .subfooter-layout p {
   justify-content: center;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 50em) {
   footer .subfooter-layout .subfooter-content {
     max-width: var(--max-width-v2);
     margin-inline: auto;
