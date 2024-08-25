@@ -1720,8 +1720,8 @@ footer .subfooter-layout p {
 .corporation-data__images {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  align-items: baseline;
-  justify-content: space-between;
+  // align-items: baseline;
+  // justify-content: space-between;
   column-gap: var(--spacing-padding-md);
 }
 .corporation-data__text-wrapper {
