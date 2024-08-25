@@ -1,4 +1,4 @@
-import "./globals.css";
+import "./styles/globals.scss";
 import { PrismicPreview } from "@prismicio/next";
 import { createClient, repositoryName } from "@/prismicio";
 import { Oswald, Grand_Hotel, Source_Sans_3 } from "next/font/google";

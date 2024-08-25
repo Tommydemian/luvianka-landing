@@ -2,7 +2,6 @@ import { Metadata } from "next";
 import { SliceZone } from "@prismicio/react";
 import { createClient } from "@/prismicio";
 import { components } from "@/slices";
-import styles from "./page.module.css";
 
 export async function generateMetadata(): Promise<Metadata> {
   const client = createClient();
@@ -21,12 +20,12 @@ export default async function Home() {
     const page = await client.getSingle("homepage");
 
     return (
-      <main className={styles.main}>
+      <main>
         <SliceZone slices={page.data.slices} components={components} />
       </main>
     );
   } catch (error) {
     console.error("Error fetching homepage:", error);
-    return <main className={styles.main}>Error loading page</main>;
+    return <main>Error loading page</main>;
   }
 }

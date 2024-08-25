@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Autoplay } from "swiper/modules";
+import { Navigation, Autoplay, A11y } from "swiper/modules";
 import { PrismicNextImage } from "@prismicio/next";
 import { CTA } from "../CTA";
 import { PrismicRichText } from "@prismicio/react";
@@ -25,18 +25,26 @@ const ProductCard: React.FC<ProductCardProps> = ({ category }) => {
   } = category.data;
 
   return (
-    <div className="product-card">
-      <PrismicNextImage field={product_category_image} />
-      <h3 className="product-title">{product_category_title}</h3>
-      <PrismicRichText
-        field={product_category_description}
-        components={{
-          paragraph: ({ children }) => <p>{children}</p>,
-        }}
-      />
-      {product_page && (
-        <CTA link={product_page} label="View Products" className="cta" />
-      )}
+    <div className="mobile-product-card">
+      <PrismicNextImage field={product_category_image} loading="lazy" />
+      <div className="mobile-product-card__content-wrapper">
+        <h3 className="mobile-product-card__title">{product_category_title}</h3>
+        <PrismicRichText
+          field={product_category_description}
+          components={{
+            paragraph: ({ children }) => (
+              <p className="mobile-product-card__desc line-clamp">{children}</p>
+            ),
+          }}
+        />
+        {product_page && (
+          <CTA
+            link={product_page}
+            label="Ver Producto"
+            className="cta cta--mobile"
+          />
+        )}
+      </div>
     </div>
   );
 };
@@ -48,12 +56,16 @@ type MobileSwiperProps = {
 const MobileSwiper: React.FC<MobileSwiperProps> = ({ productCategories }) => {
   return (
     <Swiper
-      modules={[Navigation, Autoplay]}
+      modules={[Navigation, Autoplay, A11y]}
       slidesPerView={1.5}
       spaceBetween={20}
       autoplay={{
         delay: 2500,
         disableOnInteraction: true,
+      }}
+      a11y={{
+        prevSlideMessage: "slide previa",
+        nextSlideMessage: "slide siguiente",
       }}
       className="landing-product-grid mobile-swiper"
     >
