@@ -16,7 +16,7 @@ type ProductCardProps = {
   category: Content.ProductCategoryDocument<string>;
 };
 
-const ProductCard: React.FC<ProductCardProps> = ({ category }) => {
+const ProductCard: React.FC<ProductCardProps> = React.memo(({ category }) => {
   const {
     product_category_description,
     product_category_image,
@@ -26,7 +26,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ category }) => {
 
   return (
     <div className="mobile-product-card">
-      <PrismicNextImage field={product_category_image} loading="lazy" />
+      <PrismicNextImage field={product_category_image} loading="eager" />
       <div className="mobile-product-card__content-wrapper">
         <h3 className="mobile-product-card__title">{product_category_title}</h3>
         <PrismicRichText
@@ -47,7 +47,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ category }) => {
       </div>
     </div>
   );
-};
+});
+
+ProductCard.displayName = "ProductCard";
 
 type MobileSwiperProps = {
   productCategories: Content.ProductCategoryDocument<string>[];
@@ -59,9 +61,13 @@ const MobileSwiper: React.FC<MobileSwiperProps> = ({ productCategories }) => {
       modules={[Navigation, Autoplay, A11y]}
       slidesPerView={1.5}
       spaceBetween={20}
+      speed={300}
+      watchSlidesProgress={true}
+      slideToClickedSlide={true}
       autoplay={{
         delay: 2500,
         disableOnInteraction: true,
+        pauseOnMouseEnter: true,
       }}
       a11y={{
         prevSlideMessage: "slide previa",
