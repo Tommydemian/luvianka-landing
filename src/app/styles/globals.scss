@@ -1280,7 +1280,7 @@ header {
     grid-template-columns: 1fr;
     justify-content: center;
     margin-inline: auto;
-    margin-top: 0;
+    // margin-top: 0;
 
     @media screen and (min-width: 50em) {
       grid-template-columns: repeat(2, 1fr);
