@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import { PrismicNextLink } from "@prismicio/next";
 import { Content, GroupField } from "@prismicio/client";
 import classNames from "classnames";
@@ -6,6 +6,7 @@ import { ChevronIcon } from "@/components/Icons/Chevron";
 import { ProductCategoryList } from "@/components/ProductCategories/ProductCategoryList";
 import { CTA } from "@/components/CTA";
 import { Simplify } from "../../../prismicio-types";
+import { on } from "events";
 
 type MobileNavigationProps = {
   settings: Content.SettingsDocument;
@@ -43,7 +44,11 @@ export const MobileNavigation: React.FC<MobileNavigationProps> = ({
               className={classNames("navbar__item", {
                 "m-navbar__item--is-products": is_product_category,
               })}
-              onClick={() => setDropdownOpen(!dropdownOpen)}
+              onClick={() => {
+                is_product_category
+                  ? setDropdownOpen(!dropdownOpen)
+                  : onClose();
+              }}
             >
               <PrismicNextLink
                 field={link}
@@ -84,6 +89,7 @@ export const MobileNavigation: React.FC<MobileNavigationProps> = ({
           link={settings.data.button_link}
           variant="primary"
           className="navbar__cta"
+          onClick={() => onClose()}
         />
       </div>
     </div>
