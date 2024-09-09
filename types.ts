@@ -21,3 +21,14 @@ export enum ContactType {
   ATENCION = "Atención",
   TRABAJA = "Trabaja",
 }
+
+export type EmailFormData = {
+  name: string;
+  email: string;
+  message: string;
+};
+
+export type EmailResponse = {
+  message: string;
+  error?: string;
+};
