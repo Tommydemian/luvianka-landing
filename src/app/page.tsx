@@ -3,6 +3,9 @@ import { SliceZone } from "@prismicio/react";
 import { createClient } from "@/prismicio";
 import { components } from "@/slices";
 
+// testing framer-motion
+import { HomeContent } from "./HomeContent";
+
 export async function generateMetadata(): Promise<Metadata> {
   const client = createClient();
   const page = await client.getSingle("homepage");
@@ -18,12 +21,14 @@ export default async function Home() {
 
   try {
     const page = await client.getSingle("homepage");
+    return <HomeContent slices={page.data.slices} />;
 
-    return (
-      <main>
-        <SliceZone slices={page.data.slices} components={components} />
-      </main>
-    );
+    // return (
+    //   <main>
+
+    //     <SliceZone slices={page.data.slices} components={components} />
+    //   </main>
+    // );
   } catch (error) {
     console.error("Error fetching homepage:", error);
     return <main>Error loading page</main>;

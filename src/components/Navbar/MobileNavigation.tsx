@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { PrismicNextLink } from "@prismicio/next";
 import { Content, GroupField } from "@prismicio/client";
 import classNames from "classnames";
@@ -43,10 +43,10 @@ export const MobileNavigation: React.FC<MobileNavigationProps> = ({
               className={classNames("navbar__item", {
                 "m-navbar__item--is-products": is_product_category,
               })}
+              onClick={() => setDropdownOpen(!dropdownOpen)}
             >
               <PrismicNextLink
                 field={link}
-                onClick={onClose}
                 className="navbar__link navbar__link--products"
               >
                 {label}

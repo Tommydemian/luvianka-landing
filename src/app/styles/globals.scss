@@ -524,6 +524,10 @@ header {
 .m-navbar__item--is-products {
   width: 100% !important;
   position: relative !important;
+
+  & > a {
+    pointer-events: none;
+  }
 }
 
 .navbar__item--is-products:hover > .navbar__link .chevron-wrapper svg path {

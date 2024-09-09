@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 
-import { Content, LinkField } from "@prismicio/client";
+import { Content } from "@prismicio/client";
 // Nav Components
 import { NavbarLogo } from "@/components/Navbar/NavbarLogo";
 import { MobileMenuToggle } from "@/components/Navbar/MobileMenuToggle";
