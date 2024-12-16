@@ -2037,8 +2037,8 @@ header {
 }
 @media screen and (min-width: 50em) {
   .maps__layout {
-    display: grid;
-    grid-template-columns: repeat(3, auto);
+    display: flex;
+    flex-wrap: wrap;
     gap: var(--spacing-lg);
     justify-content: center;
     align-items: center;
