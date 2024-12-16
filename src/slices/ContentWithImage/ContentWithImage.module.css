@@ -1,0 +1,48 @@
+.section {
+  width: 100%;
+}
+
+.sectionVar {
+  background-color: var(--color-primary-dark);
+}
+
+.textContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75em;
+}
+
+.textContentVar {
+  color: var(--color-text-light);
+  padding-block: 2.75em;
+}
+
+.tickField {
+  display: flex;
+  align-items: center;
+  gap: 1.5em;
+}
+
+.imageContainer {
+  position: relative;
+  width: 100%;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+}
+
+.decoImage {
+  position: absolute;
+  left: -5%;
+  width: 2.75rem;
+  bottom: 10%;
+  z-index: 1;
+}
+
+@media (min-width: 50em) {
+  .decoImage {
+    width: 3.75rem;
+  }
+}

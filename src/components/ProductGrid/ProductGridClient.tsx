@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { Container } from "@/components/Container";
 import { PrismicNextImage } from "@prismicio/next";
 import { PrismicRichText } from "@prismicio/react";
@@ -23,6 +23,32 @@ const ProductGridClient: React.FC<ProductGridClientProps> = ({
     setIsMounted(true);
   }, []);
 
+  const CATEGORY_ORDER = [
+    "jamones-cocidos",
+    "pancetas",
+    "lomos-especiales",
+    "bondiolas",
+    "mini-piezas",
+    "fiambres-de-pata",
+    "fiambres-de-paleta",
+    "leverwurst",
+    "mortadelas",
+    "salchichones",
+    "salames",
+    "fiambres-para-emparedado",
+  ];
+
+  const sortByCustomOrder = (a: any, b: any) => {
+    const indexA = CATEGORY_ORDER.indexOf(a.uid);
+    const indexB = CATEGORY_ORDER.indexOf(b.uid);
+    return indexA - indexB;
+  };
+
+  const sortedProducts = useMemo(
+    () => productCategories.sort(sortByCustomOrder),
+    [CATEGORY_ORDER]
+  );
+
   if (!isMounted) {
     return null;
   }
@@ -34,7 +60,7 @@ const ProductGridClient: React.FC<ProductGridClientProps> = ({
   return (
     <Container>
       <div className="landing-product-grid desktop-grid">
-        {productCategories.map((category) => (
+        {sortedProducts.map((category) => (
           <div key={category.id} className="landing-product-grid__card">
             <PrismicNextImage field={category.data.product_category_image} />
             <div className="landing-product-grid__content">

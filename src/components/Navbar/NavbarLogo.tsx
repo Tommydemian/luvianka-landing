@@ -7,11 +7,11 @@ export const NavbarLogo = () => {
     <Link href="/" className="navbar__logo-link">
       <Image
         className="navbar__logo"
-        src="https://ik.imagekit.io/2ziqnactl/luviankaLogo.png"
+        src="https://ik.imagekit.io/2ziqnactl/Luvianka/logo.png"
         alt="logo de la marca"
         width={895}
         height={458}
-        priority
+        priority={true}
       />
     </Link>
   );

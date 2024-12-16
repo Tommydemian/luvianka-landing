@@ -23,9 +23,11 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
       <PrismicNextImage
         loading="eager"
         priority
+        quality={100}
         field={slice.primary.hero_background_image}
         className="hero__bg-image"
       />
+
       <div
         className={classNames("hero__content flow-content", {
           "hero__content--with-bg": bgContent,

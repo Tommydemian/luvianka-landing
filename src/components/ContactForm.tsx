@@ -1,24 +1,13 @@
 "use client";
 
-import React from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
+import React, { useState } from "react";
 import { useContactContext } from "../context/ContactContext";
 import { ContactType } from "../../types";
 import { UploadIcon } from "@/components/Icons/Upload";
 
-type FormInputs = {
-  name: string;
-  direction: string;
-  email: string;
-  phone: string;
-  city: string;
-  provincia: string;
-  message: string;
-  file: FileList;
-};
-
 export const ContactForm = () => {
   const { contactType } = useContactContext();
+  const [result, setResult] = useState("");
 
   const formTitles = {
     [ContactType.COMERCIALIZA]:
@@ -42,214 +31,161 @@ export const ContactForm = () => {
       "Buenas tardes, mi nombre es Juan Carlos y estoy interesado en formar parte de su equipo ...",
   };
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-  } = useForm<FormInputs>();
+  const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setResult("Enviando....");
 
-  const onSubmit: SubmitHandler<FormInputs> = async (data) => {
+    const formData = new FormData(event.target as HTMLFormElement);
+    formData.append("contactType", contactType);
+
     try {
-      const formData = new FormData();
-
-      // Append text fields
-      Object.keys(data).forEach((key) => {
-        if (key !== "file") {
-          formData.append(key, data[key as keyof FormInputs] as string);
-        }
-      });
-
-      // Append contactType
-      formData.append("contactType", contactType);
-
-      // Append file if it exists
-      if (data.file && data.file.length > 0) {
-        formData.append("file", data.file[0]);
-      }
-
-      const response = await fetch("https://formspree.io/f/meojrqkz", {
+      const response = await fetch("/api/contact", {
         method: "POST",
-        body: formData, // Send formData instead of JSON
+        body: formData,
       });
 
-      if (response.ok) {
-        alert("Mensaje enviado con éxito");
-        reset();
+      const data = await response.json();
+
+      if (data.success) {
+        setResult("¡Formulario enviado exitosamente!");
+        event.target.reset();
+        // Reset file input if you have one
+        const fileInput = document.querySelector(
+          'input[type="file"]'
+        ) as HTMLInputElement;
+        if (fileInput) {
+          fileInput.value = "";
+        }
       } else {
-        throw new Error("Error al enviar el formulario");
+        setResult(data.message || "Ocurrió un error");
       }
     } catch (error) {
-      console.error("Error:", error);
-      alert("Error al enviar el mensaje. Por favor, inténtelo de nuevo.");
+      console.error("Error al enviar el formulario:", error);
+      setResult("Error al enviar el formulario. Por favor intente nuevamente.");
+    } finally {
+      // Esto asegura que el estado de "Enviando..." se limpie
+      const button = document.querySelector(
+        'button[type="submit"]'
+      ) as HTMLButtonElement;
+      if (button) {
+        button.disabled = false;
+        button.innerHTML = "<p>Enviar</p>";
+      }
     }
   };
 
   return (
     <>
       <h2 className="form__heading capitalize">{formTitles[contactType]}</h2>
-      <form className="form" onSubmit={handleSubmit(onSubmit)}>
+      <form className="form" onSubmit={onSubmit}>
         <div className="form-group left-col">
           <label htmlFor="name" className="sr-only">
             Name
           </label>
           <input
-            {...register("name", { required: "El campo es obligatorio." })}
-            type="text"
             id="name"
+            type="text"
+            name="name"
             placeholder="Roberto Barrientos"
+            required
           />
-          {errors.name && (
-            <span className="form__error">{errors.name.message}</span>
-          )}
         </div>
         <div className="form-group right-col">
           <label htmlFor="direction" className="sr-only">
             Direction
           </label>
           <input
-            {...register("direction", { required: "El campo es obligatorio." })}
-            type="text"
             id="direction"
+            type="text"
+            name="direction"
             placeholder="España 234"
+            required
           />
-          {errors.direction && (
-            <span className="form__error">{errors.direction.message}</span>
-          )}
         </div>
         <div className="form-group left-col">
           <label htmlFor="email" className="sr-only">
             Email
           </label>
           <input
-            {...register("email", {
-              required: "El campo es obligatorio.",
-              pattern: {
-                value: /\S+@\S+\.\S+/,
-                message: "El formato ingresado es invalido.",
-              },
-            })}
-            type="email"
             id="email"
+            type="email"
+            name="email"
             placeholder="roberto@gmail.com"
+            required
           />
-          {errors.email && (
-            <span className="form__error">{errors.email.message}</span>
-          )}
         </div>
         <div className="form-group right-col">
           <label htmlFor="phone" className="sr-only">
             Phone
           </label>
           <input
-            {...register("phone", {
-              required: "El número de teléfono es requerido",
-              pattern: {
-                value: /^(0?)(11|15)\d{8}$/,
-                message:
-                  "Ingrese un número de celular válido (ej: 1133332222 o 01133332222).",
-              },
-            })}
-            type="tel"
             id="phone"
+            type="tel"
+            name="phone"
             placeholder="1178786564"
+            required
+            pattern="^(0?)(11|15)\d{8}$"
           />
-          {errors.phone && (
-            <span className="form__error">{errors.phone.message}</span>
-          )}
         </div>
         <div className="form-group full-col">
           <label htmlFor="city" className="sr-only">
             City
           </label>
           <input
-            {...register("city", { required: "El campo es obligatorio." })}
-            type="text"
             id="city"
+            type="text"
+            name="city"
             placeholder="Avellaneda"
+            required
           />
-          {errors.city && (
-            <span className="form__error">{errors.city.message}</span>
-          )}
         </div>
         <div className="form-group full-col">
           <label htmlFor="provincia" className="sr-only">
             Provincia
           </label>
           <input
-            {...register("provincia", { required: "El campo es obligatorio." })}
-            type="text"
             id="provincia"
+            type="text"
+            name="provincia"
             placeholder="Buenos Aires"
+            required
           />
-          {errors.provincia && (
-            <span className="form__error">{errors.provincia.message}</span>
-          )}
         </div>
         <div className="form-group full-col">
           <label htmlFor="message" className="sr-only">
             Message
           </label>
           <textarea
-            {...register("message", { required: "El campo es obligatorio." })}
             id="message"
-            placeholder="Buenas tardes, mi nombre es Juan Carlos y me comunico con ustedes por que estoy interersado en ... "
+            name="message"
+            placeholder={messagePlaceholders[contactType]}
             maxLength={200}
             rows={5}
+            required
           />
-          {errors.message && (
-            <span className="form__error">{errors.message.message}</span>
-          )}
         </div>
         {contactType !== ContactType.COMERCIALIZA && (
           <div className="form-group full-col">
             <input
-              {...register("file", {
-                validate: {
-                  fileType: (value) => {
-                    if (!value[0]) return true;
-                    const acceptedFileTypes = [
-                      "image/jpeg",
-                      "image/png",
-                      "image/gif",
-                      "application/pdf",
-                      "application/msword",
-                      "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-                    ];
-                    return (
-                      acceptedFileTypes.includes(value[0].type) ||
-                      "Tipo de archivo no permitido"
-                    );
-                  },
-                  fileSize: (value) => {
-                    if (!value[0]) return true;
-                    const maxSize = 5 * 1024 * 1024; // 5MB
-                    return (
-                      value[0].size <= maxSize ||
-                      "El archivo es demasiado grande (máx. 5MB)"
-                    );
-                  },
-                },
-              })}
-              id="file"
+              id="attachment"
               type="file"
+              name="attachment"
               accept=".jpg,.jpeg,.png,.gif,.pdf,.doc,.docx"
             />
-            {errors.file && (
-              <p className="error-message">{errors.file.message}</p>
-            )}
-            <label htmlFor="file" className="file-label pointer">
+            <label htmlFor="attachment" className="file-label pointer">
               <UploadIcon /> {mediaLabels[contactType]}
-              {errors.file && (
-                <p className="error-message">{errors.file.message as string}</p>
-              )}
             </label>
           </div>
         )}
-        <button type="submit" className="form__submit-button full-col">
-          <p>Enviar</p>
+        <button
+          type="submit"
+          className="form__submit-button full-col"
+          disabled={result === "Enviando...."}
+        >
+          <p>{result === "Enviando...." ? "Enviando..." : "Enviar"}</p>
         </button>
       </form>
+      {result && <p className="form__result">{result}</p>}
     </>
   );
 };

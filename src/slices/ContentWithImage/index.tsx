@@ -67,6 +67,11 @@ const ContentWithImage = ({ slice }: ContentWithImageProps): JSX.Element => {
               <PrismicNextImage
                 field={slice.primary.image}
                 className="col-image_img"
+                sizes="(min-width: 50em) 50vw, 100vw"
+                imgixParams={{
+                  fit: "crop",
+                  q: 90,
+                }}
               />
               {!isVar && (
                 <Image

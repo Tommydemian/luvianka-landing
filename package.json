@@ -10,13 +10,18 @@
     "slicemachine": "start-slicemachine"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
+    "@formspree/react": "^2.5.1",
     "@prismicio/client": "^7.7.4",
     "@prismicio/next": "^1.6.0",
     "@prismicio/react": "^2.8.0",
     "@react-google-maps/api": "^2.19.3",
+    "@types/formidable": "^3.4.5",
     "classnames": "^2.5.1",
     "clsx": "^2.1.1",
+    "formidable": "^3.5.2",
     "framer-motion": "^11.5.4",
+    "lucide-react": "^0.468.0",
     "next": "14.2.5",
     "nodemailer": "^6.9.15",
     "react": "^18",
@@ -33,6 +38,7 @@
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "14.2.5",
+    "prettier": "^3.3.3",
     "slice-machine-ui": "^2.3.0",
     "typescript": "^5"
   }

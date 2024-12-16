@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState, useLayoutEffect } from "react";
+import styles from "./Navbar.module.css";
 
 import { Content } from "@prismicio/client";
 // Nav Components
@@ -58,16 +59,18 @@ export const NavBar = ({ settings, className }: NavBarProps) => {
 
   if (!isHydrated) {
     return (
-      <nav
-        className={classNames("navbar", className, { "is-mobile": isMobile })}
-      >
+      <nav className={classNames(styles.navbar, className)}>
         <NavbarLogo />
       </nav>
     );
   }
 
   return (
-    <nav className={classNames("navbar", className, { "is-mobile": isMobile })}>
+    <nav
+      className={classNames(styles.navbar, className, {
+        [styles.isMobile]: isMobile,
+      })}
+    >
       <NavbarLogo />
       {isMobile && (
         <MobileMenuToggle isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />

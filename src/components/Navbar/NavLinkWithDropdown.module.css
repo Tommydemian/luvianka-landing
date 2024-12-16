@@ -1,0 +1,81 @@
+.dropdown {
+  position: relative;
+}
+
+.dropdownOpen {
+  color: var(--color-primary);
+}
+
+.item {
+  text-transform: capitalize;
+  font-size: var(--font-size-nav);
+  transition: color 0.15s ease;
+}
+
+.productsItem {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+}
+
+.chevronWrapper {
+  display: inline-flex;
+  margin-left: 4px;
+  vertical-align: middle;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+.chevronIcon path {
+  transition: stroke 0.3s ease;
+}
+
+.chevronIcon {
+  transition: transform 0.3s ease;
+}
+
+.dropdownOpen .chevronIcon {
+  transform: rotate(180deg);
+}
+
+.menu {
+  position: absolute;
+  left: -1.5em;
+  top: calc(100% + var(--spacing-md));
+  background-color: var(--color-background);
+  padding: var(--spacing-md) var(--spacing-padding-xl);
+  box-shadow: 0 2px 13px -2px rgba(0, 0, 0, 0.2);
+  width: max-content;
+  border-radius: var(--border-radius-dropdown);
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-10px);
+  transition: all 0.3s cubic-bezier(0.22, 0, 0.36, 1);
+  z-index: 3;
+}
+
+.menuOpen {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.navLink {
+  font-size: var(--font-size-lg);
+  transition:
+    color 0.15s ease,
+    opacity 0.3s ease-in-out;
+}
+
+.navLink:hover {
+  color: var(--color-accent-dark);
+  opacity: 0.9;
+}

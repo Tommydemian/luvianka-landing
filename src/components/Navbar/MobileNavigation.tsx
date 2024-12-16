@@ -6,7 +6,6 @@ import { ChevronIcon } from "@/components/Icons/Chevron";
 import { ProductCategoryList } from "@/components/ProductCategories/ProductCategoryList";
 import { CTA } from "@/components/CTA";
 import { Simplify } from "../../../prismicio-types";
-import { on } from "events";
 
 type MobileNavigationProps = {
   settings: Content.SettingsDocument;
