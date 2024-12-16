@@ -48,7 +48,7 @@ export const ContactForm = () => {
 
       if (data.success) {
         setResult("¡Formulario enviado exitosamente!");
-        event.target.reset();
+        // event.target.reset();
         // Reset file input if you have one
         const fileInput = document.querySelector(
           'input[type="file"]'
